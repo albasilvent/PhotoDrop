@@ -38,7 +38,7 @@ async function getPostById(postId) {
 async function getAllPosts() {
     const statement = `
     SELECT
-    u.name, u.profilePicture,
+    u.name AS userName,
     p.title,
           p.description,
           p.photo1,

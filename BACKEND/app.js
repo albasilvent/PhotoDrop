@@ -9,14 +9,14 @@ const { sendError } = require("./services/errors.js");
 
 const app = express();
 //Añadimos el puerto
-const PORT = 5000;
+const PORT = 5050;
 
 const staticDirectory = path.join(__dirname, "./public");
 app.use(express.static(staticDirectory));
 
 app.use(
     cors({
-        origin: ["https://photoDrop.es", "http://localhost:5000"],
+        origin: ["https://photoDrop.es", "http://localhost:5050"],
     })
 );
 

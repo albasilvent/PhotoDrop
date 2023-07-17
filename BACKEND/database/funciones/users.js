@@ -6,8 +6,8 @@ const db = getConnection();
 //Funcion que guarda un usuario
 async function saveUser(user) {
     const statement = `
-    INSERT INTO users(id,name,surname1,surname2,email,password,birthDate,country,acceptedTOS,emailValidated,profilePicture)
-    VALUES(?,?,?,?,?,?,?,?,?,?,?)
+    INSERT INTO users(id,name,surname1,surname2,email,password,birthDate,country,acceptedTOS,emailValidated)
+    VALUES(?,?,?,?,?,?,?,?,?,?)
     `;
 
     await db.execute(statement, [
@@ -21,7 +21,6 @@ async function saveUser(user) {
         user.country || null,
         user.acceptedTOS,
         user.emailValidated,
-        user.profilePicture,
     ]);
 }
 
@@ -126,7 +125,7 @@ async function getPassword(email) {
 async function updateUser(user) {
     const statement = `
       UPDATE users
-      SET name = ?, surname1 = ?, surname2 = ?, country = ?, profilePicture = ?
+      SET name = ?, surname1 = ?, surname2 = ?, country = ?
       WHERE id = ?
     `;
 
@@ -135,7 +134,6 @@ async function updateUser(user) {
         user.surname1,
         user.surname2,
         user.country,
-        user.profilePicture,
         user.id,
     ]);
 }
