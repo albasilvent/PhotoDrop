@@ -37,44 +37,14 @@ async function getUserByEmail(email) {
     return rows[0];
 }
 
-//getUserById
-//Funcion que devuelve los posts segun la id. La diferencia es que enseña el post, la otra solo muestra las fotos
-// async function getUserById(userId) {
-//     const userStatement = `
-//       SELECT users.name, COUNT(posts.id) AS postCount
-//       FROM users
-//       LEFT JOIN posts ON users.id = posts.userId
-//       WHERE users.id = ?
-//       GROUP BY users.id;
-//     `;
-
-//     const postStatement = `
-//       SELECT title, description, photo1, photo2, photo3
-//       FROM posts
-//       WHERE userId = ?;
-//     `;
-
-//     const [userRows] = await db.execute(userStatement, [userId]);
-
-//     if (userRows.length === 0) {
-//       return null; // No se encontró ningún usuario con el ID dado
-//     }
-
-//     const user = userRows[0];
-
-//     const [postRows] = await db.execute(postStatement, [userId]);
-//     const posts = postRows;
-
-//     user.posts = posts;
-
-//     return user;
-//   }
 
 //getUserByID
-//Funcion que devuelve el nombre de usuario y su galeria
+//Funcion que devuelve todos los datos del usuario
 async function getUserById(userId) {
     const userStatement = `
-      SELECT users.name, COUNT(posts.id) AS postCount
+      SELECT users.id, users.name, users.surname1, users.surname2, users.email, users.password,
+      users.birthDate, users.country, users.acceptedTOS, users.emailValidated,
+      users.profilePicture, users.admin, COUNT(posts.id) AS postCount
       FROM users
       LEFT JOIN posts ON users.id = posts.userId
       WHERE users.id = ?
@@ -107,6 +77,83 @@ async function getUserById(userId) {
     return user;
 }
 
+async function getUserPosts(userId) {
+  const userStatement = `
+    SELECT users.id, users.name,
+    users.profilePicture, COUNT(posts.id) AS postCount
+    FROM users
+    LEFT JOIN posts ON users.id = posts.userId
+    WHERE users.id = ?
+    GROUP BY users.id;
+  `;
+
+  const postStatement = `
+    SELECT photo1, photo2, photo3
+    FROM posts
+    WHERE userId = ?;
+  `;
+
+  const [userRows] = await db.execute(userStatement, [userId]);
+
+  if (userRows.length === 0) {
+      return null; // No se encontró ningún usuario con el ID dado
+  }
+
+  const user = userRows[0];
+
+  const [postRows] = await db.execute(postStatement, [userId]);
+  const posts = postRows.map((row) => ({
+      photo1: row.photo1,
+      photo2: row.photo2,
+      photo3: row.photo3,
+  }));
+
+  user.posts = posts;
+
+  return user;
+}
+
+async function getUserPosts(userId) {
+  const userStatement = `
+    SELECT users.id, users.name, users.profilePicture, COUNT(posts.id) AS postCount
+    FROM users
+    LEFT JOIN posts ON users.id = posts.userId
+    WHERE users.id = ?
+    GROUP BY users.id;
+  `;
+
+  const postStatement = `
+    SELECT id, title, description, photo1, photo2, photo3, createdAt
+    FROM posts
+    WHERE userId = ?;
+  `;
+
+  const [userRows] = await db.execute(userStatement, [userId]);
+
+  if (userRows.length === 0) {
+    return null; // No se encontró ningún usuario con el ID dado
+  }
+
+  const user = userRows[0];
+
+  const [postRows] = await db.execute(postStatement, [userId]);
+  const posts = postRows.map((row) => ({
+    id: row.id,
+    title: row.title,
+    description: row.description,
+    photo1: row.photo1,
+    photo2: row.photo2,
+    photo3: row.photo3,
+    createdAt: row.createdAt,
+  }));
+
+  user.posts = posts;
+
+  return user;
+}
+
+
+
 //getPassword
 //Funcion que devuelve la contraseña
 async function getPassword(email) {
@@ -125,7 +172,7 @@ async function getPassword(email) {
 async function updateUser(user) {
     const statement = `
       UPDATE users
-      SET name = ?, surname1 = ?, surname2 = ?, country = ?
+      SET name = ?, surname1 = ?, surname2 = ?, country = ?, profilePicture= ?
       WHERE id = ?
     `;
 
@@ -134,6 +181,7 @@ async function updateUser(user) {
         user.surname1,
         user.surname2,
         user.country,
+        user.profilePicture,
         user.id,
     ]);
 }
@@ -144,4 +192,5 @@ module.exports = {
     getUserById,
     getPassword,
     updateUser,
+    getUserPosts
 };

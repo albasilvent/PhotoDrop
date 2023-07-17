@@ -14,6 +14,7 @@ async function createTables(pool) {
           country VARCHAR(150),
           acceptedTOS BOOL NOT NULL,
           emailValidated BOOL DEFAULT false,
+          profilePicture VARCHAR(300),
           admin BOOL DEFAULT false
       )`);
 

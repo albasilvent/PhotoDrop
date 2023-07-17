@@ -12,6 +12,7 @@ const codePayload = require("../validators/code.js");
 const userPayload = require("../validators/edit-user.js");
 const { editUser } = require("../use-cases/edit");
 const { viewUser } = require("../use-cases/view-details.js");
+const fileUpload = require("express-fileupload");
 const router = Router();
 
 //Registrar un usuario
@@ -66,7 +67,7 @@ router.get(
 router.patch(
     "/users",
     authGuard,
-    json(),
+    fileUpload(),
     validateBody(userPayload),
     handleAsyncError(async (req, res) => {
         // Editar el post con id req.params.id

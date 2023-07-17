@@ -35,11 +35,14 @@ async function getCommentsByPostId(postId) {
       SELECT *
       FROM post_comments as cp
       WHERE cp.postId = ?
+      ORDER BY cp.createdAt ASC;
     `;
+  
     const [rows] = await db.execute(statement, [postId]);
-
+  
     return rows;
-}
+  }
+  
 
 //updateComment
 //Funcion que edita un comentario

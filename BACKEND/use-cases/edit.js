@@ -23,6 +23,7 @@ async function editUser(userId, userPayload) {
         surname1: userPayload.surname1 || user.surname1,
         surname2: userPayload.surname2 || user.surname2,
         country: userPayload.country || user.country,
+        profilePicture: userPayload.profilePicture || user.profilePicture
     };
 
     await updateUser(updatedUser);
