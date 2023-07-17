@@ -27,6 +27,16 @@ router.post(
     })
 );
 
+//Obtener todos los post que coincidan con la busqueda
+router.get(
+    "/posts/search",
+    handleAsyncError(async (req, res) => {
+        //Obtener todos los posts
+        const posts = await search(req.query);
+        sendResponse(res, posts);
+    })
+);
+
 // Obtener un post
 router.get(
     "/posts/:id",
@@ -35,10 +45,10 @@ router.get(
         const post = await viewPost(req.params.id);
         sendResponse(res, post);
     })
-);
-
-//Obtener todos los post
-router.get(
+    );
+    
+    //Obtener todos los post
+    router.get(
     //PROBAR CON POSTS SUBIDOS
     "/posts",
     handleAsyncError(async (req, res) => {
@@ -48,16 +58,6 @@ router.get(
     })
 );
 
-//Obtener todos los post que coincidan con la busqueda
-//NO FUNCIONA
-router.get(
-    "/posts/search",
-    handleAsyncError(async (req, res) => {
-        //Obtener todos los posts
-        const posts = await search(req.query);
-        sendResponse(res, posts);
-    })
-);
 
 // Editar el post
 router.patch(
