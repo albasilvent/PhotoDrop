@@ -36,34 +36,39 @@ async function getPostById(postId) {
 //getAllPosts
 //Funcion que devuelve todos los posts
 async function getAllPosts() {
-    const statement = `
+  const statement = `
     SELECT
-    u.name AS userName,
-    p.title,
-          p.description,
-          p.photo1,
-          p.photo2,
-          p.photo3,
-          COALESCE(l.like_count, 0) AS likes,
-          COALESCE(c.comment_count, 0) as comments
-      FROM
-          posts p
-          LEFT JOIN (
-              SELECT postId, COUNT(*) AS like_count
-              FROM post_likes
-              GROUP BY postId
-          ) l ON p.id = l.postId
-          LEFT JOIN (
-              SELECT postId, COUNT(*) AS comment_count
-              FROM post_comments
-              GROUP BY postId
-          ) c ON p.id = c.postId
-          LEFT JOIN users u ON p.userId = u.id
-      ORDER BY p.createdAt DESC;
-    `;
-    const [rows] = await db.execute(statement);
-    return rows;
-  }
+      p.id AS postId,
+      p.title AS postTitle,
+      p.description AS postDescription,
+      p.photo1 AS postPhoto1,
+      p.photo2 AS postPhoto2,
+      p.photo3 AS postPhoto3,
+      COALESCE(l.like_count, 0) AS like_count,
+      COALESCE(c.comment_count, 0) AS comment_count,
+      u.name AS userName,
+      u.profilePicture AS userProfilePicture,
+      u.id AS userId
+    FROM
+      posts p
+      LEFT JOIN (
+        SELECT postId, COUNT(*) AS like_count
+        FROM post_likes
+        GROUP BY postId
+      ) l ON p.id = l.postId
+      LEFT JOIN (
+        SELECT postId, COUNT(*) AS comment_count
+        FROM post_comments
+        GROUP BY postId
+      ) c ON p.id = c.postId
+      LEFT JOIN users u ON p.userId = u.id
+    ORDER BY p.createdAt DESC;
+  `;
+
+  const [rows] = await db.execute(statement);
+  return rows;
+}
+
   
 
 

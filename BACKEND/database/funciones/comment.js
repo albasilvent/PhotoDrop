@@ -32,8 +32,9 @@ async function getCommentById(commentId) {
 //Funcion que devuelve los comentarios de un post
 async function getCommentsByPostId(postId) {
     const statement = `
-      SELECT *
-      FROM post_comments as cp
+      SELECT cp.*, u.name AS userName, u.profilePicture
+      FROM post_comments AS cp
+      INNER JOIN users AS u ON cp.userId = u.id
       WHERE cp.postId = ?
       ORDER BY cp.createdAt ASC;
     `;
@@ -42,6 +43,7 @@ async function getCommentsByPostId(postId) {
   
     return rows;
   }
+  
   
 
 //updateComment
