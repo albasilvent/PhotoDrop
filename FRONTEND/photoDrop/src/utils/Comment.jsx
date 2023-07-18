@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+/* eslint-disable react/prop-types */
+import { useState } from 'react';
 import EditCommentModal from './EditCommentModal';
 
-const Comment = ({ comment }) => {
+export function Comment({ comment }) {
     const [isEditing, setIsEditing] = useState(false);
 
     const handleEditClick = () => {
@@ -9,7 +10,7 @@ const Comment = ({ comment }) => {
     };
 
     const handleSaveComment = (editedComment) => {
-        // Aquí puedes llamar a una función para guardar el comentario editado en tu backend o hacer cualquier otra acción necesaria
+        // Añadir función del back
         console.log('Comentario editado:', editedComment);
 
         setIsEditing(false);
@@ -34,6 +35,4 @@ const Comment = ({ comment }) => {
             )}
         </div>
     );
-};
-
-export default Comment;
+}

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+/* eslint-disable react/prop-types */
+import { useState } from 'react';
 
-const EditCommentModal = ({ comment, onSave, onCancel }) => {
+export function EditCommentModal({ comment, onSave, onCancel }) {
     const [editedComment, setEditedComment] = useState(comment);
 
     const handleChange = (e) => {
@@ -18,6 +19,4 @@ const EditCommentModal = ({ comment, onSave, onCancel }) => {
             <button onClick={onCancel}>Cancelar</button>
         </div>
     );
-};
-
-export default EditCommentModal;
+}
