@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import EditCommentModal from './EditCommentModal';
+import { EditCommentModal } from '../pages/EditComment';
+import editComment from '../../../../BACKEND/use-cases/edit';
 
 export function Comment({ comment }) {
     const [isEditing, setIsEditing] = useState(false);
@@ -10,8 +11,8 @@ export function Comment({ comment }) {
     };
 
     const handleSaveComment = (editedComment) => {
-        // Añadir función del back
-        console.log('Comentario editado:', editedComment);
+        editComment(); //Funcion del back
+        console.log('Comentario editado:', editedComment); //¿Borrar?
 
         setIsEditing(false);
     };
