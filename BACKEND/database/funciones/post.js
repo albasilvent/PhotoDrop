@@ -48,7 +48,8 @@ async function getAllPosts() {
       COALESCE(c.comment_count, 0) AS comment_count,
       u.name AS userName,
       u.profilePicture AS userProfilePicture,
-      u.id AS userId
+      u.id AS userId,
+      createdAt
     FROM
       posts p
       LEFT JOIN (

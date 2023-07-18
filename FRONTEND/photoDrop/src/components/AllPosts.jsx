@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { PostCard } from "./PostCard";
+import "../styles/AllPosts.css"
 
 export function AllPosts() {
 

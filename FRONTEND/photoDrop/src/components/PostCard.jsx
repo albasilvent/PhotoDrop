@@ -1,35 +1,42 @@
+import "../styles/PostCard.css"
+
 /* eslint-disable react/prop-types */
+import { Comments } from "./Comments";
+
 export function PostCard({ post }) {
     const {
+        postTitle,
+        postDescription,
+        postPhoto1,
+        postPhoto2,
+        postPhoto3,
+        like_count,
         comment_count,
-        name,
-        profilePicture,
-        title,
-        description,
-        photo1,
-        photo2,
-        photo3,
-        likes,
+        userName,
+        userProfilePicture,
         comments,
         createdAt
     } = post;
 
+    const blankProfile= "/blankProfilePicture.jpg"
+
     return (
         <section>
-            <img src={profilePicture}></img>
-            <p>{name}</p>
-            <h2>{title}</h2>
+            {!userProfilePicture && <img className="profilePicture gridProfilePicture" src={blankProfile}></img>}
+            {userProfilePicture && <img className="profilePicture" src={userProfilePicture}></img>}
+            <p className="userName ">{userName}</p>
+            <h2>{postTitle}</h2>
             <div>
-                <img src={photo1}></img>
-                <img src={photo2}></img>
-                <img src={photo3}></img>
+                <img className="postImg" src={postPhoto1}></img>
+                <img className="postImg" src={postPhoto2}></img>
+                <img className="postImg" src={postPhoto3}></img>
             </div>
-            <p>Likes:{likes}</p>
+            <p>Likes:{like_count}</p>
             <p>Comments: {comment_count}</p>
-            <p>{description}</p>
+            <p>{postDescription}</p>
             {comments &&
                 comments.map((comment, i) => {
-                    return <p key={i}>{comment.comment}</p>;
+                    return <Comments key= {i} comment={comment}/>;
                 })}
             <p>{createdAt}</p>
         </section>

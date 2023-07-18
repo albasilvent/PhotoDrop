@@ -1,0 +1,16 @@
+section {
+    background-color: blue;
+    width: 85vw ;
+    height: 60vh;
+    margin: 1rem;
+}
+
+.profilePicture {
+    width: 30px;
+    border-radius: 50px;
+    border: 1px solid grey;
+}
+
+.postImg {
+    width: 10px;
+}

@@ -1,11 +1,11 @@
 import './App.css'
-import { AllPosts } from './components/AllPosts'
+import { HomePage } from './components/HomePage'
 
 function App() {
 
   return (
     <>
-      <AllPosts></AllPosts>
+      <HomePage/>
     </>
   )
 }
