@@ -23,15 +23,17 @@ async function savePost(post) {
 //getPostById
 //Funcion que devuelve los posts segun la id
 async function getPostById(postId) {
-    const statement = `
-      SELECT *
-      FROM posts as p
-      WHERE p.id = ?
-    `;
-    const [rows] = await db.execute(statement, [postId]);
+  const statement = `
+    SELECT p.*, u.id as userId, u.name as userName, u.profilePicture
+    FROM posts as p
+    INNER JOIN users as u ON p.userId = u.id
+    WHERE p.id = ?
+  `;
+  const [rows] = await db.execute(statement, [postId]);
 
-    return rows[0];
+  return rows[0];
 }
+
 
 //getAllPosts
 //Funcion que devuelve todos los posts

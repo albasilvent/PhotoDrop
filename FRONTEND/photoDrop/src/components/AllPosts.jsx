@@ -11,13 +11,14 @@ export function AllPosts() {
             .then((result) => {
                 setPosts(result.data);
             });
-    }, [posts]);
+    }, []);
 
     return (
         <main>
-            {posts.map((post, i) => {
+            {posts && posts.map((post, i) => {
                 return <PostCard key={i} post={post}></PostCard>;
             })}
+            {posts.length==0 && <p className= "cargando">Cargando...</p>}
         </main>
     );
 }
