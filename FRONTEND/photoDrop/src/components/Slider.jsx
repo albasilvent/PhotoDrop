@@ -19,7 +19,7 @@ export function Slider({ photo1, photo2, photo3 }) {
                             title="Next"
                         ></a>
                     </div>
-                    <div id="slides__2" className="slide">
+                    {photo2 && <div id="slides__2" className="slide">
                         <img className="postImg" src={photo2}></img>
                         <a
                             className="slide__prev"
@@ -31,8 +31,8 @@ export function Slider({ photo1, photo2, photo3 }) {
                             href="#slides__3"
                             title="Next"
                         ></a>
-                    </div>
-                    <div id="slides__3" className="slide">
+                    </div>}
+                   {photo3 && <div id="slides__3" className="slide">
                         <img className="postImg" src={photo3}></img>
                         <a
                             className="slide__prev"
@@ -44,7 +44,7 @@ export function Slider({ photo1, photo2, photo3 }) {
                             href="#slides__4"
                             title="Next"
                         ></a>
-                    </div>
+                    </div>}
                 </div>
                 <div className="slider__nav">
                     <a className="slider__navlink" href="#slides__1"></a>

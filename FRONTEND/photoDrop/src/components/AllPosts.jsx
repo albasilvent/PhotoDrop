@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { PostCard } from "./PostCard";
-import "../styles/AllPosts.css"
+import "../styles/AllPosts.css";
 
 export function AllPosts() {
-
-    const [posts, setPosts]= useState([])
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         fetch("http://localhost:5000/posts")
@@ -14,9 +13,11 @@ export function AllPosts() {
             });
     }, [posts]);
 
-    return <main>
-        {posts.map((post, i)=> {
-            return <PostCard key= {i} post={post}></PostCard>
-        })}
-    </main>;
+    return (
+        <main>
+            {posts.map((post, i) => {
+                return <PostCard key={i} post={post}></PostCard>;
+            })}
+        </main>
+    );
 }

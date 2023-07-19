@@ -28,12 +28,13 @@ section {
 
 .postTitle {
     font-weight: 500;
-    font-size: 15px;
+    font-size: 18px;
     padding: 0.5rem 1rem;
 }
 
 .profilePicture {
     width: 25px;
+    height: 25px;
     border-radius: 20px;
     border: 1px solid grey;
 }
@@ -52,7 +53,7 @@ section {
 }
 
 .postDescription{
-    font-size:10px;
+    font-size:12px;
     padding: 0 1rem;
 }
 
@@ -67,6 +68,7 @@ section {
 .postDate{
     width:100%;
     padding: 0.5rem 1rem;
-    font-size:8px;
+    font-size:10px;
     text-align: end;
+    color:grey;
 }

@@ -21,7 +21,7 @@
   }
   
   .slide:nth-of-type(even) {
-    background-color: rgb(250, 246, 212);
+    background-color:  rgb(239, 234, 229);
   }
   
   .slide {
@@ -34,7 +34,7 @@
     scroll-snap-align: center;
     margin-right: 0px;
     box-sizing: border-box;
-    background: white;
+    background:  rgb(239, 234, 229);
     transform-origin: center center;
     transform: scale(1);
   }
@@ -78,4 +78,5 @@
   
   .postImg {
     width: 100%;
+    height: auto;
 }
