@@ -1,16 +1,77 @@
 section {
-    background-color: blue;
-    width: 85vw ;
-    height: 60vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(239, 234, 229);
+    border: 1px solid grey;
+    width: 100vw;
     margin: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+}
+
+.postUser {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 1rem;
+    margin-top: 0.5rem;
+}
+
+.userName {
+    font-size: 15px;
+    font-style:italic;
+}
+
+.postTitle {
+    font-weight: 500;
+    font-size: 15px;
+    padding: 0.5rem 1rem;
 }
 
 .profilePicture {
-    width: 30px;
-    border-radius: 50px;
+    width: 25px;
+    border-radius: 20px;
     border: 1px solid grey;
 }
 
+
 .postImg {
-    width: 10px;
+    width: 100%;
+}
+
+.postSocials {
+    display: flex;
+    gap: 1.5rem;
+    padding:0.5rem 1rem;
+    color:grey;
+}
+
+.likes,
+.comments {
+    display: flex;
+    gap:0.3rem;
+}
+
+.postDescription{
+    font-size:10px;
+    padding: 0 1rem;
+}
+
+.postComments{
+    width: 100%;
+    font-size: 12px;
+    padding: 0.5rem  1rem;
+    font-style:italic;
+    color:grey;
+}
+
+.postDate{
+    width:100%;
+    padding: 0.5rem 1rem;
+    font-size:8px;
+    text-align: end;
 }

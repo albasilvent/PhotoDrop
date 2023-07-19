@@ -1,8 +1,8 @@
-import "../styles/PostCard.css"
+import "../styles/PostCard.css";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 /* eslint-disable react/prop-types */
-import { Comments } from "./Comments";
-
 export function PostCard({ post }) {
     const {
         postTitle,
@@ -14,31 +14,53 @@ export function PostCard({ post }) {
         comment_count,
         userName,
         userProfilePicture,
-        comments,
-        createdAt
+        createdAt,
     } = post;
 
-    const blankProfile= "/blankProfilePicture.jpg"
+    dayjs.extend(relativeTime)
+    const date= dayjs(createdAt).fromNow();
+
+
+    const blankProfile = "/blankProfilePicture.jpg";
 
     return (
         <section>
-            {!userProfilePicture && <img className="profilePicture gridProfilePicture" src={blankProfile}></img>}
-            {userProfilePicture && <img className="profilePicture" src={userProfilePicture}></img>}
-            <p className="userName ">{userName}</p>
-            <h2>{postTitle}</h2>
+            <div className="postUser">
+                {!userProfilePicture && (
+                    <img className="profilePicture" src={blankProfile}></img>
+                )}
+                {userProfilePicture && (
+                    <img
+                        className="profilePicture"
+                        src={userProfilePicture}
+                    ></img>
+                )}
+                <p className="userName">{userName}</p>
+            </div>
+            <h2 className="postTitle">{postTitle}</h2>
             <div>
                 <img className="postImg" src={postPhoto1}></img>
                 <img className="postImg" src={postPhoto2}></img>
                 <img className="postImg" src={postPhoto3}></img>
             </div>
-            <p>Likes:{like_count}</p>
-            <p>Comments: {comment_count}</p>
-            <p>{postDescription}</p>
-            {comments &&
-                comments.map((comment, i) => {
-                    return <Comments key= {i} comment={comment}/>;
-                })}
-            <p>{createdAt}</p>
+            <div className="postSocials">
+                <div className="likes">
+                    <p className="material-symbols-rounded">Favorite</p>
+                    <p>{like_count}</p>
+                </div>
+                <div className="comments">
+                    <p className="material-symbols-rounded">chat_bubble</p>
+                    <p>{comment_count}</p>
+                </div>
+            </div>
+            <p className="postDescription">{postDescription}</p>
+            <div className="postComments">
+                {comment_count == 0 && <p>Se el primero en comentar!</p>}
+                {comment_count > 0 && (
+                    <p>Ver los {comment_count} comentarios...</p>
+                )}
+            </div>
+            <p className="postDate">Posted {date}</p>
         </section>
     );
 }

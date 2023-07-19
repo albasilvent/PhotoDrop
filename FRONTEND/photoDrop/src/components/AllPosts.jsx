@@ -12,7 +12,7 @@ export function AllPosts() {
             .then((result) => {
                 setPosts(result.data);
             });
-    }, []);
+    }, [posts]);
 
     return <main>
         {posts.map((post, i)=> {
