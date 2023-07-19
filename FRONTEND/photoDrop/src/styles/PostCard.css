@@ -38,11 +38,6 @@ section {
     border: 1px solid grey;
 }
 
-
-.postImg {
-    width: 100%;
-}
-
 .postSocials {
     display: flex;
     gap: 1.5rem;

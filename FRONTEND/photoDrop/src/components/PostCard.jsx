@@ -1,6 +1,7 @@
 import "../styles/PostCard.css";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { Slider } from "./Slider";
 
 /* eslint-disable react/prop-types */
 export function PostCard({ post }) {
@@ -38,11 +39,7 @@ export function PostCard({ post }) {
                 <p className="userName">{userName}</p>
             </div>
             <h2 className="postTitle">{postTitle}</h2>
-            <div>
-                <img className="postImg" src={postPhoto1}></img>
-                <img className="postImg" src={postPhoto2}></img>
-                <img className="postImg" src={postPhoto3}></img>
-            </div>
+            <Slider photo1={postPhoto1} photo2={postPhoto2} photo3={postPhoto3}/>
             <div className="postSocials">
                 <div className="likes">
                     <p className="material-symbols-rounded">Favorite</p>
