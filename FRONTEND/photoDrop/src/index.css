@@ -4,6 +4,8 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    --background-color: rgb(250, 249, 248);
+    --border-color: rgb(213, 213, 213);
 }
 
 body {
