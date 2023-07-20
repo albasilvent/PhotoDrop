@@ -1,0 +1,9 @@
+h2{
+    font-size: 15px;
+}
+
+@media (min-height: 1000px) {
+    h2{
+        font-size: 25px;
+    }
+}
