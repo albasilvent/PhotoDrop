@@ -4,6 +4,7 @@ import { sendValidationCode } from "../api/send-validation-code";
 import { Form } from "../components/forms/Form.jsx";
 import { FormInput } from "../components/forms/FormInput";
 import { Button } from "../components/forms/Button";
+import "./ValidateEmail.css";
 
 export function ValidateEmail() {
     const [queryParams] = useSearchParams();
@@ -26,10 +27,15 @@ export function ValidateEmail() {
 
     return (
         <Form onSubmit={submitCode}>
-            <h2>Validación del email</h2>
-            <p>Se ha enviado un código de validación al email: {email}</p>
-            <p>Escribe aquí el código para validarlo</p>
-            <FormInput onChange={setCode} />
+            <div className="image">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><g strokeWidth="0" id="SVGRepo_bgCarrier"></g><g strokeLinejoin="round" strokeLinecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path strokeLinejoin="round" strokeLinecap="round" strokeWidth="1.5" stroke="#000000" d="M20 7L9.00004 18L3.99994 13"></path> </g></svg>
+            </div>
+            <div className="content">
+                <h2>Validación del email</h2>
+                <p>Se ha enviado un código de validación al email: {email}</p>
+                <p>Escribe aquí el código para validarlo</p>
+            </div>
+            <FormInput className="input" onChange={setCode} />
             <Button type={"submit"}>Enviar</Button>
         </Form>
     );
