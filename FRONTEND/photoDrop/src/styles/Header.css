@@ -1,0 +1,12 @@
+header {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+h1 {
+    font-size: 25px;
+}
