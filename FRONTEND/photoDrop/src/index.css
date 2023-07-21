@@ -4,16 +4,21 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    --background-color: rgb(250, 249, 248);
+    --border-color: rgb(213, 213, 213);
 }
 
 body {
-    background-color: rgb(232, 242, 248);
+    background-color: var(--background-color);
     font-family: "Roboto";
-    width: 100%;
-    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
 }
 
 #root {
+    background-color: var(--background-color);
+    width: 100vw;
+    height: 100vh;
     display: grid;
     grid-template-rows: 6vh calc(100vh - 11vh) 5vh;
 }
@@ -24,4 +29,11 @@ body {
 
 img {
     display: block;
+}
+
+@media (min-width: 900px) {
+    #root {
+        grid-template-columns: 6vh calc(100vw - 6vh);
+        grid-template-rows: 6vh calc(100vh - 6vh);
+    }
 }

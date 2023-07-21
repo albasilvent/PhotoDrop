@@ -1,11 +1,22 @@
-import "../styles/Footer.css"
+import { Link, useLocation } from "react-router-dom";
+import "../styles/Footer.css";
 
 export function Footer() {
+    const location= useLocation();
+
+    const isActiveRoute = (path) => {
+        return location.pathname === path;
+    };
+
     return (
         <footer>
-            <p className="material-symbols-rounded">Home</p>
+            <Link to="/">
+                <p className={isActiveRoute('/') ? 'material-symbols-rounded active' : 'material-symbols-rounded'}>Home</p>
+            </Link>
             <p className="material-symbols-rounded">add_box</p>
-            <p className="material-symbols-rounded">Search</p>
+            <Link to="/search">
+                <p className={isActiveRoute('/search') ? 'material-symbols-rounded active' : 'material-symbols-rounded'}>Search</p>
+            </Link>
         </footer>
     );
 }

@@ -43,18 +43,21 @@ export function PostCard({ post }) {
             <div className="postSocials">
                 <div className="likes">
                     <p className="material-symbols-rounded">Favorite</p>
-                    <p>{like_count}</p>
+                    <p className= "count">{like_count}</p>
                 </div>
                 <div className="comments">
                     <p className="material-symbols-rounded">chat_bubble</p>
-                    <p>{comment_count}</p>
+                    <p className= "count">{comment_count}</p>
                 </div>
             </div>
             <p className="postDescription">{postDescription}</p>
             <div className="postComments">
                 {comment_count == 0 && <p>Se el primero en comentar!</p>}
-                {comment_count > 0 && (
-                    <p>Ver los {comment_count} comentarios...</p>
+                {comment_count > 1 && (
+                    <p>Ver {comment_count} comentarios...</p>
+                )}
+                {comment_count == 1 && (
+                    <p>Ver {comment_count} comentario...</p>
                 )}
             </div>
             <p className="postDate">Posted {date}</p>

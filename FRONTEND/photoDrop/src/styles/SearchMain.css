@@ -2,6 +2,11 @@ h2{
     font-size: 15px;
 }
 
+.resultados{
+    width: 100%;
+    text-align: center;
+}
+
 @media (min-height: 1000px) {
     h2{
         font-size: 25px;

@@ -3,14 +3,13 @@ section {
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-between;
-    background-color: rgb(239, 234, 229);
-    border: 1px solid grey;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
     width: 100vw;
     margin: 1rem;
     border-radius: 10px;
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
-    0 8px 10px -6px rgb(0 0 0 / 0.1);
-
+        0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 .postUser {
@@ -23,7 +22,7 @@ section {
 
 .userName {
     font-size: 15px;
-    font-style:italic;
+    font-style: italic;
 }
 
 .postTitle {
@@ -36,39 +35,113 @@ section {
     width: 25px;
     height: 25px;
     border-radius: 20px;
-    border: 1px solid grey;
+    border: 1px solid var(--border-color);
 }
 
 .postSocials {
     display: flex;
     gap: 1.5rem;
-    padding:0.5rem 1rem;
-    color:grey;
+    padding: 0.5rem 1rem;
+    color: grey;
 }
 
 .likes,
 .comments {
     display: flex;
-    gap:0.3rem;
+    align-items: center;
+    gap: 0.3rem;
 }
 
-.postDescription{
-    font-size:12px;
+.postDescription {
+    font-size: 12px;
     padding: 0 1rem;
 }
 
-.postComments{
+.postComments {
     width: 100%;
     font-size: 12px;
-    padding: 0.5rem  1rem;
-    font-style:italic;
-    color:grey;
+    padding: 0.5rem 1rem;
+    font-style: italic;
+    color: grey;
 }
 
-.postDate{
-    width:100%;
+.postDate {
+    width: 100%;
     padding: 0.5rem 1rem;
-    font-size:10px;
+    font-size: 10px;
     text-align: end;
-    color:grey;
+    color: grey;
+}
+
+@media (min-width: 700px) {
+    .userName {
+        font-size: 18px;
+    }
+
+    .postTitle {
+        font-size: 18px;
+    }
+
+    .profilePicture {
+        width: 30px;
+        height: 30px;
+    }
+
+    .postDescription {
+        font-size: 15px;
+    }
+
+    .postComments {
+        font-size: 15px;
+    }
+
+    .postDate {
+        font-size: 12px;
+    }  
+}
+
+@media (min-height: 1000px) {
+    section{
+        margin: 2rem 1rem;
+    }
+    .userName {
+        font-size: 30px;
+    }
+
+    .postTitle {
+        font-size: 35px;
+    }
+
+    .profilePicture {
+        width: 50px;
+        height: 50px;
+        border-radius: 40px;
+    }
+
+    .postDescription {
+        font-size: 25px;
+    }
+
+    .postComments {
+        font-size: 25px;
+    }
+
+    .postDate {
+        font-size: 18px;
+    }
+
+    .material-symbols-rounded{
+        font-size: 50px;
+    }
+
+    .count{
+        font-size: 25px;
+    }
+
+}
+
+@media (min-width: 900px) {
+    section {
+        width: 50%;
+    }
 }

@@ -1,8 +1,22 @@
 footer {
-    background-color: rgb(239, 234, 229);
+    background-color: var(--background-color);
     width: 100%;
     padding: 0.2rem;
     display: flex;
     justify-content: space-evenly;
-    border-top: 1px solid rgb(213, 213, 213);
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+}
+.material-symbols-rounded {
+    color: rgb(183, 183, 183);
+}
+.material-symbols-rounded.active {
+    color: black;
+}
+
+@media (min-width: 900px) {
+    footer {
+        flex-direction: column;
+        grid-row: 2/3;
+    }
 }
