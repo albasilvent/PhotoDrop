@@ -6,9 +6,9 @@ export function Login() {
             <div className="cajetin">
                 <h2 className="login">Login</h2>
                 <form className="form" action="">
-                    <input type="email" placeholder="Correo electrónico" />
-                    <input type="password" placeholder="Contraseña" />
-                    <button>Enviar</button>
+                    <input className="input" type="email" placeholder="Correo electrónico" />
+                    <input className="input" type="password" placeholder="Contraseña" />
+                    <button className="boton">Enviar</button>
                 </form>
                 <a className="olvidado" href="#">
                     ¿Has olvidado la contraseña?

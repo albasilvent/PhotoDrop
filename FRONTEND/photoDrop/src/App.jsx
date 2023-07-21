@@ -3,7 +3,7 @@ import { RegisterPage } from "./components/RegisterPage";
 import { LoginPage } from "./components/LoginPage";
 
 function App() {
-    return <RegisterPage />;
+    return <LoginPage />;
 }
 
 export default App;
