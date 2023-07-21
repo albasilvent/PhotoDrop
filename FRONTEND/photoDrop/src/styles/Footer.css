@@ -20,3 +20,10 @@ footer {
         grid-row: 2/3;
     }
 }
+
+.profilePicture {
+    width: 25px;
+    height: 25px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+}

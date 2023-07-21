@@ -30,6 +30,7 @@ async function loginUser(email, plainPassword) {
         id: user.id,
         email: user.email,
         name: user.name,
+        profilePicture: user.profilePicture
     });
     //DEVUELVO EL TOKEN
     return token;

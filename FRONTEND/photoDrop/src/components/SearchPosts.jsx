@@ -34,6 +34,7 @@ export function SearchPosts({ search }) {
                 // let sortedPosts= result.data.map()
                 setPosts(sortedArray);
             });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [posts]);
 
     return (
