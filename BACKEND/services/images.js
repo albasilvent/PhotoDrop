@@ -18,7 +18,7 @@ async function processUploadedPostPhoto(userId, photo) {
         sharpPhoto.resize(500);
 
         // Establecer un fileName, que será el nombre final del archivo nuevo.
-        const fileName = generateUUID() + ".jpg";
+        const fileName =  generateUUID() + ".jpg";
 
         // Crear la ruta absoluta al archivo.
         const filePath = path.join(directory, fileName);
@@ -27,7 +27,7 @@ async function processUploadedPostPhoto(userId, photo) {
         await sharpPhoto.toFile(filePath);
 
         // Retornamos el nombre del archivo.
-        return fileName;
+        return "http://localhost:5000/photos/" + userId + "/" + fileName
     } catch (error) {
         // Manejo de errores si ocurre algún problema durante el proceso
         console.error("Error al procesar la foto:", error);
