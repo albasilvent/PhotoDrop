@@ -36,7 +36,7 @@ export function Register() {
                         placeholder="Contraseña"
                         required
                     />
-                    <Input name="date" type="date" required />
+                    <Input name="date" type="date" required className="aqui" />
                     <Input name="country" type="text" placeholder="País" />
 
                     <div className="div-checkbox">
@@ -45,10 +45,12 @@ export function Register() {
                             Acepto los términos
                         </label>
                     </div>
-                    <button>Crear cuenta</button>
+                    <button className="boton">Crear cuenta</button>
                 </form>
-                <p>¿Tienes una cuenta?</p>
-                <a href="#">¡Entra aquí!</a>
+                <p className="p">¿Tienes una cuenta?</p>
+                <a className="link" href="#">
+                    ¡Entra aquí!
+                </a>
             </div>
         </main>
     );

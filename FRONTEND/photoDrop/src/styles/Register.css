@@ -18,6 +18,7 @@ main a {
 }
 
 .cajetin {
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -38,6 +39,74 @@ main a {
     gap: 0.4rem;
 }
 
+.form input {
+    width: 90%;
+}
+
+.div-checkbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-checkbox input {
+    width: 13px;
+}
+
 .label {
     padding: 5px;
+}
+
+.link {
+    text-align: center;
+}
+
+@media (min-width: 390px) {
+    .cajetin {
+        height: 70%;
+    }
+}
+
+@media (min-width: 820px) {
+    .titulo {
+        font-size: 2.5rem;
+        padding-bottom: 15px;
+    }
+    .cajetin {
+        width: 55%;
+        height: 60%;
+    }
+    .form {
+        width: 70%;
+    }
+    .form input {
+        font-size: 1.3rem;
+    }
+    .div-checkbox input {
+        transform: scale(1.5);
+        width: 20px;
+    }
+    .label,
+    .p {
+        font-size: 1.3rem;
+    }
+}
+
+@media (min-width: 900px) {
+    .cajetin {
+        width: 30%;
+    }
+    .titulo {
+        padding-bottom: 1.5rem;
+    }
+
+    .label, .p, .link {
+        font-size: 1.5rem;
+    }
+    .boton {
+        font-size: 1.3rem;
+        padding: 0.3rem;
+        margin-top: 8px;
+    }
+
 }
