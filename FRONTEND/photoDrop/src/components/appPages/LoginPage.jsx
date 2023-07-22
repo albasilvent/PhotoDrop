@@ -1,5 +1,5 @@
-import { Header } from "./Header";
-import { Login } from "./Login";
+import { Header } from "../Header";
+import { Login } from "../Login";
 
 export function LoginPage() {
     return (
