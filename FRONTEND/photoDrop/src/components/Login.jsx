@@ -76,6 +76,7 @@ export function Login() {
                             onChange={(value) =>
                                 setPayload({ ...payload, email: value })
                             }
+                            required
                         />
                         <Input
                             name="password"

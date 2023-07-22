@@ -1,4 +1,5 @@
 import "../styles/Register.css";
+import { Input } from "./Input";
 
 export function Register() {
     return (
@@ -6,16 +7,43 @@ export function Register() {
             <div className="cajetin">
                 <h2 className="titulo">¡Regístrate!</h2>
                 <form className="form" action="">
-                    <input type="text" placeholder="Nombre" required />
-                    <input type="text" placeholder="Primer apellido" required />
-                    <input type="text" placeholder="Segundo Apellido" />
-                    <input type="email" placeholder="Email" required />
-                    <input type="password" placeholder="Contraseña" required />
-                    <input type="date" required />
-                    <input type="text" placeholder="País" />
+                    <Input
+                        name="name"
+                        type="text"
+                        placeholder="Nombre"
+                        required
+                    />
+                    <Input
+                        name="surname1"
+                        type="text"
+                        placeholder="Primer apellido"
+                        required
+                    />
+                    <Input
+                        name="surname2"
+                        type="text"
+                        placeholder="Segundo apellido"
+                    />
+                    <Input
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                        required
+                    />
+                    <Input
+                        name="password"
+                        type="password"
+                        placeholder="Contraseña"
+                        required
+                    />
+                    <Input name="date" type="date" required />
+                    <Input name="country" type="text" placeholder="País" />
+
                     <div className="div-checkbox">
-                        <input type="checkbox" required />
-                        <label className="label" htmlFor="">Acepto los términos</label>
+                        <Input name="checkbox" type="checkbox" required />
+                        <label className="label" htmlFor="checkbox">
+                            Acepto los términos
+                        </label>
                     </div>
                     <button>Crear cuenta</button>
                 </form>

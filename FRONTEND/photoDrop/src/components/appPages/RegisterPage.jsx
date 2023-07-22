@@ -1,5 +1,5 @@
-import { Header } from "./Header";
-import { Register } from "./Register";
+import { Header } from "../Header";
+import { Register } from "../Register";
 
 export function RegisterPage() {
     return (

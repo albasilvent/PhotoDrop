@@ -4,6 +4,7 @@ import { SearchPage } from "./components/appPages/SearchPage";
 import "./App.css";
 import { AuthProvider } from "./contexts/auth-context";
 import { LoginPage } from "./components/appPages/LoginPage";
+import { RegisterPage } from "./components/appPages/RegisterPage";
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/search" element={<SearchPage />} />
                     <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
                 </Routes>
             </AuthProvider>
         </>
