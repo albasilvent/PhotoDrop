@@ -121,4 +121,8 @@
 }
 
 @media (min-width: 900px) {
+    .main {
+        overflow: hidden;
+        grid-column: 1/4;
+    }
 }

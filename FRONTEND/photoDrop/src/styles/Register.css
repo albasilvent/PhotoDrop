@@ -61,6 +61,8 @@ main a {
     text-align: center;
 }
 
+/* MEDIAS QUERY*/
+
 @media (min-width: 390px) {
     .cajetin {
         height: 70%;
@@ -99,14 +101,9 @@ main a {
     .titulo {
         padding-bottom: 1.5rem;
     }
-
-    .label, .p, .link {
-        font-size: 1.5rem;
-    }
     .boton {
         font-size: 1.3rem;
         padding: 0.3rem;
         margin-top: 8px;
     }
-
 }
