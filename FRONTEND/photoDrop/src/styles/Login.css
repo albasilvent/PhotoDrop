@@ -11,7 +11,7 @@
 
 .cajetin {
     width: 80%;
-    height: auto;
+    height: 45%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,13 +49,6 @@
     height: auto;
 }
 
-.olvidado {
-    text-align: center;
-    padding: 0.3rem 0;
-    width: 100%;
-    height: auto;
-}
-
 .registrate {
     display: flex;
     flex-direction: column;
@@ -70,12 +63,9 @@
     padding: 0.3rem;
 }
 
-/* MEDIAS */
+/* MEDIAS QUERY */
 
 @media (min-width: 390px) {
-    .cajetin {
-        height: 60%;
-    }
     .login {
         font-size: 3rem;
         padding-bottom: 2rem;

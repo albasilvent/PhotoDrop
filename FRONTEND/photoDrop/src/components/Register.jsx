@@ -49,7 +49,7 @@ export function Register() {
                 </form>
                 <p className="p">¿Tienes una cuenta?</p>
                 <a className="link" href="#">
-                    ¡Entra aquí!
+                    ¡Inicia sesión!
                 </a>
             </div>
         </main>

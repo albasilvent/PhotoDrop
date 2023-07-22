@@ -92,12 +92,9 @@ export function Login() {
                         </button>
                     </form>
                 </FormContext.Provider>
-                <a className="olvidado" href="#">
-                    ¿Has olvidado la contraseña?
-                </a>
                 <div className="registrate">
                     <p>¿No tienes cuenta?</p>
-                    <a href="#">Regístrate</a>
+                    <a href="#">¡Regístrate!</a>
                 </div>
             </div>
         </main>
