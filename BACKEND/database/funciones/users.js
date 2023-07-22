@@ -28,7 +28,7 @@ async function saveUser(user) {
 //Funcion que devuelve el user segun el email
 async function getUserByEmail(email) {
     const statement = `
-      SELECT id,name,email,emailValidated
+      SELECT id,name,email,emailValidated, profilePicture
       FROM users
       WHERE users.email = ?
     `;

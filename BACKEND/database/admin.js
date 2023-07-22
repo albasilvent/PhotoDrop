@@ -1,4 +1,5 @@
 const { generateUUID, hashPassword } = require("../services/crypto");
+const { faker } = require("@faker-js/faker");
 
 //Funcion para meter un admin en la base de datos
 async function insertAdminUsers(
@@ -12,8 +13,8 @@ async function insertAdminUsers(
 ) {
     await pool.execute(
         `
-        INSERT INTO users(id,name,surname1,surname2,email,password,birthDate,acceptedTOS,emailValidated,admin) 
-        VALUES(?,?,?,?,?,?,?,?,?,?)  
+        INSERT INTO users(id,name,surname1,surname2,email,password,birthDate,acceptedTOS,emailValidated,profilePicture,admin) 
+        VALUES(?,?,?,?,?,?,?,?,?,?,?)  
       `,
         [
             generateUUID(),
@@ -25,6 +26,7 @@ async function insertAdminUsers(
             `${birthDate}`,
             true,
             true,
+            faker.image.urlPicsumPhotos(),
             true,
         ]
     );
