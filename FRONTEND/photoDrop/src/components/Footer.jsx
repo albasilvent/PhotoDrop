@@ -1,21 +1,7 @@
-import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/Footer.css";
-// import { getUser } from "../functions/utils/get-user";
 
 export function Footer() {
-    const [user] = useState(null);
-    // let imgRoute;
-
-    // function getImgUser(imgRoute) {
-    //     setUser(getUser());
-
-    //     user
-    //         ? (imgRoute = user.profilePicture)
-    //         : (imgRoute = "/blankProfilePicture.jpg");
-    //     return imgRoute;
-    // }
-
     const location = useLocation();
 
     const isActiveRoute = (path) => {
@@ -47,8 +33,9 @@ export function Footer() {
                     Search
                 </p>
             </Link>
-            {!user && <p className="material-symbols-rounded">login</p>}
-            {/* {user && <img className="profilePicture" src={imgRoute} />} */}
+            <Link to="/login">
+                <p className="material-symbols-rounded">login</p>
+            </Link>
         </footer>
     );
 }

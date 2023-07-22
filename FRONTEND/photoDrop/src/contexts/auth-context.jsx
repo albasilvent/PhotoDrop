@@ -1,6 +1,6 @@
-import { createContext, useState,useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import { deleteToken } from "../functions/utils/delete-token";
-import { saveToken } from"../functions/utils/save-token";
+import { saveToken } from "../functions/utils/save-token";
 import { getUser } from "../functions/utils/get-user";
 import { getToken } from "../functions/utils/get-token";
 
@@ -19,9 +19,7 @@ export function AuthProvider({ children }) {
         token: null,
     });
     function logout() {
-        //vaciar el localStorage
         deleteToken();
-        //vacío el contexto de auth
         setCurrentContext({ currentUser: null, token: null });
     }
 

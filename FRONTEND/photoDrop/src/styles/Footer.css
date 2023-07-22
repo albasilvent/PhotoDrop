@@ -14,16 +14,17 @@ footer {
     color: black;
 }
 
-@media (min-width: 900px) {
-    footer {
-        flex-direction: column;
-        grid-row: 2/3;
-    }
-}
-
 .profilePicture {
     width: 25px;
     height: 25px;
     border-radius: 20px;
     border: 1px solid var(--border-color);
+}
+
+@media (min-width: 900px) {
+    footer {
+        flex-direction: column;
+        grid-row: 2/3;
+        border-right: 1px solid var(--border-color);
+    }
 }
