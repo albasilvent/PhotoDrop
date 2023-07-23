@@ -47,7 +47,6 @@ export function Login() {
             const { token } = await sendLogin(payload);
             login(token);
             navigate("/");
-            console.log(token);
         } catch (error) {
             if (error.code == "VALIDATION_ERROR") {
                 setErrors(createFormErrorsFromJoiDetails(error.details));
