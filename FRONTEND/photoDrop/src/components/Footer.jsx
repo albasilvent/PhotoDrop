@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/Footer.css";
 import { useCurrentUser } from "../functions/utils/use-current-user";
@@ -5,15 +6,19 @@ import { useCurrentUser } from "../functions/utils/use-current-user";
 export function Footer() {
     const location = useLocation();
     const user = useCurrentUser();
-    let imgRoute;
+    const [imgRoute, setImgRoute] = useState("");
+    const [userId, setUserId]= useState("")
 
-    if (user) {
-        if (user.profilePicture !== null) {
-            imgRoute = user.profilePicture;
-        } else {
-            imgRoute = "/blankProfilePicture.jpg";
+    useEffect(() => {
+        if (user) {
+            setUserId(user.id)
+            if (user.profilePicture !== null) {
+                setImgRoute(user.profilePicture);
+            } else {
+                setImgRoute("/blankProfilePicture.jpg");
+            }
         }
-    }
+    }, [user]);
 
     const isActiveRoute = (path) => {
         return location.pathname === path;
@@ -67,7 +72,7 @@ export function Footer() {
             {showLink("/login") && (
                 <>
                     {user ? (
-                        <Link to="/profile">
+                        <Link to={`/users/${userId}`}>
                             <img
                                 src={imgRoute}
                                 alt="Profile"
