@@ -1,0 +1,19 @@
+main {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    overflow-y: scroll;
+    background-color: var(--background-color);
+}
+
+.cargando{
+    margin-top: 100%;
+}
+
+@media (min-width: 900px) {
+    main {
+        grid-column: 2/3;
+        grid-row: 2/3;
+    }
+}

@@ -1,5 +1,5 @@
 const { getPostById } = require("../database/funciones/post.js");
-const { getUserById } = require("../database/funciones/users.js");
+const { getUserPosts } = require("../database/funciones/users.js");
 const { notFound } = require("../services/errors.js");
 const { getCommentsByPostId } = require("../database/funciones/comment.js");
 const { likesCountPost } = require("../database/funciones/like.js");
@@ -17,7 +17,7 @@ async function viewPost(postId) {
 }
 
 async function viewUser(userId) {
-    const user = await getUserById(userId);
+    const user = await getUserPosts(userId);
     if (!user) {
         notFound();
     }

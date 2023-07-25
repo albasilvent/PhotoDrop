@@ -1,0 +1,25 @@
+
+header{
+    width: 100vw;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+h1{
+    font-size: 25px;
+}
+
+@media (min-width: 900px) {
+    header {
+        grid-column: 1/3;
+    }
+}
+
+@media (min-height: 1000px) {
+    h1 {
+        font-size: 40px;
+    }
+}

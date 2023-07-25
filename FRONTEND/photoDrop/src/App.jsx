@@ -1,20 +1,24 @@
-import { NotFoundPage } from './pages/NotFound.jsx';
-import { ValidateEmail } from './pages/ValidateEmail.jsx';
-import { Routes, Route } from 'react-router-dom';
-// import { Comment } from './utils/Comment.jsx';
-// import { RemoveComment } from './utils/Comment.jsx';
+import { Route, Routes } from "react-router-dom";
+import { HomePage } from "./components/appPages/HomePage";
+import { SearchPage } from "./components/appPages/SearchPage";
+import "./App.css";
+import { AuthProvider } from "./contexts/auth-context";
+import { LoginPage } from "./components/appPages/LoginPage";
 
 function App() {
-  return (
-    <>
-      <Routes>
-        <Route path="/validate-email" element={<ValidateEmail />} />
-        {/* <Route path="/posts/:postId/comments/:commentId" element={<Comment />} />
-        <Route path="/posts/:postId/comments/:commentId" element={<RemoveComment />} /> */}
-        <Route path='*' element={<NotFoundPage />} />
-      </Routes>
-    </>
-  )
+    return (
+        <>
+            <AuthProvider>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/search" element={<SearchPage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                </Routes>
+            </AuthProvider>
+        </>
+    );
 }
 
+export default App;
 export default App
+

@@ -24,6 +24,7 @@ async function generateUsersAndPosts() {
             }),
             acceptedTOS: true,
             emailValidated: true,
+            profilePicture: faker.image.urlPicsumPhotos(),
             posts: [],
         };
 
@@ -35,6 +36,8 @@ async function generateUsersAndPosts() {
                 title: faker.lorem.sentence(),
                 description: faker.lorem.paragraphs(),
                 photo1: faker.image.urlPicsumPhotos(),
+                photo2: faker.image.urlPicsumPhotos(),
+                photo3: faker.image.urlPicsumPhotos(),
                 userId: user.id,
             };
             posts.push(post);
@@ -94,8 +97,8 @@ async function generateFakeData(pool) {
     for (const user of users) {
         await pool.execute(
             `
-          INSERT INTO users(id,name,surname1,email,password,birthDate,acceptedTOS,emailValidated)
-          VALUES(?,?,?,?,?,?,?,?)
+          INSERT INTO users(id,name,surname1,email,password,birthDate,acceptedTOS,emailValidated,profilePicture)
+          VALUES(?,?,?,?,?,?,?,?,?)
         `,
             [
                 user.id,
@@ -106,6 +109,7 @@ async function generateFakeData(pool) {
                 user.birthDate,
                 user.acceptedTOS,
                 user.emailValidated,
+                user.profilePicture,
             ]
         );
     }
@@ -113,10 +117,10 @@ async function generateFakeData(pool) {
     for (const post of posts) {
         await pool.execute(
             `
-            INSERT INTO posts(id,title,description,photo1,userId)
-            VALUES(?,?,?,?,?)
+            INSERT INTO posts(id,title,description,photo1,photo2, photo3, userId)
+            VALUES(?,?,?,?,?,?,?)
           `,
-            [post.id, post.title, post.description, post.photo1, post.userId]
+            [post.id, post.title, post.description, post.photo1, post.photo2, post.photo3, post.userId]
         );
 
         const comments = generateComments(post, users);

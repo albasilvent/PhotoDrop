@@ -1,0 +1,30 @@
+footer {
+    background-color: var(--background-color);
+    width: 100%;
+    padding: 0.2rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+}
+.material-symbols-rounded {
+    color: rgb(183, 183, 183);
+}
+.material-symbols-rounded.active {
+    color: black;
+}
+
+.profilePicture {
+    width: 25px;
+    height: 25px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+}
+
+@media (min-width: 900px) {
+    footer {
+        flex-direction: column;
+        grid-row: 2/3;
+        border-right: 1px solid var(--border-color);
+    }
+}
