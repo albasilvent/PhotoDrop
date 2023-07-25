@@ -1,6 +1,6 @@
 import "../styles/Login.css";
 import { useState, useContext, createContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { LoginContext } from "../contexts/auth-context.jsx";
 import { createFormErrorsFromJoiDetails } from "../functions/utils/create-form-errors";
 import { LoginValidation } from "../functions/utils/login-validator";
@@ -47,7 +47,6 @@ export function Login() {
             const { token } = await sendLogin(payload);
             login(token);
             navigate("/");
-            console.log(token);
         } catch (error) {
             if (error.code == "VALIDATION_ERROR") {
                 setErrors(createFormErrorsFromJoiDetails(error.details));
@@ -91,12 +90,11 @@ export function Login() {
                         </button>
                     </form>
                 </FormContext.Provider>
-                <a className="olvidado" href="#">
-                    ¿Has olvidado la contraseña?
-                </a>
                 <div className="registrate">
                     <p>¿No tienes cuenta?</p>
-                    <a href="#">Regístrate</a>
+                    <Link to= "/register">
+                        <p>Regístrate</p>
+                    </Link>
                 </div>
             </div>
         </main>
