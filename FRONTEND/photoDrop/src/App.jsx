@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<ValidateEmail />} />
+        <Route path="/validate-email" element={<ValidateEmail />} />
         {/* <Route path="/posts/:postId/comments/:commentId" element={<Comment />} />
         <Route path="/posts/:postId/comments/:commentId" element={<RemoveComment />} /> */}
         <Route path='*' element={<NotFoundPage />} />

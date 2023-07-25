@@ -6,14 +6,6 @@
     box-sizing: border-box;
 }
 
-/* .form-container {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 300px;
-} */
-
 form {
     overflow: hidden;
     position: absolute;
