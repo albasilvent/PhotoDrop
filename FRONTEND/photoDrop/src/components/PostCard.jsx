@@ -9,6 +9,7 @@ import { PostMenu } from "./PostMenu.jsx";
 export function PostCard({ post }) {
     const {
         userId,
+        postId,
         postTitle,
         postDescription,
         postPhoto1,
@@ -46,7 +47,7 @@ export function PostCard({ post }) {
                     )}
                     <p className="userName">{userName}</p>
                 </div>
-                {user.id == userId && <PostMenu></PostMenu>}
+                {user.id == userId && <PostMenu postId={postId}></PostMenu>}
             </div>
             <h2 className="postTitle">{postTitle}</h2>
             <Slider

@@ -1,0 +1,25 @@
+.delete-modal {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    position:absolute;
+    z-index: 10;
+    top: 8rem;
+    right: 1.3rem;
+    background-color: var(--background-color);
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+}
+
+.DeleteButtons {
+    display: flex;
+    gap: 2rem;
+}
+
+.hidden {
+    display: none;
+}
