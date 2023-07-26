@@ -46,7 +46,7 @@ export function Login() {
         try {
             const { token } = await sendLogin(payload);
             login(token);
-            navigate("/validate-email");
+            navigate("/");
         } catch (error) {
             if (error.code == "VALIDATION_ERROR") {
                 setErrors(createFormErrorsFromJoiDetails(error.details));
