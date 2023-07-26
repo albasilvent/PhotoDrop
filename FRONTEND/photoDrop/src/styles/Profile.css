@@ -69,6 +69,7 @@
         width: 19vw;
         height: 19vw;
         object-fit: cover;
+        padding: 1rem 0.5rem;
     }
 }
 

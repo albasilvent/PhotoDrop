@@ -14,7 +14,7 @@ export function AllPosts() {
     }, []);
 
     return (
-        <main>
+        <main className="Page">
             {posts && posts.map((post, i) => {
                 return <PostCard key={i} post={post}></PostCard>;
             })}
