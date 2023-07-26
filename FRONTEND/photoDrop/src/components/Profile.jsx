@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import {ProfileMenu} from "./ProfileMenu.jsx"
 import "../styles/Profile.css";
 
 export function Profile() {
@@ -31,12 +32,9 @@ export function Profile() {
                     {!userData.profilePicture && (
                         <img className="profilePageImg" src={blankImg}></img>
                     )}
-                    <h2>{userData.name}</h2>
+                    <h2 className="profileUserName">{userData.name}</h2>
                 </div>
-                <div className="profileIcons">
-                    <p className="material-symbols-rounded">edit</p>
-                    <p className="material-symbols-rounded">logout</p>
-                </div>
+                <ProfileMenu/>
             </div>
             <div className="profilePagePosts">
                 {postData.map((post, i) => {

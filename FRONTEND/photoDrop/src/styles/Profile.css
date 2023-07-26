@@ -4,21 +4,28 @@
     display: flex;
     flex-wrap: wrap;
     flex-grow: 1;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    align-items: center;
     gap: 8vw;
 }
 
 .profileUserData {
     display: flex;
+    width: 70%;
     justify-content: start;
     align-items: center;
     gap: 1rem;
     padding: 1rem;
 }
 
+.profileUserName{
+    font-weight: 400;
+    font-style: italic;
+}
+
 .profilePageImg {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     border-radius: 50px;
 }
 
@@ -54,7 +61,16 @@
 }
 
 @media (min-width: 900px) {
-    .profilePageUser {
-        gap: 15rem;
+    .profileUserData h2 {
+        font-size: 20px;
+    }
+
+    .profilePagePosts img {
+        width: 19vw;
+        height: 19vw;
+        object-fit: cover;
     }
 }
+
+
+
