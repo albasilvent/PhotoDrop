@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { sendValidationCode } from "../api/send-validation-code";
-import { Form } from "../components/forms/Form.jsx";
-import { FormInput } from "../components/forms/FormInput";
-import { Button } from "../components/forms/Button";
-import "./ValidateEmail.css";
+import { sendValidationCode } from "../../api/send-validation-code";
+import { Form } from "../forms/Form.jsx";
+import { FormInput } from "../forms/FormInput";
+import { Button } from "../forms/Button";
+import "../../styles/ValidateEmail.css";
 
-export function ValidateEmail() {
+export function ValidateEmailPage() {
     const [queryParams] = useSearchParams();
     const navigate = useNavigate();
     const email = queryParams.get("email");

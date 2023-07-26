@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { Icon } from "../icons/Icon.jsx";
 
 export function FormInput({
     className,
@@ -9,7 +8,6 @@ export function FormInput({
     onChange,
     value,
     defaultValue,
-    iconPrefix,
     error,
 }) {
     function inputChanged(evt) {
@@ -22,7 +20,6 @@ export function FormInput({
         <div className={"inputContainer " + className}>
             {label && <label htmlFor={name}>{label}</label>}
             <div className={"formInput " + (error ? "withError" : "")}>
-                {iconPrefix && <Icon name={iconPrefix} className={"prefixIcon"} />}
                 <input
                     id={name}
                     type={type}

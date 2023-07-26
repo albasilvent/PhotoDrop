@@ -10,7 +10,7 @@ export function SearchMain() {
         setSearch(evt.target.value);
     }
     return (
-        <main>
+        <main className="Page">
             <SearchBar search={search} inputOnChange={inputOnChange} />
             {!search && <h2>Otros post que te podrían interesar...</h2>}
             {search && <h2 className="resultados">Resultados:</h2>}
