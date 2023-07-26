@@ -12,11 +12,11 @@ export function PostMenu() {
                 more_vert
             </p>
             <article className={`post-modal ${menuDisplay ? "" : "hidden"}`}>
-                <div className="post-modal-div">
+                <div className="post-modal-div editar">
                     <p className="material-symbols-rounded">edit</p>
                     <p>Editar</p>
                 </div>
-                <div className= "post-modal-div">
+                <div className= "post-modal-div borrar">
                     <p className="material-symbols-rounded">delete</p>
                     <p>Eliminar</p>
                 </div>
