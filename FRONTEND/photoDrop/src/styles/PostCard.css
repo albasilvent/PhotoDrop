@@ -90,8 +90,8 @@ section {
     z-index: 10;
     bottom:5px;
     left:15px;
-    width:15rem;
-    height:17rem;
+    width:90%;
+    height:60%;
     overflow-y: scroll;
 }
 

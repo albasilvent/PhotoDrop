@@ -79,7 +79,7 @@ export function PostCard({ post }) {
                 {comment_count == 1 && <p onClick={onClick}>Ver {comment_count} comentario...</p>}
             </div>
             <p className="postDate">Posted {date}</p>
-            {comments && <CommentsModal comments={comments} menuDisplay={menuDisplay} />}
+            {comments && <CommentsModal comments={comments} menuDisplay={menuDisplay} setMenuDisplay={setMenuDisplay} />}
         </section>
     );
 }
