@@ -1,10 +1,16 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import "../styles/Menu.css";
 
-export function PostMenu() {
+export function CommentMenu({editModalDisplay, setEditModalDisplay}) {
     const [menuDisplay, setMenuDisplay] = useState(false);
     function onClick() {
         setMenuDisplay(!menuDisplay);
+    }
+
+    function onEditClick(){
+        setMenuDisplay(!menuDisplay);
+        setEditModalDisplay(!editModalDisplay);
     }
 
     return (
@@ -13,7 +19,7 @@ export function PostMenu() {
                 more_vert
             </p>
             <article className={`post-modal ${menuDisplay ? "" : "hidden"}`}>
-                <div className="post-modal-div editar" onClick={onClick}>
+                <div className="post-modal-div editar" onClick={onEditClick}>
                     <p className="material-symbols-rounded">edit</p>
                     <p>Editar</p>
                 </div>

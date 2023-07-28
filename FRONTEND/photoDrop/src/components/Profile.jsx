@@ -2,9 +2,12 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {ProfileMenu} from "./ProfileMenu.jsx"
 import "../styles/Profile.css";
+import { useCurrentUser } from "../functions/utils/use-current-user.js";
 
 export function Profile() {
     const { id } = useParams();
+    const user= useCurrentUser();
+
     const [userData, setUserData] = useState({});
     const [postData, setPostData] = useState([]);
 
@@ -34,7 +37,7 @@ export function Profile() {
                     )}
                     <h2 className="profileUserName">{userData.name}</h2>
                 </div>
-                <ProfileMenu/>
+                {user.id==userData.id && <ProfileMenu/>}
             </div>
             <div className="profilePagePosts">
                 {postData.map((post, i) => {
