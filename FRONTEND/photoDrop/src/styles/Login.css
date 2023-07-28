@@ -1,4 +1,4 @@
-.main {
+.container {
     background-color: var(--background-color);
     grid-row: 2/4;
     display: flex;

@@ -7,13 +7,24 @@ main {
     background-color: var(--background-color);
 }
 
-.cargando{
+
+.cargando {
     margin-top: 100%;
 }
+
 
 @media (min-width: 900px) {
     main {
         grid-column: 2/3;
         grid-row: 2/3;
+    }
+
+    .Page {
+        width: 70%;
+        margin-left: 15%;
+    }
+    
+    .cargando {
+        margin-top: 30%;
     }
 }

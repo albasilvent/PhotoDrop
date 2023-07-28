@@ -1,12 +1,12 @@
 import { Header } from "../Header";
-import { Login } from "../Login";
+import { Register } from "../Register";
 import { Footer } from "../Footer";
 
-export function LoginPage() {
+export function RegisterPage() {
     return (
         <>
             <Header />
-            <Login />
+            <Register />
             <Footer />
         </>
     );

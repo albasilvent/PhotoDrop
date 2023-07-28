@@ -1,0 +1,77 @@
+.profilePageUser {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 8vw;
+}
+
+.profileUserData {
+    display: flex;
+    width: 70%;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.profileUserName{
+    font-weight: 400;
+    font-style: italic;
+}
+
+.profilePageImg {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+}
+
+.profileIcons {
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.profilePagePosts {
+    width: 90%;
+    height: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: start;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.profilePagePosts img {
+    width: 27vw;
+    height: 27vw;
+    object-fit: cover;
+}
+
+@media (min-width: 400px) {
+    .profileUserData h2 {
+        font-size: 25px;
+    }
+}
+
+@media (min-width: 900px) {
+    .profileUserData h2 {
+        font-size: 20px;
+    }
+
+    .profilePagePosts img {
+        width: 19vw;
+        height: 19vw;
+        object-fit: cover;
+        padding: 1rem 0.5rem;
+    }
+}
+
+
+

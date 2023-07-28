@@ -14,12 +14,19 @@ footer {
     color: black;
 }
 
-.profilePicture {
-    width: 25px;
-    height: 25px;
-    border-radius: 20px;
-    border: 1px solid var(--border-color);
+.material-symbols-rounded.hidden {
+    display: none;
 }
+
+.profilePictureFooter {
+    width: 21px;
+    height: 21px;
+    border-radius: 20px;
+    margin-bottom: 3px;
+    border: 1px solid var(--border-color);
+    color:black;
+}
+
 
 @media (min-width: 900px) {
     footer {

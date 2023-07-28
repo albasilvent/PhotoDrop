@@ -1,0 +1,32 @@
+.comment{
+    position:relative;
+    display:flex;
+    flex-direction: column;
+    gap:0.5rem;
+    padding:1rem;
+}
+
+.commentUser{
+    display: flex;
+    gap:0.5rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.div1{
+    display:flex;
+    align-items: center;
+    gap:0.5rem;
+}
+
+
+.commentUser > p {
+    font-style: italic;
+}
+
+.commentDate{
+    width: 100%;
+    font-size: 12px;
+    text-align: end;
+    color:grey;
+}
