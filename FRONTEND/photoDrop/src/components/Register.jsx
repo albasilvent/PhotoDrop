@@ -57,6 +57,5 @@ export function Register() {
                 </div>
             </div>
         </main>
-        nomedejahacerpush
     );
 }
