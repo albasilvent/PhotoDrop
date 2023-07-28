@@ -55,6 +55,7 @@ export function Login() {
             });
 
             //Mostrar un toast / modal
+            console.log(error);
         }
     }
 
