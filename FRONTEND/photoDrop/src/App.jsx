@@ -7,6 +7,7 @@ import { LoginPage } from "./components/appPages/LoginPage";
 import { ProfilePage } from "./components/appPages/ProfilePage";
 import { RegisterPage } from "./components/appPages/RegisterPage";
 
+
 function App() {
     return (
         <>

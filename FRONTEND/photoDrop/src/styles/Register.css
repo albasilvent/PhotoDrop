@@ -1,15 +1,33 @@
-.main {
-    background-color: var(--background-color);
-    grid-row: 2/4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 main a {
     color: grey;
     text-decoration: none;
     font-style: italic;
+}
+
+.container-register {
+    background-color: var(--background-color);
+    grid-row: 2/4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+.cajetin-register {
+    width: 80%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+        0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 .titulo {
@@ -17,27 +35,14 @@ main a {
     padding: 10px;
 }
 
-.cajetin {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
-        0 8px 10px -6px rgb(0 0 0 / 0.1);
-    padding: 10px;
-    gap: 0.4rem;
-}
-
-.form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.4rem;
-}
-
 .label {
     padding: 5px;
+}
+
+.div-checkbox > input {
+    width: 13px;
+}
+
+.log {
+    text-align: center;
 }
