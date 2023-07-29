@@ -13,9 +13,9 @@ export function EditCommentModal({
 
     const [textAreaValue, setTextAreaValue] = useState(comment.comment);
 
-    const [payload, setPayload] = useState({
-        comment: "",
-    });
+    // const [payload, setPayload] = useState({
+    //     comment: "",
+    // });
 
 
     const blankProfilePicture = "/blankProfilePicture.jpg";
@@ -72,7 +72,7 @@ export function EditCommentModal({
                             ></img>
                         )}
                         <FormContext.Provider value={formState}>
-                            <form>
+                            <form onSubmit={onSubmit}>
                                 <textarea
                                     value={textAreaValue}
                                     onChange={onTextAreaChange}

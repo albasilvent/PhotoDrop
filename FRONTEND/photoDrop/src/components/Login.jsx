@@ -56,6 +56,7 @@ export function Login() {
             });
 
             setErrorMsg(error.msg);
+
         }
     }
 
@@ -74,6 +75,7 @@ export function Login() {
                                 onChange={(value) =>
                                     setPayload({ ...payload, email: value })
                                 }
+                                required
                             />
                             <Input
                                 name="password"
@@ -83,6 +85,7 @@ export function Login() {
                                 onChange={(value) =>
                                     setPayload({ ...payload, password: value })
                                 }
+                                required
                             />
                             <button type="submit" className="boton">
                                 Enviar

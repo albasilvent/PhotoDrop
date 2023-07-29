@@ -7,11 +7,11 @@ export function Footer() {
     const location = useLocation();
     const user = useCurrentUser();
     const [imgRoute, setImgRoute] = useState("");
-    const [userId, setUserId]= useState("")
+    const [userId, setUserId] = useState("");
 
     useEffect(() => {
         if (user) {
-            setUserId(user.id)
+            setUserId(user.id);
             if (user.profilePicture !== null) {
                 setImgRoute(user.profilePicture);
             } else {
@@ -25,7 +25,11 @@ export function Footer() {
     };
 
     const showLink = (path) => {
-        return !isActiveRoute("/login") || path === "/";
+        if (location.pathname === "/register") {
+            return path === "/";
+        } else {
+            return !isActiveRoute("/login") || path === "/";
+        }
     };
 
     return (
