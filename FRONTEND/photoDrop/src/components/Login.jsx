@@ -9,6 +9,7 @@ import { Input } from "./Input";
 import { FormContext } from "../contexts/form-context";
 
 export function Login() {
+    const [errorMsg, setErrorMsg] = useState("");
     const [formState, setFormState] = useState({ isSubmitting: false });
 
     const login = useContext(LoginContext);
@@ -54,8 +55,7 @@ export function Login() {
                 isSubmitting: false,
             });
 
-            //Mostrar un toast / modal
-            console.log(error);
+            setErrorMsg(error.msg);
         }
     }
 
@@ -95,6 +95,7 @@ export function Login() {
                             <p>Regístrate</p>
                         </Link>
                     </div>
+            {errorMsg && <p className="errormsg">{errorMsg}</p>}
                 </div>
             </div>
         </main>
