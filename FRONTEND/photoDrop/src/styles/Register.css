@@ -35,8 +35,23 @@ main a {
     padding: 10px;
 }
 
+.form-register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 100%;
+    height: auto;
+}
+
 .label {
     padding: 5px;
+}
+
+.div-checkbox {
+    display: flex;
+    align-items: center;
 }
 
 .div-checkbox > input {
@@ -45,4 +60,37 @@ main a {
 
 .log {
     text-align: center;
+}
+
+/* MEDIAS QUERY */
+
+@media (min-width: 820px) {
+    .titulo {
+        font-size: 2.5rem;
+    }
+    .form-register > input {
+        width: 50%;
+    }
+
+    .div-checkbox {
+        gap: 5px;
+    }
+    .div-checkbox > input {
+        transform: scale(1.5);
+    }
+    .div-checkbox label {
+        font-size: 1.3rem;
+    }
+    .boton {
+        font-size: 1.3rem;
+    }
+    .log {
+        font-size: 1.3rem;
+    }
+}
+
+@media (min-width: 900px) {
+    .cajetin-register {
+        width: 50%;
+    }
 }
