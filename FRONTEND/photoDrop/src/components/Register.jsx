@@ -4,6 +4,7 @@ import { useState } from "react";
 import "../styles/Register.css";
 import { Input } from "./Input";
 import { sendRegister } from "../functions/api/send-register";
+import { Link } from "react-router-dom";
 
 export function Register() {
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ export function Register() {
                 <div className="cajetin-register">
                     <h2 className="titulo">Regístrate</h2>
                     <FormContext.Provider value={formState}>
-                        <form className="form" onSubmit={onSubmit}>
+                        <form className="form-register" onSubmit={onSubmit}>
                             <Input
                                 name="text"
                                 type="text"
@@ -114,7 +115,9 @@ export function Register() {
                     </FormContext.Provider>
                     <div className="log">
                         <p>¿Tienes una cuenta?</p>
-                        <a href="#">Inicia sesión</a>
+                        <Link to="/login">
+                            <p href="#">Inicia sesión</p>
+                        </Link>
                     </div>
                 </div>
             </div>
