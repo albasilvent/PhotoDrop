@@ -54,7 +54,8 @@ export function Login() {
                 isSubmitting: false,
             });
 
-            //Mostrar un toast / modal
+            //Mostrar un toast / modal con error.msg
+            console.log(error);
         }
     }
 
@@ -73,6 +74,7 @@ export function Login() {
                                 onChange={(value) =>
                                     setPayload({ ...payload, email: value })
                                 }
+                                required
                             />
                             <Input
                                 name="password"
@@ -82,6 +84,7 @@ export function Login() {
                                 onChange={(value) =>
                                     setPayload({ ...payload, password: value })
                                 }
+                                required
                             />
                             <button type="submit" className="boton">
                                 Enviar
