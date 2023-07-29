@@ -20,7 +20,7 @@ export function Profile() {
                 setUserData(result.data);
                 setPostData(result.data.posts);
             });
-    }, []);
+    }, [userData, postData, user, id]);
 
     return (
         <main className="profileMain">

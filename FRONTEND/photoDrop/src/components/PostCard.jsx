@@ -4,10 +4,12 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { Slider } from "./Slider";
 import { CommentsModal } from "./CommentsModal";
 import { useState } from "react";
+import { LikeButton } from "./LikeButton";
 
 /* eslint-disable react/prop-types */
 export function PostCard({ post }) {
     const {
+        postId,
         postTitle,
         postDescription,
         postPhoto1,
@@ -20,6 +22,8 @@ export function PostCard({ post }) {
         createdAt,
         comments,
     } = post;
+
+    const [likeCount, setLikeCount]= useState(like_count)
 
 
     dayjs.extend(relativeTime);
@@ -59,8 +63,8 @@ export function PostCard({ post }) {
             />
             <div className="postSocials">
                 <div className="likes">
-                    <p className="material-symbols-rounded">Favorite</p>
-                    <p className="count">{like_count}</p>
+                    <LikeButton postId={postId} likeCount={likeCount} setLikeCount={setLikeCount}/>
+                    <p className="count">{likeCount}</p>
                 </div>
                 <div className="comments">
                     <p className="material-symbols-rounded" onClick={onClick}>chat_bubble</p>
