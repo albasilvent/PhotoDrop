@@ -1,37 +1,121 @@
+import { FormContext } from "../contexts/form-context";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import "../styles/Register.css";
+import { Input } from "./Input";
+import { sendRegister } from "../functions/api/send-register";
 
 export function Register() {
+    const navigate = useNavigate();
+    const [payload, setPayload] = useState({});
+    const [formState, setFormState] = useState({ isSubmitting: false });
+
+    async function onSubmit(evt) {
+        evt.preventDefault();
+        setFormState({ isSubmitting: true });
+        try {
+            await sendRegister(payload);
+            navigate("/validate-email");
+        } catch (err) {
+            setFormState({ isSubmitting: false });
+            // TO DO: mejorar mensaje de error etc
+            console.log(err);
+        }
+    }
+
     return (
         <main className="Page">
-            <div className="container">
-                <div className="cajetin">
-                    <h2 className="titulo">¡Regístrate!</h2>
-                    <form className="form" action="">
-                        <input type="text" placeholder="Nombre" required />
-                        <input
-                            type="text"
-                            placeholder="Primer apellido"
-                            required
-                        />
-                        <input type="text" placeholder="Segundo Apellido" />
-                        <input type="email" placeholder="Email" required />
-                        <input
-                            type="password"
-                            placeholder="Contraseña"
-                            required
-                        />
-                        <input type="date" required />
-                        <input type="text" placeholder="País" />
-                        <div className="div-checkbox">
-                            <input type="checkbox" required />
-                            <label className="label" htmlFor="">
-                                Acepto los términos
-                            </label>
-                        </div>
-                        <button>Crear cuenta</button>
-                    </form>
-                    <p>¿Tienes una cuenta?</p>
-                    <a href="#">¡Entra aquí!</a>
+            <div className="container-register">
+                <div className="cajetin-register">
+                    <h2 className="titulo">Regístrate</h2>
+                    <FormContext.Provider value={formState}>
+                        <form className="form" onSubmit={onSubmit}>
+                            <Input
+                                name="text"
+                                type="text"
+                                placeholder="Nombre"
+                                required
+                                onChange={(value) =>
+                                    setPayload({ ...payload, name: value })
+                                }
+                            />
+                            <Input
+                                name="text"
+                                type="text"
+                                placeholder="Primer apellido"
+                                required
+                                onChange={(value) =>
+                                    setPayload({ ...payload, surname1: value })
+                                }
+                            />
+                            <Input
+                                name="text"
+                                type="text"
+                                placeholder="Segundo apellido"
+                                onChange={(value) =>
+                                    setPayload({ ...payload, surname2: value })
+                                }
+                            />
+                            <Input
+                                name="email"
+                                type="email"
+                                placeholder="Email"
+                                required
+                                onChange={(value) =>
+                                    setPayload({ ...payload, email: value })
+                                }
+                            />
+                            <Input
+                                name="password"
+                                type="password"
+                                placeholder="Contraseña"
+                                required
+                                onChange={(value) =>
+                                    setPayload({ ...payload, password: value })
+                                }
+                            />
+                            <Input
+                                name="date"
+                                type="date"
+                                required
+                                onChange={(value) =>
+                                    setPayload({ ...payload, birthDate: value })
+                                }
+                            />
+                            <Input
+                                name="text"
+                                type="text"
+                                placeholder="País"
+                                onChange={(value) =>
+                                    setPayload({ ...payload, country: value })
+                                }
+                            />
+
+                            <div className="div-checkbox">
+                                <Input
+                                    name="checkbox"
+                                    type="checkbox"
+                                    required
+                                    onChange={() => {
+                                        setPayload({
+                                            ...payload,
+                                            acceptedTOS: true,
+                                        });
+                                    }}
+                                />
+                                <label className="label" htmlFor="checkbox">
+                                    Acepto los términos
+                                </label>
+                            </div>
+                            <button className="boton" type="submit">
+                                Crear cuenta
+                            </button>
+                        </form>
+                    </FormContext.Provider>
+                    <div className="log">
+                        <p>¿Tienes una cuenta?</p>
+                        <a href="#">Inicia sesión</a>
+                    </div>
                 </div>
             </div>
         </main>

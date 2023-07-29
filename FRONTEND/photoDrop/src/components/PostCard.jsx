@@ -2,15 +2,12 @@ import "../styles/PostCard.css";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Slider } from "./Slider";
-import { useCurrentUser } from "../functions/utils/use-current-user";
-import { PostMenu } from "./PostMenu.jsx";
 import { CommentsModal } from "./CommentsModal";
 import { useState } from "react";
 
 /* eslint-disable react/prop-types */
 export function PostCard({ post }) {
     const {
-        userId,
         postTitle,
         postDescription,
         postPhoto1,
@@ -24,7 +21,6 @@ export function PostCard({ post }) {
         comments,
     } = post;
 
-    const user = useCurrentUser();
 
     dayjs.extend(relativeTime);
     const date = dayjs(createdAt).fromNow();
@@ -54,7 +50,6 @@ export function PostCard({ post }) {
                     )}
                     <p className="userName">{userName}</p>
                 </div>
-                {user.id == userId && <PostMenu></PostMenu>}
             </div>
             <h2 className="postTitle">{postTitle}</h2>
             <Slider

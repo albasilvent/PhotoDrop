@@ -8,6 +8,7 @@ import { ProfilePage } from "./components/appPages/ProfilePage";
 import { RegisterPage } from "./components/appPages/RegisterPage";
 import { ValidateEmailPage } from "./components/appPages/ValidateEmailPage";
 
+
 function App() {
     return (
         <>

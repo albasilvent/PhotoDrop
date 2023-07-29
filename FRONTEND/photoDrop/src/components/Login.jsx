@@ -1,5 +1,5 @@
 import "../styles/Login.css";
-import { useState, useContext} from "react";
+import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { LoginContext } from "../contexts/auth-context.jsx";
 import { createFormErrorsFromJoiDetails } from "../functions/utils/create-form-errors";
@@ -9,6 +9,7 @@ import { Input } from "./Input";
 import { FormContext } from "../contexts/form-context";
 
 export function Login() {
+    const [errorMsg, setErrorMsg] = useState("");
     const [formState, setFormState] = useState({ isSubmitting: false });
 
     const login = useContext(LoginContext);
@@ -54,7 +55,7 @@ export function Login() {
                 isSubmitting: false,
             });
 
-            //Mostrar un toast / modal
+            setErrorMsg(error.msg);
         }
     }
 
@@ -94,6 +95,7 @@ export function Login() {
                             <p>Regístrate</p>
                         </Link>
                     </div>
+            {errorMsg && <p className="errormsg">{errorMsg}</p>}
                 </div>
             </div>
         </main>
