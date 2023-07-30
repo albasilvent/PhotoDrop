@@ -6,19 +6,21 @@ export function Slider({ photo1, photo2, photo3 }) {
         <div className="slider-container">
             <div className="slider">
                 <div className="slides">
-                    <div id="slides__1" className="slide">
-                        <img className="postImg" src={photo1}></img>
-                        <a
-                            className="slide__prev"
-                            href="#slides__3"
-                            title="Next"
-                        ></a>
-                        <a
-                            className="slide__next"
-                            href="#slides__2"
-                            title="Next"
-                        ></a>
-                    </div>
+                    {photo1 && (
+                        <div id="slides__1" className="slide">
+                            <img className="postImg" src={photo1}></img>
+                            <a
+                                className="slide__prev"
+                                href="#slides__3"
+                                title="Next"
+                            ></a>
+                            <a
+                                className="slide__next"
+                                href="#slides__2"
+                                title="Next"
+                            ></a>
+                        </div>
+                    )}
                     {photo2 && (
                         <div id="slides__2" className="slide">
                             <img className="postImg" src={photo2}></img>

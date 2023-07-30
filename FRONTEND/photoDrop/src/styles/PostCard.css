@@ -94,7 +94,9 @@ section {
     height:60%;
     overflow-y: scroll;
 }
-
+.modal-comentarios > p {
+    text-align: center;
+}
 @media (min-width: 700px) {
     .userName {
         font-size: 18px;
