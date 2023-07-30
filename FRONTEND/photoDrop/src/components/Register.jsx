@@ -10,6 +10,7 @@ export function Register() {
     const navigate = useNavigate();
     const [payload, setPayload] = useState({});
     const [formState, setFormState] = useState({ isSubmitting: false });
+    const [errorMsg, setErrorMsg] = useState("");
 
     async function onSubmit(evt) {
         evt.preventDefault();
@@ -19,8 +20,7 @@ export function Register() {
             navigate("/validate-email");
         } catch (err) {
             setFormState({ isSubmitting: false });
-            // TO DO: mejorar mensaje de error etc
-            console.log(err);
+            setErrorMsg(err.msg);
         }
     }
 
@@ -119,6 +119,7 @@ export function Register() {
                             <p href="#">Inicia sesión</p>
                         </Link>
                     </div>
+                    {errorMsg && <p className="errormsg">{errorMsg}</p>}
                 </div>
             </div>
         </main>

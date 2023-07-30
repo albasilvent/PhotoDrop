@@ -1,0 +1,34 @@
+.deletePostModal {
+    background-color: var(--background-color);
+    padding:1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    position: absolute;
+    top:6rem;
+    left:1.4rem;
+    z-index: 10;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:0.5rem;
+}
+
+.deletePostModal > p {
+    text-align: center;
+}
+
+.deleteButtons{
+    display:flex;
+    gap:1rem;
+}
+
+.deleteButtons button {
+    padding:0.3rem;
+    border-radius: 10px;
+    font-style: italic;
+}
+
+.hidden{
+    display:none;
+}

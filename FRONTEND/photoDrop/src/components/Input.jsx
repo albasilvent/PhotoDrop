@@ -1,7 +1,7 @@
 import "../styles/Input.css";
 
 // eslint-disable-next-line react/prop-types
-export function Input({name, type, placeholder, error, onChange, value, required}) {
+export function Input({name, type, placeholder, onChange, value, required}) {
 
     function inputChange(evt) {
         if (onChange) {
@@ -20,7 +20,6 @@ export function Input({name, type, placeholder, error, onChange, value, required
                 onChange={inputChange}
                 required={required}
             />
-            {error && <p>{error}</p>}
         </>
     );
 }

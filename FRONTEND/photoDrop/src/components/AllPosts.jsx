@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { PostCard } from "./PostCard";
 import "../styles/AllPosts.css";
+import { useCurrentUser } from "../functions/utils/use-current-user";
 
 export function AllPosts() {
+    const currentUser= useCurrentUser();
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
@@ -11,7 +13,7 @@ export function AllPosts() {
             .then((result) => {
                 setPosts(result.data);
             });
-    }, []);
+    }, [currentUser]);
 
     return (
         <main className="Page">

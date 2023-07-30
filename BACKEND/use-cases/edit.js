@@ -5,6 +5,7 @@ const {
 const { updateUser, getUserById } = require("../database/funciones/users");
 const { getPostById, updatePost } = require("../database/funciones/post");
 const { notFound, unauthorizedUser } = require("../services/errors");
+const {processUploadedPostPhoto}= require("../services/images");
 
 //Editar los datos de usuario
 async function editUser(userId, userPayload) {
@@ -23,7 +24,7 @@ async function editUser(userId, userPayload) {
         surname1: userPayload.surname1 || user.surname1,
         surname2: userPayload.surname2 || user.surname2,
         country: userPayload.country || user.country,
-        profilePicture: userPayload.profilePicture || user.profilePicture
+        profilePicture: await processUploadedPostPhoto(userId, userPayload.profilePicture) || user.profilePicture
     };
 
     await updateUser(updatedUser);
