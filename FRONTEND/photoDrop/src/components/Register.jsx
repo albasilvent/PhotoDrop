@@ -17,7 +17,7 @@ export function Register() {
         setFormState({ isSubmitting: true });
         try {
             await sendRegister(payload);
-            navigate("/validate-email");
+            navigate(`/validate-email?email=${payload.email}`);
         } catch (err) {
             setFormState({ isSubmitting: false });
             setErrorMsg(err.msg);

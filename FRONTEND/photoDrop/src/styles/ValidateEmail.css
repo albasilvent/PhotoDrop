@@ -31,9 +31,16 @@
     width: 100%;
     height: auto;
 }
-.p-validate {
+
+.text-validate {
     text-align: center;
 }
+
+.email-validate {
+    font-style: italic;
+    color: grey;
+}
+
 .form-validate {
     display: flex;
     justify-content: center;
@@ -68,5 +75,8 @@
     }
     .form-validate input {
         width: 30%;
+    }
+    .text-validate > p {
+        font-size: 1.3rem;
     }
 }
