@@ -10,7 +10,7 @@ export function DeletePostModal({setDeleteDisplay, deleteDisplay, postId}){
         window.location.reload();
     }
 
-    function onCancelClick(){
+    function onCancelClick(event){
         event.preventDefault();
         setDeleteDisplay();
     }
