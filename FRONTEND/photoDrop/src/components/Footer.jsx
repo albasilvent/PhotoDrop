@@ -27,7 +27,10 @@ export function Footer() {
     const showLink = (path) => {
         if (location.pathname === "/register") {
             return path === "/";
-        } else {
+        } else if (location.pathname === "/validate-email") {
+            return path === "/"
+        }
+        else {
             return !isActiveRoute("/login") || path === "/";
         }
     };

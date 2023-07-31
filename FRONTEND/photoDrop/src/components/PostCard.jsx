@@ -100,6 +100,7 @@ export function PostCard({ post }) {
                     comments={comments}
                     menuDisplay={menuDisplay}
                     setMenuDisplay={setMenuDisplay}
+                    postId={postId}
                 />
             )}
         </section>

@@ -13,7 +13,7 @@ export function AllPosts() {
             .then((result) => {
                 setPosts(result.data);
             });
-    }, [currentUser]);
+    }, [currentUser, posts]);
 
     return (
         <main className="Page">

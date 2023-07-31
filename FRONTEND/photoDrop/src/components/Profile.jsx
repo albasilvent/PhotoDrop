@@ -1,12 +1,12 @@
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {ProfileMenu} from "./ProfileMenu.jsx"
 import "../styles/Profile.css";
 import { useCurrentUser } from "../functions/utils/use-current-user.js";
 
 export function Profile() {
-    const { id } = useParams();
-    const user= useCurrentUser();
+    const currentUser= useCurrentUser(); //devuelve null??????????????
+    console.log(currentUser);
 
     const [userData, setUserData] = useState({});
     const [postData, setPostData] = useState([]);
@@ -14,7 +14,7 @@ export function Profile() {
     const blankImg = "/blankProfilePicture.jpg";
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${id}`)
+        fetch(`http://localhost:5000/users/${currentUser.id}`)
             .then((res) => res.json())
             .then((result) => {
                 setUserData(result.data);

@@ -4,10 +4,9 @@ import { sendDeletePost } from "../functions/api/send-delete-post";
 /* eslint-disable react/prop-types */
 export function DeletePostModal({setDeleteDisplay, deleteDisplay, postId}){
 
-    function onAcceptClick(){
-        sendDeletePost(postId);
+    async function onAcceptClick(){
+        await sendDeletePost(postId);
         console.log("postBorrado");
-        window.location.reload();
     }
 
     function onCancelClick(event){
