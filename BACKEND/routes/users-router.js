@@ -71,7 +71,7 @@ router.patch(
     fileUpload(),
     handleAsyncError(async (req, res) => {
         // Editar el post con id req.params.id
-        await editUser(req.currentUser.id, req.body);
+        await editUser(req.currentUser.id, req.body, req.files);
         sendResponse(res);
     })
 );

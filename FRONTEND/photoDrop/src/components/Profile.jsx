@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {ProfileMenu} from "./ProfileMenu.jsx"
+import { ProfileMenu } from "./ProfileMenu.jsx";
 import "../styles/Profile.css";
 import { useCurrentUser } from "../functions/utils/use-current-user.js";
 
 export function Profile() {
-    const currentUser= useCurrentUser(); //devuelve null??????????????
+    const currentUser = useCurrentUser(); //devuelve null??????????????
     console.log(currentUser);
 
     const [userData, setUserData] = useState({});
@@ -14,13 +14,15 @@ export function Profile() {
     const blankImg = "/blankProfilePicture.jpg";
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${currentUser.id}`)
-            .then((res) => res.json())
-            .then((result) => {
-                setUserData(result.data);
-                setPostData(result.data.posts);
-            });
-    }, [userData, postData, user, id]);
+        if (currentUser) {
+            fetch(`http://localhost:5000/users/${currentUser.id}`)
+                .then((res) => res.json())
+                .then((result) => {
+                    setUserData(result.data);
+                    setPostData(result.data.posts);
+                });
+        }
+    }, [currentUser]);
 
     return (
         <main className="profileMain">
@@ -37,7 +39,8 @@ export function Profile() {
                     )}
                     <h2 className="profileUserName">{userData.name}</h2>
                 </div>
-                {user.id==userData.id && <ProfileMenu/>}
+                {/* {currentUser?.id == userData.id && <ProfileMenu />} */}
+                <ProfileMenu/>
             </div>
             <div className="profilePagePosts">
                 {postData.map((post, i) => {

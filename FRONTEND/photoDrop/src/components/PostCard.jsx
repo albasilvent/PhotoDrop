@@ -9,7 +9,7 @@ import { LikeButton } from "./LikeButton";
 import { useCurrentUser } from "../functions/utils/use-current-user";
 
 /* eslint-disable react/prop-types */
-export function PostCard({ post }) {
+export function PostCard({ post, deletePostById }) {
     const {
         postId,
         postTitle,
@@ -58,7 +58,9 @@ export function PostCard({ post }) {
                     )}
                     <p className="userName">{userName}</p>
                 </div>
-                {user.id == userId && <PostMenu postId={postId} />}
+                {user.id == userId && (
+                    <PostMenu postId={postId} deletePostById={deletePostById} />
+                )}
             </div>
             <h2 className="postTitle">{postTitle}</h2>
             <Slider

@@ -22,7 +22,7 @@ export function ValidateEmail() {
             await sendValidateEmail(payload);
             navigate("/login");
         } catch (err) {
-            setFormState({ isSubmitting: false });;
+            setFormState({ isSubmitting: false });
             setErrorMsg(err.msg);
         }
     }

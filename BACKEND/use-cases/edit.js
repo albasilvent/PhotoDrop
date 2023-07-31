@@ -8,7 +8,8 @@ const { notFound, unauthorizedUser } = require("../services/errors");
 const {processUploadedPostPhoto}= require("../services/images");
 
 //Editar los datos de usuario
-async function editUser(userId, userPayload) {
+async function editUser(userId, userPayload, files) {
+    console.log(files);
     // Comprobamos si existe un usuario con el id del token.
     const user = await getUserById(userId);
 
@@ -24,7 +25,7 @@ async function editUser(userId, userPayload) {
         surname1: userPayload.surname1 || user.surname1,
         surname2: userPayload.surname2 || user.surname2,
         country: userPayload.country || user.country,
-        profilePicture: await processUploadedPostPhoto(userId, userPayload.profilePicture) || user.profilePicture
+        profilePicture: await processUploadedPostPhoto(userId, files.profilePicture) || user.profilePicture
     };
 
     await updateUser(updatedUser);

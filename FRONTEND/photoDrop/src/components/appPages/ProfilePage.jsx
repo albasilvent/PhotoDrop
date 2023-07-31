@@ -1,12 +1,12 @@
 import { Header } from "../Header";
-import { Profile } from "../Profile";
 import { Footer } from "../Footer";
+import { Profile } from "../Profile";
 
 export function ProfilePage() {
     return (
         <>
             <Header />
-            <Profile />
+            <Profile></Profile>
             <Footer />
         </>
     );

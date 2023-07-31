@@ -3,7 +3,7 @@ import { useState } from "react";
 import "../styles/Menu.css";
 import { DeletePostModal } from "./DeletePostModal";
 
-export function PostMenu({postId}) {
+export function PostMenu({postId, deletePostById}) {
     const [menuDisplay, setMenuDisplay] = useState(false);
     function onClick(event) {
         event.stopPropagation();
@@ -39,7 +39,7 @@ export function PostMenu({postId}) {
                     </div>
                 </article>
             </div>
-            <DeletePostModal deleteDisplay={deleteDisplay} setDeleteDisplay={setDeleteDisplay} postId={postId}/>
+            <DeletePostModal deleteDisplay={deleteDisplay} setDeleteDisplay={setDeleteDisplay} postId={postId} deletePostById={deletePostById}/>
         </>
     );
 }
