@@ -7,6 +7,7 @@ import { LoginPage } from "./components/appPages/LoginPage";
 import { ProfilePage } from "./components/appPages/ProfilePage";
 import { RegisterPage } from "./components/appPages/RegisterPage";
 import { ValidateEmailPage } from "./components/appPages/ValidateEmailPage";
+import {PostDetailsPage} from "./components/appPages/PostDetailsPage"
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/users/:id" element={<ProfilePage />} />
+                    <Route path="/posts/:id" element={<PostDetailsPage/>}/>
                     <Route
                         path="validate-email"
                         element={<ValidateEmailPage />}

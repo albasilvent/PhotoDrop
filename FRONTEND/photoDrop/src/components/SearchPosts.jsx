@@ -7,35 +7,14 @@ export function SearchPosts({ search }) {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/posts")
+        fetch(`http://localhost:5000/posts/search?search=${search}`)
             .then((res) => res.json())
             .then((result) => {
-                const array = result.data;
-                const sortedArray = array
-                    .sort(
-                        (a, b) => b.like_count - a.like_count
-                        // eslint-disable-next-line react/prop-types
-                    )
-                    .filter(
-                        (post) =>
-                            post.userName
-                                .toLowerCase()
-                                // eslint-disable-next-line react/prop-types
-                                .includes(search.toLowerCase()) ||
-                            post.postTitle
-                                .toLowerCase()
-                                // eslint-disable-next-line react/prop-types
-                                .includes(search.toLowerCase()) ||
-                            post.postDescription
-                                .toLowerCase()
-                                // eslint-disable-next-line react/prop-types
-                                .includes(search.toLowerCase())
-                    );
-                // let sortedPosts= result.data.map()
+                const sortedArray= result.data.sort((a, b) => b.like_count - a.like_count)
                 setPosts(sortedArray);
             });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [posts]);
+    }, [search]);
 
     return (
         <main>

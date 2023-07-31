@@ -7,10 +7,13 @@
 }
 
 .commentUser{
+    width: 100%;
     display: flex;
     gap:0.5rem;
     align-items: center;
     justify-content: space-between;
+    color:grey;
+    font-style: italic;
 }
 
 .div1{
@@ -27,6 +30,13 @@
 .div1  textarea {
     width: 80%;
 
+}
+
+.div2 {
+    display:flex;
+    align-items: center;
+    gap:0.3rem;
+    font-size: 15px;
 }
 
 

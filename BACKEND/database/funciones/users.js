@@ -89,12 +89,15 @@ async function getUserPosts(userId) {
     SELECT photo1, photo2, photo3
     FROM posts
     WHERE userId = ?;
+    ORDER BY createdAt DESC;
   `;
+
+  console.log("hola");
 
   const [userRows] = await db.execute(userStatement, [userId]);
 
   if (userRows.length === 0) {
-    return null; // No se encontró ningún usuario con el ID dado
+    return null; 
   }
 
   const user = userRows[0];

@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ProfileMenu } from "./ProfileMenu.jsx";
 import "../styles/Profile.css";
 import { useCurrentUser } from "../functions/utils/use-current-user.js";
 
 export function Profile() {
+    const { id } = useParams();
     const currentUser = useCurrentUser(); //devuelve null??????????????
     console.log(currentUser);
 
@@ -15,14 +16,14 @@ export function Profile() {
 
     useEffect(() => {
         if (currentUser) {
-            fetch(`http://localhost:5000/users/${currentUser.id}`)
+            fetch(`http://localhost:5000/users/${id}`)
                 .then((res) => res.json())
                 .then((result) => {
                     setUserData(result.data);
                     setPostData(result.data.posts);
                 });
         }
-    }, [currentUser]);
+    }, [id, currentUser]);
 
     return (
         <main className="profileMain">
@@ -39,14 +40,13 @@ export function Profile() {
                     )}
                     <h2 className="profileUserName">{userData.name}</h2>
                 </div>
-                {/* {currentUser?.id == userData.id && <ProfileMenu />} */}
-                <ProfileMenu/>
+                {currentUser?.id == userData.id && <ProfileMenu />}
             </div>
             <div className="profilePagePosts">
                 {postData.map((post, i) => {
                     return (
                         // eslint-disable-next-line react/jsx-key
-                        <Link to={`posts/${post.id}`}>
+                        <Link to={`/posts/${post.id}`}>
                             <img key={i} src={post.photo1}></img>
                         </Link>
                     );

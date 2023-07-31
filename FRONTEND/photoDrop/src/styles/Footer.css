@@ -25,6 +25,7 @@ footer {
     margin-bottom: 3px;
     border: 1px solid var(--border-color);
     color:black;
+    object-fit: cover;
 }
 
 

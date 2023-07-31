@@ -27,6 +27,7 @@
     z-index: 10;
     top:0px;
     display: flex;
+    justify-content: center;
     align-items: center;
     background-color: var(--background-color);
     border: 1px solid var(--border-color);

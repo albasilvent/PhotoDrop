@@ -12,6 +12,8 @@ export function AllPosts() {
         setPosts(filteredPosts);
     }
 
+    //hacer una funcion que actualiza comentarios
+
     useEffect(() => {
         fetch("http://localhost:5000/posts")
             .then((res) => res.json())

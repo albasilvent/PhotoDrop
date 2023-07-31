@@ -15,16 +15,23 @@ section {
 .postUser {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 0.5rem;
     padding: 0 1rem;
     margin-top: 0.5rem;
 }
 
 .first {
-    width: 85%;
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.nameSurname{
+    display:flex;
+    align-items: center;
+    gap:0.3rem;
 }
 
 .userName {
@@ -43,6 +50,7 @@ section {
     height: 25px;
     border-radius: 20px;
     border: 1px solid var(--border-color);
+    object-fit: cover;
 }
 
 .postSocials {

@@ -48,6 +48,7 @@ async function getAllPosts() {
       COALESCE(l.like_count, 0) AS like_count,
       COALESCE(c.comment_count, 0) AS comment_count,
       u.name AS userName,
+      u.surname1 AS surname1,
       u.profilePicture AS userProfilePicture,
       u.id AS userId,
       createdAt
@@ -101,8 +102,8 @@ async function deletePost(postId) {
 //searchByTerm
 //Funcion que devuelve los post que coinciden con el buscador
 async function searchByTerm(searchTerm) {
-  const likeTerm = `%${searchTerm}%`;
-  const statement = `
+    const likeTerm = `%${searchTerm}%`;
+    const statement = `
     SELECT
       p.id AS postId,
       p.title AS postTitle,
@@ -113,6 +114,7 @@ async function searchByTerm(searchTerm) {
       COALESCE(l.like_count, 0) AS like_count,
       COALESCE(c.comment_count, 0) AS comment_count,
       u.name AS userName,
+      u.surname1 AS surname1,
       u.profilePicture AS userProfilePicture,
       u.id AS userId,
       createdAt
@@ -138,8 +140,8 @@ async function searchByTerm(searchTerm) {
     ORDER BY p.createdAt DESC;
   `;
 
-  const [rows] = await db.execute(statement, [likeTerm, likeTerm, likeTerm]);
-  return rows;
+    const [rows] = await db.execute(statement, [likeTerm, likeTerm, likeTerm]);
+    return rows;
 }
 
 module.exports = {
@@ -148,5 +150,5 @@ module.exports = {
     updatePost,
     getPostById,
     deletePost,
-    searchByTerm, 
+    searchByTerm,
 };

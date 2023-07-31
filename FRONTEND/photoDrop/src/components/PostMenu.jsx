@@ -2,9 +2,13 @@
 import { useState } from "react";
 import "../styles/Menu.css";
 import { DeletePostModal } from "./DeletePostModal";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export function PostMenu({postId, deletePostById}) {
     const [menuDisplay, setMenuDisplay] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate();
+
     function onClick(event) {
         event.stopPropagation();
         setDeleteDisplay(false);
@@ -15,6 +19,9 @@ export function PostMenu({postId, deletePostById}) {
     function onDeleteClick() {
         setMenuDisplay(!menuDisplay);
         setDeleteDisplay(!deleteDisplay);
+        if (location == "post/:id"){
+            navigate("/users/:id")
+        }
     }
 
     return (
