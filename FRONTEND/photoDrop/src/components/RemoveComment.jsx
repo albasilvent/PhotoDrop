@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { removeComment } from "../../../../BACKEND/use-cases/remove";
 
 export function RemoveComment() {
     const [showModal, setShowModal] = useState(false);
 
     const handleDelete = () => {
-        removeComment(); //Funcion del back
+        //Funcion del back?
         setShowModal(false);
     };
 
