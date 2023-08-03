@@ -36,7 +36,6 @@
     text-align: center;
     background-color: var(--background-color);
     color: rgb(192, 77, 77);
-
 }
 
 .login {
@@ -131,3 +130,5 @@
         grid-column: 1/4;
     }
 }
+
+@media (max-heigth);
