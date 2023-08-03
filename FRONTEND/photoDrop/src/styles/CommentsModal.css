@@ -1,0 +1,48 @@
+/*MODAL COMENTARIOS*/
+.modal-comentarios {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    position: absolute;
+    z-index: 10;
+    bottom: 5px;
+    left: 15px;
+    width: 90%;
+    height: 60%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.modal-comentarios > p{
+    text-align: center;
+}
+
+.modal-comentarios .material-symbols-rounded{
+    width: 100%;
+    text-align: end;
+}
+.addComment {
+    width: 100%;
+    height: auto;
+    position: sticky;
+    z-index: 10;
+    top:0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    padding: 0.7rem;
+    gap:0.5rem;
+}
+
+.addComment input {
+    width:8.5rem;
+    font-size: 12px;;
+}
+
+.addComment button{
+    width: 20px;
+    height: 20px;
+    border-radius: 40px ;
+}

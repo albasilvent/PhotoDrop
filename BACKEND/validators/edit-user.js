@@ -5,6 +5,4 @@ module.exports = Joi.object({
     surname1: Joi.string(),
     surname2: Joi.string(),
     country: Joi.string(),
-})
-    .or("name", "surname1", "surname2", "country")
-    .required();
+});

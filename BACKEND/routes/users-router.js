@@ -64,14 +64,14 @@ router.get(
 );
 
 //Modificar datos de usuario
-router.patch(
+router.put(
     "/users",
     authGuard,
     validateBody(editUserPayload),
     fileUpload(),
     handleAsyncError(async (req, res) => {
         // Editar el post con id req.params.id
-        await editUser(req.currentUser.id, req.body);
+        await editUser(req.currentUser.id, req.body, req.files);
         sendResponse(res);
     })
 );

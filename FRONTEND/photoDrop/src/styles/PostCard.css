@@ -1,7 +1,6 @@
 section {
     position:relative;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-between;
     background-color: var(--background-color);
@@ -16,16 +15,23 @@ section {
 .postUser {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 0.5rem;
     padding: 0 1rem;
     margin-top: 0.5rem;
 }
 
 .first {
-    width: 85%;
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.nameSurname{
+    display:flex;
+    align-items: center;
+    gap:0.3rem;
 }
 
 .userName {
@@ -44,6 +50,7 @@ section {
     height: 25px;
     border-radius: 20px;
     border: 1px solid var(--border-color);
+    object-fit: cover;
 }
 
 .postSocials {
@@ -82,21 +89,8 @@ section {
     color: grey;
 }
 
-.modal-comentarios{
-    background-color: var(--background-color);
-    border: 1px solid var(--border-color);
-    border-radius:10px;
-    position:absolute;
-    z-index: 10;
-    bottom:5px;
-    left:15px;
-    width:90%;
-    height:60%;
-    overflow-y: scroll;
-}
-.modal-comentarios > p {
-    text-align: center;
-}
+
+
 @media (min-width: 700px) {
     .userName {
         font-size: 18px;

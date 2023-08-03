@@ -1,4 +1,4 @@
-.deletePostModal {
+.deleteCommentModal {
     background-color: var(--background-color);
     padding: 1rem;
     border: 1px solid var(--border-color);
@@ -15,7 +15,7 @@
     gap: 0.5rem;
 }
 
-.deletePostModal > p {
+.deleteCommentModal > p {
     text-align: center;
 }
 

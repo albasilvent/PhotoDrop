@@ -24,7 +24,7 @@ router.post(
 );
 
 // Modificar el comentario
-router.patch(
+router.put(
     "/posts/:id/comments/:commentId",
     authGuard,
     json(),

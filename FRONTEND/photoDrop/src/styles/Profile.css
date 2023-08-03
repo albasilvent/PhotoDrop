@@ -1,12 +1,26 @@
+.profilePage {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
 .profilePageUser {
     width: 100%;
     height: 20%;
     display: flex;
     flex-wrap: wrap;
     flex-grow: 1;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    gap: 8vw;
+}
+
+.postProfileContainer {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1rem;
 }
 
 .profileUserData {
@@ -16,10 +30,13 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem;
+    position: relative;
+    border-bottom: 1px solid var(--border-color);
 }
 
-.profileUserName{
+.profileUserName {
     font-weight: 400;
+    color: grey;
     font-style: italic;
 }
 
@@ -27,6 +44,7 @@
     width: 60px;
     height: 60px;
     border-radius: 50px;
+    object-fit: cover;
 }
 
 .profileIcons {
@@ -40,14 +58,32 @@
 
 .profilePagePosts {
     width: 90%;
-    height: 80%;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     align-content: start;
-    justify-content: space-between;
+    justify-content: start;
     gap: 0.5rem;
 }
 
+.postProfileTitle {
+    padding-bottom: 1rem;
+    height: 1rem;
+}
+
+.p-publicaciones {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.p2 {
+    color: grey;
+    font-style: italic;
+    font-size: 15px;
+}
 .profilePagePosts img {
     width: 27vw;
     height: 27vw;
@@ -72,6 +108,3 @@
         padding: 1rem 0.5rem;
     }
 }
-
-
-

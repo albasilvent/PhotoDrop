@@ -38,7 +38,7 @@ export function AuthProvider({ children }) {
             const user = getUser();
             setCurrentContext({
                 token,
-                currentUser: user,
+                currentUser: user, //aqui esta
             });
         }
     }, []);

@@ -6,7 +6,7 @@ const db = getConnection();
 //Funcion que guarda un usuario
 async function saveUser(user) {
     const statement = `
-    INSERT INTO users(id,name,surname1,surname2,email,password,birthDate,country,acceptedTOS,emailValidated)
+    INSERT INTO users(id,name,surname1,surname2,email,password,birthDate,country,acceptedTOS,emailValidated,)
     VALUES(?,?,?,?,?,?,?,?,?,?)
     `;
 
@@ -77,55 +77,20 @@ async function getUserById(userId) {
 }
 
 async function getUserPosts(userId) {
-  const userStatement = `
-    SELECT id, name, surname1, profilePicture, COUNT(posts.id) AS postCount
-    FROM users
-    LEFT JOIN posts ON users.id = posts.userId
-    WHERE users.id = ?
-    GROUP BY users.id;
-  `;
-
-  const postStatement = `
-    SELECT photo1, photo2, photo3
-    FROM posts
-    WHERE userId = ?;
-  `;
-
-  const [userRows] = await db.execute(userStatement, [userId]);
-
-  if (userRows.length === 0) {
-    return null; // No se encontró ningún usuario con el ID dado
-  }
-
-  const user = userRows[0];
-
-  const [postRows] = await db.execute(postStatement, [userId]);
-  const posts = postRows.map((row) => ({
-    photo1: row.photo1,
-    photo2: row.photo2,
-    photo3: row.photo3,
-  }));
-
-  user.posts = posts;
-
-  return user;
-}
-
-
-async function getUserPosts(userId) {
     const userStatement = `
-    SELECT users.id, users.name, users.profilePicture, COUNT(posts.id) AS postCount
-    FROM users
-    LEFT JOIN posts ON users.id = posts.userId
-    WHERE users.id = ?
-    GROUP BY users.id;
-  `;
+      SELECT U.id, U.name, U.surname1, U.profilePicture, COUNT(P.id) AS postCount
+      FROM users U
+      LEFT JOIN posts P ON U.id = P.userId
+      WHERE U.id = ?
+      GROUP BY U.id;
+    `;
 
     const postStatement = `
-    SELECT id, title, description, photo1, photo2, photo3, createdAt
-    FROM posts
-    WHERE userId = ?;
-  `;
+      SELECT id, title, description, photo1, photo2, photo3, createdAt
+      FROM posts
+      WHERE userId = ?
+      ORDER BY createdAt DESC;
+    `;
 
     const [userRows] = await db.execute(userStatement, [userId]);
 
@@ -136,6 +101,7 @@ async function getUserPosts(userId) {
     const user = userRows[0];
 
     const [postRows] = await db.execute(postStatement, [userId]);
+
     const posts = postRows.map((row) => ({
         id: row.id,
         title: row.title,

@@ -7,9 +7,10 @@ import { CommentsModal } from "./CommentsModal";
 import { useState } from "react";
 import { LikeButton } from "./LikeButton";
 import { useCurrentUser } from "../functions/utils/use-current-user";
+import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
-export function PostCard({ post }) {
+export function PostCard({ post, deletePostById }) {
     const {
         postId,
         postTitle,
@@ -21,6 +22,7 @@ export function PostCard({ post }) {
         comment_count,
         userName,
         userId,
+        surname1,
         userProfilePicture,
         createdAt,
         comments,
@@ -43,22 +45,29 @@ export function PostCard({ post }) {
     return (
         <section>
             <div className="postUser">
-                <div className="first">
-                    {!userProfilePicture && (
-                        <img
-                            className="profilePicture"
-                            src={blankProfile}
-                        ></img>
-                    )}
-                    {userProfilePicture && (
-                        <img
-                            className="profilePicture"
-                            src={userProfilePicture}
-                        ></img>
-                    )}
-                    <p className="userName">{userName}</p>
-                </div>
-                {user.id == userId && <PostMenu postId={postId} />}
+                <Link to={`/users/${userId}`}>
+                    <div className="first">
+                        {!userProfilePicture && (
+                            <img
+                                className="profilePicture"
+                                src={blankProfile}
+                            ></img>
+                        )}
+                        {userProfilePicture && (
+                            <img
+                                className="profilePicture"
+                                src={userProfilePicture}
+                            ></img>
+                        )}
+                        <div className= "nameSurname">
+                            <p className="userName">{userName}</p>
+                            <p className="userName">{surname1}</p>
+                        </div>
+                    </div>
+                </Link>
+                {user.id == userId && (
+                    <PostMenu postId={postId} deletePostById={deletePostById} />
+                )}
             </div>
             <h2 className="postTitle">{postTitle}</h2>
             <Slider
@@ -100,6 +109,7 @@ export function PostCard({ post }) {
                     comments={comments}
                     menuDisplay={menuDisplay}
                     setMenuDisplay={setMenuDisplay}
+                    postId={postId}
                 />
             )}
         </section>

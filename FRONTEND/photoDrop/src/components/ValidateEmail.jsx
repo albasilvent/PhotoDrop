@@ -23,7 +23,6 @@ export function ValidateEmail() {
             navigate("/login");
         } catch (err) {
             setFormState({ isSubmitting: false });
-            setPayload({});
             setErrorMsg(err.msg);
         }
     }

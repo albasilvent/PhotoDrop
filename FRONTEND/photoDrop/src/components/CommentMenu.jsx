@@ -2,15 +2,20 @@
 import { useState } from "react";
 import "../styles/Menu.css";
 
-export function CommentMenu({editModalDisplay, setEditModalDisplay}) {
+export function CommentMenu({ editModalDisplay, setEditModalDisplay, deleteModalDisplay, setDeleteModalDisplay }) {
     const [menuDisplay, setMenuDisplay] = useState(false);
     function onClick() {
         setMenuDisplay(!menuDisplay);
     }
 
-    function onEditClick(){
+    function onEditClick() {
         setMenuDisplay(!menuDisplay);
         setEditModalDisplay(!editModalDisplay);
+    }
+
+    function onDeleteClick(){
+        setMenuDisplay(!menuDisplay);
+        setDeleteModalDisplay(!deleteModalDisplay);
     }
 
     return (
@@ -21,11 +26,11 @@ export function CommentMenu({editModalDisplay, setEditModalDisplay}) {
             <article className={`post-modal ${menuDisplay ? "" : "hidden"}`}>
                 <div className="post-modal-div editar" onClick={onEditClick}>
                     <p className="material-symbols-rounded">edit</p>
-                    <p>Editar</p>
+                    <p className="editarBorrar">Editar</p>
                 </div>
-                <div className= "post-modal-div borrar" onClick={onClick}>
+                <div className="post-modal-div borrar" onClick={onDeleteClick}>
                     <p className="material-symbols-rounded">delete</p>
-                    <p>Eliminar</p>
+                    <p className="editarBorrar">Eliminar</p>
                 </div>
             </article>
         </div>

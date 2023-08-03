@@ -1,12 +1,12 @@
 import { Header } from "../Header";
+import { PostDetails } from "../PostDetails";
 import { Footer } from "../Footer";
-import { Profile } from "../Profile";
 
-export function ProfilePage() {
+export function PostDetailsPage() {
     return (
         <>
             <Header />
-            <Profile></Profile>
+            <PostDetails />
             <Footer />
         </>
     );
