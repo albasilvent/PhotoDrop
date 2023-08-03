@@ -6,8 +6,7 @@ import { useCurrentUser } from "../functions/utils/use-current-user.js";
 
 export function Profile() {
     const { id } = useParams();
-    const currentUser = useCurrentUser(); //devuelve null??????????????
-    console.log(currentUser);
+    const currentUser = useCurrentUser();
 
     const [userData, setUserData] = useState({});
     const [postData, setPostData] = useState([]);
@@ -19,6 +18,7 @@ export function Profile() {
             fetch(`http://localhost:5000/users/${id}`)
                 .then((res) => res.json())
                 .then((result) => {
+                    console.log(result);
                     setUserData(result.data);
                     setPostData(result.data.posts);
                 });
@@ -26,31 +26,47 @@ export function Profile() {
     }, [id, currentUser]);
 
     return (
-        <main className="profileMain">
+        <main className="profilePage">
             <div className="profilePageUser">
                 <div className="profileUserData">
-                    {userData.profilePicture && (
+                    {userData?.profilePicture && (
                         <img
                             className="profilePageImg"
-                            src={userData.profilePicture}
+                            src={userData?.profilePicture}
                         ></img>
                     )}
-                    {!userData.profilePicture && (
+                    {!userData?.profilePicture && (
                         <img className="profilePageImg" src={blankImg}></img>
                     )}
-                    <h2 className="profileUserName">{userData.name}</h2>
+                    <h2 className="profileUserName">
+                        {userData?.name} {userData?.surname1}
+                    </h2>
                 </div>
-                {currentUser?.id == userData.id && <ProfileMenu />}
+                {currentUser?.id == userData?.id && <ProfileMenu />}
             </div>
-            <div className="profilePagePosts">
-                {postData.map((post, i) => {
-                    return (
-                        // eslint-disable-next-line react/jsx-key
-                        <Link to={`/posts/${post.id}`}>
-                            <img key={i} src={post.photo1}></img>
-                        </Link>
-                    );
-                })}
+            <div className="postProfileContainer">
+                <p className="postProfileTitle">Publicaciones</p>
+                <div className="p-publicaciones">
+                    {postData?.length == 0 && (
+                        <p className="p1"> Aún no hay publicaciones</p>
+                    )}
+                    {postData?.length == 0 &&
+                        currentUser?.id == userData?.id && (
+                            <Link to="/add-post">
+                                <p className="p2">Haz tu primera publicación</p>
+                            </Link>
+                        )}
+                </div>
+                <div className="profilePagePosts">
+                    {postData &&
+                        postData.map((post, i) => {
+                            return (
+                                <Link to={`/posts/${post.id}`} key={i}>
+                                    <img src={post.photo1}></img>
+                                </Link>
+                            );
+                        })}
+                </div>
             </div>
         </main>
     );

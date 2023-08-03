@@ -2,27 +2,24 @@
 import { useState } from "react";
 import "../styles/EditCommentModal.css";
 import { FormContext } from "../contexts/form-context";
+import { sendEditComment } from "../functions/api/send-edit.comment";
 
 export function EditCommentModal({
     comment,
     editModalDisplay,
     setEditModalDisplay,
+    postId
 }) {
-
     const [formState, setFormState] = useState({ isSubmitting: false });
 
     const [textAreaValue, setTextAreaValue] = useState(comment.comment);
-
-    // const [payload, setPayload] = useState({
-    //     comment: "",
-    // });
-
+    const [payload, setPayload] = useState({})
 
     const blankProfilePicture = "/blankProfilePicture.jpg";
 
-
     function onTextAreaChange(event) {
         setTextAreaValue(event.target.value);
+        setPayload({...payload, comment: textAreaValue})
     }
 
     function onCrossClick() {
@@ -37,17 +34,17 @@ export function EditCommentModal({
         });
 
         try {
-            //funcion para enviar el payload del nuevo comentario
+            await sendEditComment(payload, postId, comment.id)
         } catch (error) {
             console.log(error); //hacer errores
-            }
-
-            setFormState({
-                isSubmitting: false,
-            });
-
-            //Mostrar un toast / modal
         }
+
+        setFormState({
+            isSubmitting: false,
+        });
+
+        //Mostrar un toast / modal
+    }
 
     return (
         <div
@@ -72,11 +69,12 @@ export function EditCommentModal({
                             ></img>
                         )}
                         <FormContext.Provider value={formState}>
-                            <form onSubmit={onSubmit}>
+                            <form onSubmit={onSubmit} className="editCommentForm">
                                 <textarea
                                     value={textAreaValue}
                                     onChange={onTextAreaChange}
                                 />
+                                <button type="submit">Aceptar</button>
                             </form>
                         </FormContext.Provider>
                     </div>
@@ -85,4 +83,3 @@ export function EditCommentModal({
         </div>
     );
 }
-

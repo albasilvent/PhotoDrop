@@ -14,10 +14,8 @@ export function DeletePostModal({
 
     async function onAcceptClick() {
         await sendDeletePost(postId);
-        console.log(postId);
         setDeleteDisplay(!deleteDisplay);
         deletePostById(postId);
-        console.log("postBorrado");
     }
 
     function onCancelClick() {

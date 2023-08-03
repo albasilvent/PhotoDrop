@@ -24,7 +24,7 @@ async function savePost(post) {
 //Funcion que devuelve los posts segun la id
 async function getPostById(postId) {
     const statement = `
-    SELECT p.*, u.id as userId, u.name as userName, u.profilePicture
+    SELECT p.*, u.id as userId, u.name as userName, u.profilePicture, u.surname1
     FROM posts as p
     INNER JOIN users as u ON p.userId = u.id
     WHERE p.id = ?

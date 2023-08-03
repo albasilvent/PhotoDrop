@@ -3,7 +3,7 @@ const fileUpload = require("express-fileupload");
 const { authGuard } = require("../middlewares/auth-guard.js");
 const { validateBody } = require("../middlewares/validate-body.js");
 const postPayload = require("../validators/add-post.js");
-const editPostPayload= require("../validators/edit-post.js")
+const editPostPayload = require("../validators/edit-post.js");
 const { handleAsyncError } = require("../services/errors");
 const { listPosts } = require("../use-cases/list");
 const { search } = require("../use-cases/search");
@@ -45,10 +45,10 @@ router.get(
         const post = await viewPost(req.params.id);
         sendResponse(res, post);
     })
-    );
-    
-    //Obtener todos los post
-    router.get(
+);
+
+//Obtener todos los post
+router.get(
     //PROBAR CON POSTS SUBIDOS
     "/posts",
     handleAsyncError(async (req, res) => {
@@ -58,9 +58,8 @@ router.get(
     })
 );
 
-
 // Editar el post
-router.patch(
+router.put(
     "/posts/:id",
     authGuard,
     fileUpload(),

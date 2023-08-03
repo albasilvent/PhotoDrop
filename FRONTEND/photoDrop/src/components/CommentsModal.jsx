@@ -33,7 +33,6 @@ export function CommentsModal({
 
         try {
             await sendAddComment(payload, postId);
-            
         } catch (err) {
             setFormState({ isSubmitting: false });
         }
@@ -76,7 +75,7 @@ export function CommentsModal({
             {comments &&
                 comments.map((comment, i) => {
                     // eslint-disable-next-line react/jsx-key
-                    return <Comment key={i} comment={comment} />;
+                    return <Comment key={i} comment={comment} postId={postId}/>;
                 })}
             {comments.length == 0 && <p>No hay comentarios</p>}
         </div>

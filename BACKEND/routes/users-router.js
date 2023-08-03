@@ -64,7 +64,7 @@ router.get(
 );
 
 //Modificar datos de usuario
-router.patch(
+router.put(
     "/users",
     authGuard,
     validateBody(editUserPayload),
