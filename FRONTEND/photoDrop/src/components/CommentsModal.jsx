@@ -74,9 +74,9 @@ export function CommentsModal({
                 Close
             </p>
             {commentsState &&
-                commentsState.map((comment, i) => {
+                commentsState.map((comment) => {
                     // eslint-disable-next-line react/jsx-key
-                    return <Comment key={i} comment={comment} postId={postId} deleteCommentById={deleteCommentById} />;
+                    return <Comment key={comment.id} comment={comment} postId={postId} deleteCommentById={deleteCommentById} />;
                 })}
             {commentsState.length == 0 && <p>No hay comentarios</p>}
         </div>

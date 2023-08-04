@@ -12,9 +12,7 @@ import { DeleteCommentModal } from "./DeleteCommentModal";
 export function Comment({ comment, postId, deleteCommentById }) {
     const [editModalDisplay, setEditModalDisplay] = useState(false);
     const [deleteModalDisplay, setDeleteModalDisplay] = useState(false);
-    const [commentMsg, setCommentMsg]= useState(commment.comment);
-
-
+    const [commentMsg, setCommentMsg] = useState(comment.comment);
 
     const user = useCurrentUser();
 
@@ -60,6 +58,8 @@ export function Comment({ comment, postId, deleteCommentById }) {
                         editModalDisplay={editModalDisplay}
                         setEditModalDisplay={setEditModalDisplay}
                         postId={postId}
+                        commentMsg={commentMsg}
+                        setCommentMsg={setCommentMsg}
                     />
                     <DeleteCommentModal
                         deleteModalDisplay={deleteModalDisplay}
@@ -70,7 +70,7 @@ export function Comment({ comment, postId, deleteCommentById }) {
                     />
                 </div>
             </div>
-            <p>{comment.comment}</p>
+            <p>{commentMsg}</p>
             <p className="commentDate">{date}</p>
         </aside>
     );

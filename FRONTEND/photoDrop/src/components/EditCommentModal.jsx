@@ -9,16 +9,22 @@ export function EditCommentModal({
     editModalDisplay,
     setEditModalDisplay,
     postId,
+    commentMsg,
+    setCommentMsg,
 }) {
     const [formState, setFormState] = useState({ isSubmitting: false });
-    const [payload, setPayload] = useState({comment: comment.comment});
-    const [inputValue, setInputValue] = useState(comment.comment);
+    const [payload, setPayload] = useState({ comment: commentMsg });
+    const [inputValue, setInputValue] = useState(commentMsg);
 
     const blankProfilePicture = "/blankProfilePicture.jpg";
 
     function onInputChange(event) {
         const value = event.target.value;
-        setInputValue(value);
+        if (value.length == 0) {
+            setPayload({ ...payload, comment: commentMsg })
+        } else {
+            setInputValue(value);
+        }
         setPayload({ ...payload, comment: value });
     }
 
@@ -36,6 +42,7 @@ export function EditCommentModal({
         try {
             await sendEditComment(payload, postId, comment.id);
             setEditModalDisplay(!editModalDisplay);
+            setCommentMsg(inputValue);
         } catch (error) {
             console.log(error);
         }
