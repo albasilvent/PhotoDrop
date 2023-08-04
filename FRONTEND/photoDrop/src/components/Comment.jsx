@@ -9,11 +9,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { DeleteCommentModal } from "./DeleteCommentModal";
 
-export function Comment({ comment, postId }) {
+export function Comment({ comment, postId, deleteCommentById }) {
     const [editModalDisplay, setEditModalDisplay] = useState(false);
     const [deleteModalDisplay, setDeleteModalDisplay] = useState(false);
+    const [commentMsg, setCommentMsg]= useState(commment.comment);
 
-    console.log(deleteModalDisplay);
+
 
     const user = useCurrentUser();
 
@@ -46,7 +47,7 @@ export function Comment({ comment, postId }) {
                     </div>
                 </Link>
                 <div className="div2">
-                    {user.id == comment.userId && (
+                    {user?.id == comment.userId && (
                         <CommentMenu
                             editModalDisplay={editModalDisplay}
                             setEditModalDisplay={setEditModalDisplay}
@@ -65,6 +66,7 @@ export function Comment({ comment, postId }) {
                         setDeleteModalDisplay={setDeleteModalDisplay}
                         postId={postId}
                         commentId={comment.id}
+                        deleteCommentById={deleteCommentById}
                     />
                 </div>
             </div>

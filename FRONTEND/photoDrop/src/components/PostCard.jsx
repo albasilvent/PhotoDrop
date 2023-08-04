@@ -8,6 +8,7 @@ import { useState } from "react";
 import { LikeButton } from "./LikeButton";
 import { useCurrentUser } from "../functions/utils/use-current-user";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 export function PostCard({ post, deletePostById }) {
@@ -29,23 +30,35 @@ export function PostCard({ post, deletePostById }) {
     } = post;
 
     const user = useCurrentUser();
-
     const [likeCount, setLikeCount] = useState(like_count);
+    const [commentsState, setCommentsState]= useState(comments);
+
+    function deleteCommentById(commentId){
+        const filteredComments= commentsState.filter((comment)=> comment.id !== commentId);
+        setCommentsState(filteredComments);
+    }
 
     dayjs.extend(relativeTime);
     const date = dayjs(createdAt).fromNow();
 
     const [menuDisplay, setMenuDisplay] = useState(false);
+    const navigate= useNavigate();
+
     function onClick() {
+        if (!user){
+            navigate("/login");
+        }
         setMenuDisplay(!menuDisplay);
     }
 
     const blankProfile = "/blankProfilePicture.jpg";
+    const linkProfile= `/users/${userId}`
+    const linkLogin= "/login"
 
     return (
         <section>
             <div className="postUser">
-                <Link to={`/users/${userId}`}>
+                <Link to={user ? linkProfile : linkLogin}>
                     <div className="first">
                         {!userProfilePicture && (
                             <img
@@ -59,14 +72,14 @@ export function PostCard({ post, deletePostById }) {
                                 src={userProfilePicture}
                             ></img>
                         )}
-                        <div className= "nameSurname">
+                        <div className="nameSurname">
                             <p className="userName">{userName}</p>
                             <p className="userName">{surname1}</p>
                         </div>
                     </div>
                 </Link>
-                {user.id == userId && (
-                    <PostMenu postId={postId} deletePostById={deletePostById} />
+                {user?.id == userId && (
+                    <PostMenu postId={postId} deletePostById={deletePostById}/>
                 )}
             </div>
             <h2 className="postTitle">{postTitle}</h2>
@@ -106,10 +119,11 @@ export function PostCard({ post, deletePostById }) {
             <p className="postDate">Posted {date}</p>
             {comments && (
                 <CommentsModal
-                    comments={comments}
+                    commentsState={commentsState}
                     menuDisplay={menuDisplay}
                     setMenuDisplay={setMenuDisplay}
                     postId={postId}
+                    deleteCommentById={deleteCommentById} 
                 />
             )}
         </section>

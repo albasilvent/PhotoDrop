@@ -4,6 +4,7 @@ import "../styles/Menu.css";
 
 export function CommentMenu({ editModalDisplay, setEditModalDisplay, deleteModalDisplay, setDeleteModalDisplay }) {
     const [menuDisplay, setMenuDisplay] = useState(false);
+
     function onClick() {
         setMenuDisplay(!menuDisplay);
     }

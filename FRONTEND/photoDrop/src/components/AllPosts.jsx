@@ -12,6 +12,7 @@ export function AllPosts() {
         setPosts(filteredPosts);
     }
 
+
     //hacer una funcion que actualiza comentarios
 
     useEffect(() => {

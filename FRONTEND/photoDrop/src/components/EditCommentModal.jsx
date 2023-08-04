@@ -8,18 +8,18 @@ export function EditCommentModal({
     comment,
     editModalDisplay,
     setEditModalDisplay,
-    postId
+    postId,
 }) {
     const [formState, setFormState] = useState({ isSubmitting: false });
-
-    const [textAreaValue, setTextAreaValue] = useState(comment.comment);
-    const [payload, setPayload] = useState({})
+    const [payload, setPayload] = useState({comment: comment.comment});
+    const [inputValue, setInputValue] = useState(comment.comment);
 
     const blankProfilePicture = "/blankProfilePicture.jpg";
 
-    function onTextAreaChange(event) {
-        setTextAreaValue(event.target.value);
-        setPayload({...payload, comment: textAreaValue})
+    function onInputChange(event) {
+        const value = event.target.value;
+        setInputValue(value);
+        setPayload({ ...payload, comment: value });
     }
 
     function onCrossClick() {
@@ -34,16 +34,15 @@ export function EditCommentModal({
         });
 
         try {
-            await sendEditComment(payload, postId, comment.id)
+            await sendEditComment(payload, postId, comment.id);
+            setEditModalDisplay(!editModalDisplay);
         } catch (error) {
-            console.log(error); //hacer errores
+            console.log(error);
         }
 
         setFormState({
             isSubmitting: false,
         });
-
-        //Mostrar un toast / modal
     }
 
     return (
@@ -60,19 +59,27 @@ export function EditCommentModal({
                             <img
                                 className="profilePicture"
                                 src={comment.profilePicture}
-                            ></img>
+                                alt="Profile"
+                            />
                         )}
                         {!comment.profilePicture && (
                             <img
                                 className="profilePicture"
                                 src={blankProfilePicture}
-                            ></img>
+                                alt="Blank Profile"
+                            />
                         )}
                         <FormContext.Provider value={formState}>
-                            <form onSubmit={onSubmit} className="editCommentForm">
-                                <textarea
-                                    value={textAreaValue}
-                                    onChange={onTextAreaChange}
+                            <form
+                                onSubmit={onSubmit}
+                                className="editCommentForm"
+                            >
+                                <input
+                                    className="input"
+                                    name="comentario"
+                                    type="text"
+                                    value={inputValue}
+                                    onChange={onInputChange}
                                 />
                                 <button type="submit">Aceptar</button>
                             </form>
