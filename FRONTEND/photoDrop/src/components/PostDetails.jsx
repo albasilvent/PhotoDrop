@@ -1,4 +1,4 @@
-import "../styles/PostCard.css";
+import "../styles/PostDetails.css";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Slider } from "./Slider";
@@ -7,13 +7,14 @@ import { CommentsModal } from "./CommentsModal";
 import { useEffect, useState } from "react";
 import { LikeButton } from "./LikeButton";
 import { useCurrentUser } from "../functions/utils/use-current-user";
-import { useParams , useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export function PostDetails() {
     const { id } = useParams();
-    const navigate= useNavigate();
+    const navigate = useNavigate();
 
     const [post, setPost] = useState(null);
+    const [commentsState, setCommentsState] = useState([]);
     const [likeCount, setLikeCount] = useState(null);
     const [menuDisplay, setMenuDisplay] = useState(false);
 
@@ -23,8 +24,13 @@ export function PostDetails() {
 
     dayjs.extend(relativeTime);
 
-    function deletePostDetails(){
-        navigate(`/users/${post.userId}`)
+    function deletePostDetails() {
+        navigate(`/users/${post.userId}`);
+    }
+
+    function deleteCommentById(commentId){
+        const filteredComments= commentsState.filter((comment)=> comment.id !== commentId);
+        setCommentsState(filteredComments);
     }
 
     useEffect(() => {
@@ -34,6 +40,7 @@ export function PostDetails() {
                 .then((result) => {
                     setPost(result.data);
                     setLikeCount(result.data.likes);
+                    setCommentsState(result.data.comments)
                 });
         }
     }, [user, id]);
@@ -45,9 +52,9 @@ export function PostDetails() {
     return (
         <main className="Page">
             {post && (
-                <section>
-                    <div className="postUser">
-                        <div className="first">
+                <div className="postDetailsContainer">
+                    <div className="pd-postUser">
+                        <div className="pd-first">
                             {post.profilePicture ? (
                                 <img
                                     className="profilePicture"
@@ -59,7 +66,9 @@ export function PostDetails() {
                                     src={blankProfile}
                                 />
                             )}
-                            <p className="userName">{post.userName} {post.surname1}</p>
+                            <p className="pd-userName">
+                                {post.userName} {post.surname1}
+                            </p>
                         </div>
                         {user?.id == post.userId && (
                             <PostMenu
@@ -68,33 +77,33 @@ export function PostDetails() {
                             />
                         )}
                     </div>
-                    <h2 className="postTitle">{post.title}</h2>
+                    <h2 className="pd-postTitle">{post.title}</h2>
                     <Slider
                         photo1={post.photo1}
                         photo2={post.photo2}
                         photo3={post.photo3}
                     />
-                    <div className="postSocials">
-                        <div className="likes">
+                    <div className="pd-postSocials">
+                        <div className="pd-likes">
                             <LikeButton
                                 postId={id}
                                 likeCount={likeCount}
                                 setLikeCount={setLikeCount}
                             />
-                            <p className="count">{likeCount}</p>
+                            <p className="pd-count">{likeCount}</p>
                         </div>
-                        <div className="comments">
+                        <div className="pd-comments">
                             <p
                                 className="material-symbols-rounded"
                                 onClick={onClick}
                             >
                                 chat_bubble
                             </p>
-                            <p className="count">{post.comments.length}</p>
+                            <p className="pd-count">{post.comments.length}</p>
                         </div>
                     </div>
-                    <p className="postDescription">{post.description}</p>
-                    <div className="postComments">
+                    <p className="pd-postDescription">{post.description}</p>
+                    <div className="pd-postComments">
                         {post.comments.length == 0 && (
                             <p onClick={onClick}>Se el primero en comentar!</p>
                         )}
@@ -109,18 +118,20 @@ export function PostDetails() {
                             </p>
                         )}
                     </div>
-                    <p className="postDate">
+                    <p className="pd-postDate">
                         Posted {dayjs(post.createdAt).fromNow()}
                     </p>
                     {post.comments && (
                         <CommentsModal
-                            comments={post.comments}
+                            commentsState={commentsState}
+                            setcommentsState={setCommentsState}
                             menuDisplay={menuDisplay}
                             setMenuDisplay={setMenuDisplay}
-                            postId={post.postId}
+                            postId={post.id}
+                            deleteCommentById={deleteCommentById} 
                         />
                     )}
-                </section>
+                </div>
             )}
         </main>
     );

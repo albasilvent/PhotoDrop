@@ -120,6 +120,7 @@ export function PostCard({ post, deletePostById }) {
             {comments && (
                 <CommentsModal
                     commentsState={commentsState}
+                    setCommentsState={setCommentsState}
                     menuDisplay={menuDisplay}
                     setMenuDisplay={setMenuDisplay}
                     postId={postId}

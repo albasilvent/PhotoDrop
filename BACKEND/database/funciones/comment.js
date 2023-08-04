@@ -44,9 +44,6 @@ async function getCommentsByPostId(postId) {
     return rows;
   }
   
-  
-  
-
 //updateComment
 //Funcion que edita un comentario
 async function updateComment(commentId, commentPayload) {

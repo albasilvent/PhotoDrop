@@ -1,4 +1,4 @@
-section {
+.postDetailsContainer {
     position:relative;
     display: flex;
     flex-direction: column;
@@ -12,7 +12,7 @@ section {
         0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
-.postUser {
+.pd-postUser {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -21,27 +21,22 @@ section {
     margin-top: 0.5rem;
 }
 
-.first {
+.pd-first {
     width: 100%;
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.nameSurname{
-    display:flex;
-    align-items: center;
-    gap:0.3rem;
-}
 
-.userName {
-    font-size: 15px;
+.pd-userName {
+    font-size: 13px;
     font-style: italic;
 }
 
-.postTitle {
+.pd-postTitle {
     font-weight: 500;
-    font-size: 17px;
+    font-size: 15px;
     padding: 0.5rem 1rem;
 }
 
@@ -53,26 +48,26 @@ section {
     object-fit: cover;
 }
 
-.postSocials {
+.pd-postSocials {
     display: flex;
     gap: 1.5rem;
     padding: 0.5rem 1rem;
     color: grey;
 }
 
-.likes,
-.comments {
+.pd-likes,
+.pd-comments {
     display: flex;
     align-items: center;
     gap: 0.3rem;
 }
 
-.postDescription {
-    font-size: 12px;
+.pd-postDescription {
+    font-size: 10px;
     padding: 0 1rem;
 }
 
-.postComments {
+.pd-postComments {
     cursor: pointer;
     width: 100%;
     font-size: 12px;
@@ -81,7 +76,7 @@ section {
     color: grey;
 }
 
-.postDate {
+.pd-postDate {
     width: 100%;
     padding: 0.5rem 1rem;
     font-size: 10px;
@@ -90,33 +85,33 @@ section {
 }
 
 @media (min-width: 700px) {
-    .userName {
+    .pd-userName {
         font-size: 18px;
     }
 
-    .postTitle {
+    .pd-postTitle {
         font-size: 18px;
     }
 
-    .profilePicture {
+    .pd-profilePicture {
         width: 30px;
         height: 30px;
     }
 
-    .postDescription {
+    .pd-postDescription {
         font-size: 15px;
     }
 
-    .postComments {
+    .pd-postComments {
         font-size: 15px;
     }
 
-    .postDate {
+    .pd-postDate {
         font-size: 12px;
     }
 }
 
-@media (min-width: 900px) {
+/* @media (min-width: 900px) {
     section {
         width: 50%;
     }
@@ -164,4 +159,4 @@ section {
     .count {
         font-size: 25px;
     }
-}
+} */

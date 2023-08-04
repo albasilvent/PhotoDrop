@@ -21,5 +21,5 @@ export async function sendAddComment(payload, postId) {
         throw result.error;
     }
 
-    return;
+    return result.data;
 }

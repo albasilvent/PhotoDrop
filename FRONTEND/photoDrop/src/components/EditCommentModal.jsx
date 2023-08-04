@@ -25,7 +25,7 @@ export function EditCommentModal({
         } else {
             setInputValue(value);
         }
-        setPayload({ ...payload, comment: value });
+        setPayload({ ...payload, comment: inputValue });
     }
 
     function onCrossClick() {
@@ -40,6 +40,7 @@ export function EditCommentModal({
         });
 
         try {
+            setPayload({...payload, comment: inputValue})
             await sendEditComment(payload, postId, comment.id);
             setEditModalDisplay(!editModalDisplay);
             setCommentMsg(inputValue);

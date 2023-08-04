@@ -9,6 +9,7 @@ import { FormContext } from "../contexts/form-context.jsx";
 // eslint-disable-next-line react/prop-types
 export function CommentsModal({
     commentsState,
+    setCommentsState,
     menuDisplay,
     setMenuDisplay,
     postId,
@@ -22,8 +23,13 @@ export function CommentsModal({
         setMenuDisplay(!menuDisplay);
     }
 
+    function addComment(newComment) {
+        setCommentsState([...commentsState, newComment])
+    }
+
     const [formState, setFormState] = useState({ isSubmitting: false });
     const [payload, setPayload] = useState({});
+    
 
     async function onSubmit(event) {
         event.preventDefault();
@@ -33,7 +39,8 @@ export function CommentsModal({
         });
 
         try {
-            await sendAddComment(payload, postId);
+            const newComment = await sendAddComment(payload, postId);
+            addComment(newComment);
         } catch (err) {
             setFormState({ isSubmitting: false });
         }
@@ -76,7 +83,14 @@ export function CommentsModal({
             {commentsState &&
                 commentsState.map((comment) => {
                     // eslint-disable-next-line react/jsx-key
-                    return <Comment key={comment.id} comment={comment} postId={postId} deleteCommentById={deleteCommentById} />;
+                    return (
+                        <Comment
+                            key={comment.id}
+                            comment={comment}
+                            postId={postId}
+                            deleteCommentById={deleteCommentById}
+                        />
+                    );
                 })}
             {commentsState.length == 0 && <p>No hay comentarios</p>}
         </div>
