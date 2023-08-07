@@ -1,8 +1,13 @@
 import "../styles/Input.css";
 
 // eslint-disable-next-line react/prop-types
-export function Input({name, type, placeholder, onChange, value, required}) {
-
+export function Input({ name, type, placeholder, onChange, value, required }) {
+    function inputChange(evt) {
+        if (onChange) {
+            onChange(evt.target.value);
+        }
+    }
+    
     return (
         <>
             <input
@@ -11,7 +16,7 @@ export function Input({name, type, placeholder, onChange, value, required}) {
                 type={type}
                 placeholder={placeholder}
                 value={value}
-                onChange={onChange}
+                onChange={inputChange}
                 required={required}
             />
         </>

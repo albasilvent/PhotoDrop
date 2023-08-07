@@ -8,6 +8,7 @@ const { generateJWT } = require("../services/JWT");
 async function loginUser(email, plainPassword) {
     //obtengo el usuario que corresponda a ese email.
     const user = await getUserByEmail(email);
+    console.log(user);
     //si no tengo un usuario, tiro un error ("las credenciales son invalidas")
     if (!user) {
         invalidCredentials();

@@ -1,24 +1,11 @@
-import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/Footer.css";
 import { useCurrentUser } from "../functions/utils/use-current-user";
 
 export function Footer() {
     const location = useLocation();
-    const user = useCurrentUser();
-    const [imgRoute, setImgRoute] = useState("");
-    const [userId, setUserId] = useState("");
-
-    useEffect(() => {
-        if (user) {
-            setUserId(user.id);
-            if (user.profilePicture !== null) {
-                setImgRoute(user.profilePicture);
-            } else {
-                setImgRoute("/blankProfilePicture.jpg");
-            }
-        }
-    }, [user]);
+    const currentUser = useCurrentUser();
+    const blankImg = "/blankProfilePicture.jpg";
 
     const isActiveRoute = (path) => {
         return location.pathname === path;
@@ -28,9 +15,8 @@ export function Footer() {
         if (location.pathname === "/register") {
             return path === "/";
         } else if (location.pathname === "/validate-email") {
-            return path === "/"
-        }
-        else {
+            return path === "/";
+        } else {
             return !isActiveRoute("/login") || path === "/";
         }
     };
@@ -78,13 +64,23 @@ export function Footer() {
             )}
             {showLink("/login") && (
                 <>
-                    {user ? (
-                        <Link to={`/users/${userId}`}>
-                            <img
-                                src={imgRoute}
-                                alt="Profile"
-                                className="profilePictureFooter"
-                            />
+                    {currentUser ? (
+                        <Link to={`/users/${currentUser?.id}`}>
+                            {currentUser?.profilePicture && (
+                                <img
+                                    src={currentUser?.profilePicture}
+                                    alt="Profile"
+                                    className="profilePictureFooter"
+                                />
+                            )}
+
+                            {!currentUser?.profilePicture && (
+                                <img
+                                    src={blankImg}
+                                    alt="Profile"
+                                    className="profilePictureFooter"
+                                />
+                            )}
                         </Link>
                     ) : (
                         <Link to="/login">

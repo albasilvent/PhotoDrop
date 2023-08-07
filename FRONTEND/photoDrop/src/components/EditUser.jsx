@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { FormContext } from "../contexts/form-context";
-import { Input } from "./Input";
 import { useState } from "react";
 import "../styles/EditUser.css";
 import { useNavigate } from "react-router-dom";
@@ -64,6 +63,7 @@ export function EditUser({ currentUser }) {
         try {
             console.log(payload);
             await sendEditUser(payload);
+            //hacer que el currentUser cambie
             navigate(`/users/${id}`);
         } catch (error) {
             console.log(error);
@@ -110,36 +110,40 @@ export function EditUser({ currentUser }) {
                     </div>
                     <FormContext.Provider value={formState}>
                         <form onSubmit={onSubmit} className="edit-form">
-                            <Input
+                            <input
+                                className="input"
                                 name="name"
                                 type="text"
                                 value={nameValue}
                                 placeholder="Nombre"
                                 onChange={onNameChange}
                                 required
-                            ></Input>
-                            <Input
+                            ></input>
+                            <input
+                                className="input"
                                 name="surname1"
                                 type="text"
                                 value={surname1Value}
                                 placeholder="Primer apellido"
                                 onChange={onSurname1Change}
                                 required
-                            ></Input>
-                            <Input
+                            ></input>
+                            <input
+                                className="input"
                                 name="surname2"
                                 type="text"
-                                value={surname2Value}
+                                value={surname2Value ?? ""}
                                 placeholder="Segundo apellido"
                                 onChange={onSurname2Change}
-                            ></Input>
-                            <Input
+                            ></input>
+                            <input
+                                className="input"
                                 name="country"
                                 type="text"
-                                value={countryValue}
+                                value={countryValue ?? ""}
                                 placeholder="País"
                                 onChange={onCountryChange}
-                            ></Input>
+                            ></input>
                             <button className="boton" type="submit">
                                 Enviar
                             </button>
