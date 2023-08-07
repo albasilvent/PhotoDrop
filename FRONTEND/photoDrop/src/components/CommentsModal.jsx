@@ -14,6 +14,8 @@ export function CommentsModal({
     setMenuDisplay,
     postId,
     deleteCommentById,
+    commentsCount,
+    setCommentsCount
 }) {
     const currentUser = useCurrentUser();
 
@@ -25,6 +27,7 @@ export function CommentsModal({
 
     function addComment(newComment) {
         setCommentsState([...commentsState, newComment])
+        setCommentsCount(commentsCount + 1)
     }
 
     const [formState, setFormState] = useState({ isSubmitting: false });

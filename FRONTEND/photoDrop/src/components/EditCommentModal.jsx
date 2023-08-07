@@ -20,15 +20,12 @@ export function EditCommentModal({
 
     function onInputChange(event) {
         const value = event.target.value;
-        if (value.length == 0) {
-            setPayload({ ...payload, comment: commentMsg })
-        } else {
-            setInputValue(value);
-        }
+        setInputValue(value);
         setPayload({ ...payload, comment: inputValue });
     }
 
     function onCrossClick() {
+        setInputValue(commentMsg);
         setEditModalDisplay(!editModalDisplay);
     }
 
@@ -40,7 +37,7 @@ export function EditCommentModal({
         });
 
         try {
-            setPayload({...payload, comment: inputValue})
+            setPayload({ ...payload, comment: inputValue });
             await sendEditComment(payload, postId, comment.id);
             setEditModalDisplay(!editModalDisplay);
             setCommentMsg(inputValue);
@@ -88,6 +85,7 @@ export function EditCommentModal({
                                     type="text"
                                     value={inputValue}
                                     onChange={onInputChange}
+                                    required
                                 />
                                 <button type="submit">Aceptar</button>
                             </form>

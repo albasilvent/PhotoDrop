@@ -30,6 +30,8 @@ body {
 
 img {
     display: block;
+    max-height: 350px;
+    object-fit: cover;
 }
 
 ::-webkit-scrollbar {

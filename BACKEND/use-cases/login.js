@@ -28,8 +28,11 @@ async function loginUser(email, plainPassword) {
     //GENERAR EL TOKEN (JWT)
     const token = generateJWT({
         id: user.id,
-        email: user.email,
         name: user.name,
+        surname1: user.surname1,
+        surname2: user.surname2,
+        email: user.email,
+        country: user.country,
         profilePicture: user.profilePicture,
     });
     //DEVUELVO EL TOKEN

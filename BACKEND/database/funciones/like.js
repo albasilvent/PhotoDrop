@@ -33,7 +33,6 @@ async function deleteLikeByUserId(postId, userId) {
     await db.execute(statement, [postId, userId]);
 }
 
-//countLikesByPostId (a esto hay que cambiarle el nombre)
 //Funcion que devuelve el numero de likes segun el post
 async function likesCountPost(postId) {
     const statement = `

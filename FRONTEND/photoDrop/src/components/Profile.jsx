@@ -14,7 +14,7 @@ export function Profile() {
     const blankImg = "/blankProfilePicture.jpg";
 
     useEffect(() => {
-        if (currentUser) {
+        {
             fetch(`http://localhost:5000/users/${id}`)
                 .then((res) => res.json())
                 .then((result) => {

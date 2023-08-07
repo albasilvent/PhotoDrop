@@ -32,6 +32,7 @@ export function PostCard({ post, deletePostById }) {
     const user = useCurrentUser();
     const [likeCount, setLikeCount] = useState(like_count);
     const [commentsState, setCommentsState]= useState(comments);
+    const [commentsCount, setCommentsCount]= useState(comment_count);
 
     function deleteCommentById(commentId){
         const filteredComments= commentsState.filter((comment)=> comment.id !== commentId);
@@ -53,12 +54,11 @@ export function PostCard({ post, deletePostById }) {
 
     const blankProfile = "/blankProfilePicture.jpg";
     const linkProfile= `/users/${userId}`
-    const linkLogin= "/login"
 
     return (
         <section>
             <div className="postUser">
-                <Link to={user ? linkProfile : linkLogin}>
+                <Link to={linkProfile}>
                     <div className="first">
                         {!userProfilePicture && (
                             <img
@@ -101,19 +101,19 @@ export function PostCard({ post, deletePostById }) {
                     <p className="material-symbols-rounded" onClick={onClick}>
                         chat_bubble
                     </p>
-                    <p className="count">{comment_count}</p>
+                    <p className="count">{commentsCount}</p>
                 </div>
             </div>
             <p className="postDescription">{postDescription}</p>
             <div className="postComments">
-                {comment_count == 0 && (
+                {commentsCount == 0 && (
                     <p onClick={onClick}>Se el primero en comentar!</p>
                 )}
-                {comment_count > 1 && (
-                    <p onClick={onClick}>Ver {comment_count} comentarios...</p>
+                {commentsCount > 1 && (
+                    <p onClick={onClick}>Ver {commentsCount} comentarios...</p>
                 )}
-                {comment_count == 1 && (
-                    <p onClick={onClick}>Ver {comment_count} comentario...</p>
+                {commentsCount == 1 && (
+                    <p onClick={onClick}>Ver {commentsCount} comentario...</p>
                 )}
             </div>
             <p className="postDate">Posted {date}</p>
@@ -125,6 +125,8 @@ export function PostCard({ post, deletePostById }) {
                     setMenuDisplay={setMenuDisplay}
                     postId={postId}
                     deleteCommentById={deleteCommentById} 
+                    commentsCount={commentsCount}
+                    setCommentsCount={setCommentsCount}
                 />
             )}
         </section>

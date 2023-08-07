@@ -5,11 +5,11 @@ const {
 const { updateUser, getUserById } = require("../database/funciones/users");
 const { getPostById, updatePost } = require("../database/funciones/post");
 const { notFound, unauthorizedUser } = require("../services/errors");
-const {processUploadedPostPhoto}= require("../services/images");
+const { processUploadedPostPhoto } = require("../services/images");
 
 //Editar los datos de usuario
 async function editUser(userId, userPayload, files) {
-    console.log(files);
+    
     // Comprobamos si existe un usuario con el id del token.
     const user = await getUserById(userId);
 
@@ -25,9 +25,16 @@ async function editUser(userId, userPayload, files) {
         surname1: userPayload.surname1 || user.surname1,
         surname2: userPayload.surname2 || user.surname2,
         country: userPayload.country || user.country,
-        profilePicture: await processUploadedPostPhoto(userId, files.profilePicture) || user.profilePicture
     };
 
+    if (files) {
+        updatedUser.profilePicture = await processUploadedPostPhoto(
+            userId,
+            files.profilePicture
+        );
+    } else {
+        updatedUser.profilePicture = user.profilePicture;
+    }
     await updateUser(updatedUser);
 }
 

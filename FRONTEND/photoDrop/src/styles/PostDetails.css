@@ -111,52 +111,64 @@
     }
 }
 
-/* @media (min-width: 900px) {
-    section {
+@media (min-width: 900px) {
+    .postDetailsContainer {
         width: 50%;
     }
 
-    .postUser {
+    .pd-userName{
+        font-size: 15px;
+    }
+
+    .pd-postUser {
         gap: 3rem;
+    }
+
+    .pd-postDescription{
+        font-size: 12px;
+    }
+
+    .pd-postComments > p {
+        font-size: 12px;
     }
 }
 
 @media (min-height: 1000px) {
-    section {
+    .postDetailsContainer {
         width: 70%;
         margin: 2rem 1rem;
     }
-    .userName {
+    .pd-userName {
         font-size: 25px;
     }
 
-    .postTitle {
+    .pd-postTitle {
         font-size: 25px;
     }
 
-    .profilePicture {
+    .pd-profilePicture {
         width: 50px;
         height: 50px;
         border-radius: 40px;
     }
 
-    .postDescription {
+    .pd-postDescription {
         font-size: 18px;
     }
 
-    .postComments {
+    .pd-postComments {
         font-size: 25px;
     }
 
-    .postDate {
+    .pd-postDate {
         font-size: 18px;
     }
 
-    .material-symbols-rounded {
+    .pd-material-symbols-rounded {
         font-size: 50px;
     }
 
-    .count {
+    .pd-count {
         font-size: 25px;
     }
-} */
+}
