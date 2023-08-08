@@ -1,6 +1,6 @@
 import { getToken } from "../utils/get-token";
 
-export async function sendLike(postId) {
+export async function sendLike(postId, currentUser) {
     const requestInit = {
         method: "post",
         headers: {},
@@ -11,6 +11,7 @@ export async function sendLike(postId) {
         requestInit.headers["authorization"] = token;
     }
     requestInit.headers["Content-Type"] = "application/json";
+    requestInit.body= currentUser;
 
     const response = await fetch(`http://localhost:5000/posts/${postId}/like` , requestInit);
 

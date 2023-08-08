@@ -13,6 +13,7 @@ export function Comment({ comment, postId, deleteCommentById }) {
     const [editModalDisplay, setEditModalDisplay] = useState(false);
     const [deleteModalDisplay, setDeleteModalDisplay] = useState(false);
     const [commentMsg, setCommentMsg] = useState(comment.comment);
+    
 
     const user = useCurrentUser();
 

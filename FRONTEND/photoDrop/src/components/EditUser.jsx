@@ -1,23 +1,40 @@
 /* eslint-disable react/prop-types */
 import { FormContext } from "../contexts/form-context";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../styles/EditUser.css";
 import { useNavigate } from "react-router-dom";
 import { sendEditUser } from "../functions/api/send-edit-user";
+import { useCurrentUser } from "../functions/utils/use-current-user";
 
-export function EditUser({ currentUser }) {
-    const { id, name, surname1, surname2, country, profilePicture } =
-        currentUser;
-    const blankProfile = "/blankProfilePicture.jpg";
+export function EditUser() {
+    const currentUser = useCurrentUser();
+    const blankImg = "/blankProfilePicture.jpg";
+
+    useEffect(() => {
+        if (currentUser) {
+            {
+                fetch(`http://localhost:5000/users/${currentUser.id}`)
+                    .then((res) => res.json())
+                    .then((result) => {
+                        setUserId(result.data.id);
+                        setNameValue(result.data.name);
+                        setSurname1Value(result.data.surname1);
+                        setSurname2Value(result.data.surname2);
+                        setCountryValue(result.data.country);
+                        setProfilePictureValue(result.data.profilePicture);
+                    });
+            }
+        }
+    }, [currentUser]);
 
     const navigate = useNavigate();
 
-    const [nameValue, setNameValue] = useState(name);
-    const [surname1Value, setSurname1Value] = useState(surname1);
-    const [surname2Value, setSurname2Value] = useState(surname2);
-    const [countryValue, setCountryValue] = useState(country);
-    const [profilePictureValue, setProfilePictureValue] =
-        useState(profilePicture);
+    const [userId, setUserId] = useState("");
+    const [nameValue, setNameValue] = useState("");
+    const [surname1Value, setSurname1Value] = useState("");
+    const [surname2Value, setSurname2Value] = useState("");
+    const [countryValue, setCountryValue] = useState("");
+    const [profilePictureValue, setProfilePictureValue] = useState("");
 
     const [payload, setPayload] = useState({});
 
@@ -49,8 +66,12 @@ export function EditUser({ currentUser }) {
 
     function handleFileChange(event) {
         const file = event.target.files[0];
-        setProfilePictureValue(URL.createObjectURL(file));
-        setPayload({ ...payload, profilePicture: file });
+        if (file) {
+            const newImage = URL.createObjectURL(file);
+            console.log(newImage.slice(5));
+            setProfilePictureValue(newImage);
+            setPayload({ ...payload, profilePicture: newImage });
+        }
     }
 
     async function onSubmit(evt) {
@@ -61,12 +82,11 @@ export function EditUser({ currentUser }) {
         });
 
         try {
-            console.log(payload);
-            await sendEditUser(payload);
-            //hacer que el currentUser cambie
-            navigate(`/users/${id}`);
+            const data = new FormData(evt.target);
+            data.append("profilePicture", profilePictureValue);
+            await sendEditUser(data);
+            navigate(`/users/${userId}`);
         } catch (error) {
-            console.log(error);
             setFormState({
                 isSubmitting: false,
             });
@@ -89,7 +109,7 @@ export function EditUser({ currentUser }) {
                         {!profilePictureValue && (
                             <img
                                 className="editProfilePicture"
-                                src={blankProfile}
+                                src={blankImg}
                             />
                         )}
 

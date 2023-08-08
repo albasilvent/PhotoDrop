@@ -24,7 +24,7 @@ export function AllPosts() {
     return (
         <main className="Page">
             {posts && posts.map((post) => {
-                return <PostCard key={post.id} post={post} deletePostById={deletePostById}></PostCard>;
+                return <PostCard key={post.postId} post={post} deletePostById={deletePostById}></PostCard>;
             })}
             {posts.length==0 && <p className= "cargando">Cargando...</p>}
         </main>

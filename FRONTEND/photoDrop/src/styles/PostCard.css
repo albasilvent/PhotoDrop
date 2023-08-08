@@ -89,6 +89,10 @@ section {
     color: grey;
 }
 
+.material-symbols-rounded.liked{
+    color:red;
+}
+
 @media (min-width: 700px) {
     .userName {
         font-size: 18px;

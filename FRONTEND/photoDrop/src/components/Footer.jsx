@@ -1,11 +1,25 @@
 import { Link, useLocation } from "react-router-dom";
 import "../styles/Footer.css";
 import { useCurrentUser } from "../functions/utils/use-current-user";
+import { useEffect, useState } from "react";
 
 export function Footer() {
     const location = useLocation();
     const currentUser = useCurrentUser();
     const blankImg = "/blankProfilePicture.jpg";
+    const [profilePicture, setProfilePicture] = useState("");
+
+    useEffect(() => {
+        if (currentUser) {
+            {
+                fetch(`http://localhost:5000/users/${currentUser.id}`)
+                    .then((res) => res.json())
+                    .then((result) => {
+                        setProfilePicture(result.data.profilePicture);
+                    });
+            }
+        }
+    }, [currentUser]);
 
     const isActiveRoute = (path) => {
         return location.pathname === path;
@@ -66,15 +80,15 @@ export function Footer() {
                 <>
                     {currentUser ? (
                         <Link to={`/users/${currentUser?.id}`}>
-                            {currentUser?.profilePicture && (
+                            {profilePicture && (
                                 <img
-                                    src={currentUser?.profilePicture}
+                                    src={profilePicture}
                                     alt="Profile"
                                     className="profilePictureFooter"
                                 />
                             )}
 
-                            {!currentUser?.profilePicture && (
+                            {!profilePicture && (
                                 <img
                                     src={blankImg}
                                     alt="Profile"

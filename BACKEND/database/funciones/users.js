@@ -78,7 +78,7 @@ async function getUserById(userId) {
 
 async function getUserPosts(userId) {
     const userStatement = `
-      SELECT U.id, U.name, U.surname1, U.profilePicture, COUNT(P.id) AS postCount
+      SELECT U.id, U.name, U.surname1, U.surname2, U.country, U.profilePicture, COUNT(P.id) AS postCount
       FROM users U
       LEFT JOIN posts P ON U.id = P.userId
       WHERE U.id = ?
