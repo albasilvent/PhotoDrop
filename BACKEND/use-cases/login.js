@@ -8,6 +8,7 @@ const { generateJWT } = require("../services/JWT");
 async function loginUser(email, plainPassword) {
     //obtengo el usuario que corresponda a ese email.
     const user = await getUserByEmail(email);
+    console.log(user);
     //si no tengo un usuario, tiro un error ("las credenciales son invalidas")
     if (!user) {
         invalidCredentials();
@@ -28,8 +29,11 @@ async function loginUser(email, plainPassword) {
     //GENERAR EL TOKEN (JWT)
     const token = generateJWT({
         id: user.id,
-        email: user.email,
         name: user.name,
+        surname1: user.surname1,
+        surname2: user.surname2,
+        email: user.email,
+        country: user.country,
         profilePicture: user.profilePicture,
     });
     //DEVUELVO EL TOKEN

@@ -1,24 +1,25 @@
-import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/Footer.css";
 import { useCurrentUser } from "../functions/utils/use-current-user";
+import { useEffect, useState } from "react";
 
 export function Footer() {
     const location = useLocation();
-    const user = useCurrentUser();
-    const [imgRoute, setImgRoute] = useState("");
-    const [userId, setUserId] = useState("");
+    const currentUser = useCurrentUser();
+    const blankImg = "/blankProfilePicture.jpg";
+    const [profilePicture, setProfilePicture] = useState("");
 
     useEffect(() => {
-        if (user) {
-            setUserId(user.id);
-            if (user.profilePicture !== null) {
-                setImgRoute(user.profilePicture);
-            } else {
-                setImgRoute("/blankProfilePicture.jpg");
+        if (currentUser) {
+            {
+                fetch(`http://localhost:5000/users/${currentUser.id}`)
+                    .then((res) => res.json())
+                    .then((result) => {
+                        setProfilePicture(result.data.profilePicture);
+                    });
             }
         }
-    }, [user]);
+    }, [currentUser]);
 
     const isActiveRoute = (path) => {
         return location.pathname === path;
@@ -28,9 +29,8 @@ export function Footer() {
         if (location.pathname === "/register") {
             return path === "/";
         } else if (location.pathname === "/validate-email") {
-            return path === "/"
-        }
-        else {
+            return path === "/";
+        } else {
             return !isActiveRoute("/login") || path === "/";
         }
     };
@@ -78,13 +78,23 @@ export function Footer() {
             )}
             {showLink("/login") && (
                 <>
-                    {user ? (
-                        <Link to={`/users/${userId}`}>
-                            <img
-                                src={imgRoute}
-                                alt="Profile"
-                                className="profilePictureFooter"
-                            />
+                    {currentUser ? (
+                        <Link to={`/users/${currentUser?.id}`}>
+                            {profilePicture && (
+                                <img
+                                    src={profilePicture}
+                                    alt="Profile"
+                                    className="profilePictureFooter"
+                                />
+                            )}
+
+                            {!profilePicture && (
+                                <img
+                                    src={blankImg}
+                                    alt="Profile"
+                                    className="profilePictureFooter"
+                                />
+                            )}
                         </Link>
                     ) : (
                         <Link to="/login">

@@ -30,6 +30,8 @@ body {
 
 img {
     display: block;
+    max-height: 350px;
+    object-fit: cover;
 }
 
 ::-webkit-scrollbar {
@@ -42,7 +44,7 @@ img {
 
 @media (min-width: 900px) {
     #root {
-        grid-template-columns: 6vh calc(100vw - 6vh);
+        grid-template-columns: 10vh calc(100vw - 10vh);
         grid-template-rows: 6vh calc(100vh - 6vh);
     }
 }

@@ -2,11 +2,13 @@ import { sendDeleteComment } from "../functions/api/send-delete-comment";
 import "../styles/DeleteCommentModal.css"
 
 /* eslint-disable react/prop-types */
-export function DeleteCommentModal({ deleteModalDisplay, setDeleteModalDisplay, postId, commentId }) {
+export function DeleteCommentModal({ deleteModalDisplay, setDeleteModalDisplay, postId, commentId, deleteCommentById }) {
 
     function onAcceptClick(event) {
         event.preventDefault();
         sendDeleteComment(postId, commentId);
+        deleteCommentById(commentId)
+        setDeleteModalDisplay(!deleteModalDisplay);
     }
 
     function onCancelClick(event) {

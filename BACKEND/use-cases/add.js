@@ -3,6 +3,7 @@ const { saveComment } = require("../database/funciones/comment");
 const { getPostById, savePost } = require("../database/funciones/post");
 const { notFound } = require("../services/errors");
 const { processUploadedPostPhoto } = require("../services/images");
+const { getUserById } = require("../database/funciones/users");
 
 //addPost
 //Funcion que añade un post
@@ -43,13 +44,20 @@ async function addComment(postId, currentUserId, commentPayload) {
         notFound();
     }
 
+    const user = await getUserById(currentUserId);
+
     const comment = {
         postId: postId,
         userId: currentUserId,
         comment: commentPayload.comment,
         id: generateUUID(),
+        userName: user.name,
+        surname1: user.surname1,
+        profilePicture: user.profilePicture,
     };
     await saveComment(comment);
+
+    return comment;
 }
 
 module.exports = {

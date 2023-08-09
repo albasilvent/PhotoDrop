@@ -8,10 +8,14 @@ import { FormContext } from "../contexts/form-context.jsx";
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
 export function CommentsModal({
-    comments,
+    commentsState,
+    setCommentsState,
     menuDisplay,
     setMenuDisplay,
     postId,
+    deleteCommentById,
+    commentsCount,
+    setCommentsCount
 }) {
     const currentUser = useCurrentUser();
 
@@ -21,8 +25,14 @@ export function CommentsModal({
         setMenuDisplay(!menuDisplay);
     }
 
+    function addComment(newComment) {
+        setCommentsState([...commentsState, newComment])
+        setCommentsCount(commentsCount + 1)
+    }
+
     const [formState, setFormState] = useState({ isSubmitting: false });
     const [payload, setPayload] = useState({});
+    
 
     async function onSubmit(event) {
         event.preventDefault();
@@ -32,7 +42,8 @@ export function CommentsModal({
         });
 
         try {
-            await sendAddComment(payload, postId);
+            const newComment = await sendAddComment(payload, postId);
+            addComment(newComment);
         } catch (err) {
             setFormState({ isSubmitting: false });
         }
@@ -42,13 +53,13 @@ export function CommentsModal({
         <div className={`modal-comentarios ${menuDisplay ? "" : "hidden"}`}>
             <FormContext.Provider value={formState}>
                 <form className="addComment" onSubmit={onSubmit}>
-                    {currentUser.profilePicture && (
+                    {currentUser?.profilePicture && (
                         <img
                             className="profilePicture"
-                            src={currentUser.profilePicture}
+                            src={currentUser?.profilePicture}
                         ></img>
                     )}
-                    {!currentUser.profilePicture && (
+                    {!currentUser?.profilePicture && (
                         <img
                             className="profilePicture"
                             src={blankProfilePicture}
@@ -72,12 +83,19 @@ export function CommentsModal({
             >
                 Close
             </p>
-            {comments &&
-                comments.map((comment, i) => {
+            {commentsState &&
+                commentsState.map((comment) => {
                     // eslint-disable-next-line react/jsx-key
-                    return <Comment key={i} comment={comment} postId={postId}/>;
+                    return (
+                        <Comment
+                            key={comment.id}
+                            comment={comment}
+                            postId={postId}
+                            deleteCommentById={deleteCommentById}
+                        />
+                    );
                 })}
-            {comments.length == 0 && <p>No hay comentarios</p>}
+            {commentsState.length == 0 && <p>No hay comentarios</p>}
         </div>
     );
 }

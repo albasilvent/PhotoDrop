@@ -23,11 +23,36 @@ async function savePost(post) {
 //getPostById
 //Funcion que devuelve los posts segun la id
 async function getPostById(postId) {
-    const statement = `
-    SELECT p.*, u.id as userId, u.name as userName, u.profilePicture, u.surname1
-    FROM posts as p
-    INNER JOIN users as u ON p.userId = u.id
-    WHERE p.id = ?
+     const statement = `
+    SELECT
+      p.id AS postId,
+      p.title AS postTitle,
+      p.description AS postDescription,
+      p.photo1 AS postPhoto1,
+      p.photo2 AS postPhoto2,
+      p.photo3 AS postPhoto3,
+      COALESCE(l.like_count, 0) AS like_count,
+      COALESCE(c.comment_count, 0) AS comment_count,
+      u.name AS userName,
+      u.surname1 AS surname1,
+      u.profilePicture AS userProfilePicture,
+      u.id AS userId,
+      createdAt
+    FROM
+      posts p
+      LEFT JOIN (
+        SELECT postId, COUNT(*) AS like_count
+        FROM post_likes
+        GROUP BY postId
+      ) l ON p.id = l.postId
+      LEFT JOIN (
+        SELECT postId, COUNT(*) AS comment_count
+        FROM post_comments
+        GROUP BY postId
+      ) c ON p.id = c.postId
+      LEFT JOIN users u ON p.userId = u.id
+    WHERE p.id= ?
+    ORDER BY p.createdAt DESC;
   `;
     const [rows] = await db.execute(statement, [postId]);
 

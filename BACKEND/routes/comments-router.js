@@ -18,8 +18,8 @@ router.post(
     validateBody(commentPayload),
     handleAsyncError(async (req, res) => {
         //Agregar un nuevo comentario al post con id req.params.id
-        await addComment(req.params.id, req.currentUser.id, req.body);
-        sendResponse(res, undefined, 201);
+        const comment= await addComment(req.params.id, req.currentUser.id, req.body);
+        sendResponse(res, comment);
     })
 );
 

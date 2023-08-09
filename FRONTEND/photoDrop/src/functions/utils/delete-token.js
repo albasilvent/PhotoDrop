@@ -1,4 +1,4 @@
-export function deleteToken(){
+export function deleteToken() {
     localStorage.removeItem("USER_TOKEN");
-    localStorage.revomeItem("USER");
+    localStorage.removeItem("USER");
 }

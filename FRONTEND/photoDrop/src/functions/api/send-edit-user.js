@@ -1,8 +1,8 @@
 import { getToken } from "../utils/get-token";
 
-export async function sendAddComment(payload, postId) {
+export async function sendEditUser(data) {
     const requestInit = {
-        method: "post",
+        method: "put",
         headers: {},
     };
 
@@ -10,10 +10,9 @@ export async function sendAddComment(payload, postId) {
     if (token) {
         requestInit.headers["authorization"] = token;
     }
-    requestInit.headers["Content-Type"] = "application/json";
-    requestInit.body = JSON.stringify(payload);
+    requestInit.body = data;
 
-    const response = await fetch(`http://localhost:5000/posts/${postId}/comments` , requestInit);
+    const response = await fetch("http://localhost:5000/users", requestInit);
 
     const result = await response.json();
 
@@ -21,5 +20,4 @@ export async function sendAddComment(payload, postId) {
         throw result.error;
     }
 
-    return result.data;
 }

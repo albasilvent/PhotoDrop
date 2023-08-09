@@ -14,11 +14,10 @@ export function Profile() {
     const blankImg = "/blankProfilePicture.jpg";
 
     useEffect(() => {
-        if (currentUser) {
+        {
             fetch(`http://localhost:5000/users/${id}`)
                 .then((res) => res.json())
                 .then((result) => {
-                    console.log(result);
                     setUserData(result.data);
                     setPostData(result.data.posts);
                 });

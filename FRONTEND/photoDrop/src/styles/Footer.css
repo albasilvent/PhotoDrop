@@ -23,7 +23,7 @@ footer {
     height: 21px;
     border-radius: 20px;
     margin-bottom: 3px;
-    border: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
     color:black;
     object-fit: cover;
 }

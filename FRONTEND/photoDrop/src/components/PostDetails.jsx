@@ -1,4 +1,4 @@
-import "../styles/PostCard.css";
+import "../styles/PostDetails.css";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Slider } from "./Slider";
@@ -7,120 +7,140 @@ import { CommentsModal } from "./CommentsModal";
 import { useEffect, useState } from "react";
 import { LikeButton } from "./LikeButton";
 import { useCurrentUser } from "../functions/utils/use-current-user";
-import { useParams , useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 export function PostDetails() {
     const { id } = useParams();
-    const navigate= useNavigate();
+    const navigate = useNavigate();
 
     const [post, setPost] = useState(null);
-    const [likeCount, setLikeCount] = useState(null);
     const [menuDisplay, setMenuDisplay] = useState(false);
 
     const user = useCurrentUser();
+    const [likeCount, setLikeCount] = useState("");
+    const [commentsState, setCommentsState] = useState([]);
+    const [commentsCount, setCommentsCount] = useState("");
 
     const blankProfile = "/blankProfilePicture.jpg";
 
     dayjs.extend(relativeTime);
 
-    function deletePostDetails(){
-        navigate(`/users/${post.userId}`)
+    function deletePostDetails() {
+        navigate(`/users/${post.userId}`);
+    }
+
+    function deleteCommentById(commentId) {
+        const filteredComments = commentsState.filter(
+            (comment) => comment.id !== commentId
+        );
+        setCommentsState(filteredComments);
     }
 
     useEffect(() => {
-        if (user) {
-            fetch(`http://localhost:5000/posts/${id}`)
-                .then((res) => res.json())
-                .then((result) => {
-                    setPost(result.data);
-                    setLikeCount(result.data.likes);
-                });
-        }
+        fetch(`http://localhost:5000/posts/${id}`)
+            .then((res) => res.json())
+            .then((result) => {
+                setPost(result.data);
+                setLikeCount(result.data.likes);
+                setCommentsState(result.data.comments);
+                setCommentsCount(result.data.comment_count);
+            });
     }, [user, id]);
 
     function onClick() {
+        if (!user) {
+            navigate("/login");
+        }
         setMenuDisplay(!menuDisplay);
     }
 
     return (
         <main className="Page">
             {post && (
-                <section>
-                    <div className="postUser">
-                        <div className="first">
-                            {post.profilePicture ? (
-                                <img
-                                    className="profilePicture"
-                                    src={post.profilePicture}
-                                />
-                            ) : (
-                                <img
-                                    className="profilePicture"
-                                    src={blankProfile}
-                                />
-                            )}
-                            <p className="userName">{post.userName} {post.surname1}</p>
-                        </div>
+                <div className="postDetailsContainer">
+                    <div className="pd-postUser">
+                        <Link to={`/users/${post?.userId}`}>
+                            <div className="pd-first">
+                                {post.userProfilePicture ? (
+                                    <img
+                                        className="profilePicture"
+                                        src={post.userProfilePicture}
+                                    />
+                                ) : (
+                                    <img
+                                        className="profilePicture"
+                                        src={blankProfile}
+                                    />
+                                )}
+                                <p className="pd-userName">
+                                    {post.userName} {post.surname1}
+                                </p>
+                            </div>
+                        </Link>
                         {user?.id == post.userId && (
                             <PostMenu
-                                postId={post.id}
+                                postId={post.postId}
                                 deletePostById={deletePostDetails}
                             />
                         )}
                     </div>
-                    <h2 className="postTitle">{post.title}</h2>
+                    <h2 className="pd-postTitle">{post.postTitle}</h2>
                     <Slider
-                        photo1={post.photo1}
-                        photo2={post.photo2}
-                        photo3={post.photo3}
+                        photo1={post.postPhoto1}
+                        photo2={post.postPhoto2}
+                        photo3={post.postPhoto3}
                     />
-                    <div className="postSocials">
-                        <div className="likes">
+                    <div className="pd-postSocials">
+                        <div className="pd-likes">
                             <LikeButton
                                 postId={id}
                                 likeCount={likeCount}
                                 setLikeCount={setLikeCount}
                             />
-                            <p className="count">{likeCount}</p>
+                            <p className="pd-count">{likeCount}</p>
                         </div>
-                        <div className="comments">
+                        <div className="pd-comments">
                             <p
                                 className="material-symbols-rounded"
                                 onClick={onClick}
                             >
                                 chat_bubble
                             </p>
-                            <p className="count">{post.comments.length}</p>
+                            <p className="pd-count">{commentsCount}</p>
                         </div>
                     </div>
-                    <p className="postDescription">{post.description}</p>
-                    <div className="postComments">
-                        {post.comments.length == 0 && (
+                    <p className="pd-postDescription">{post.postDescription}</p>
+                    <div className="pd-postComments">
+                        {commentsCount == 0 && (
                             <p onClick={onClick}>Se el primero en comentar!</p>
                         )}
-                        {post.comments.length > 1 && (
+                        {commentsCount > 1 && (
                             <p onClick={onClick}>
-                                Ver {post.comments.length} comentarios...
+                                Ver {commentsCount} comentarios...
                             </p>
                         )}
-                        {post.comments.length == 1 && (
+                        {commentsCount == 1 && (
                             <p onClick={onClick}>
-                                Ver {post.comments.length} comentario...
+                                Ver {commentsCount} comentario...
                             </p>
                         )}
                     </div>
-                    <p className="postDate">
+                    <p className="pd-postDate">
                         Posted {dayjs(post.createdAt).fromNow()}
                     </p>
                     {post.comments && (
                         <CommentsModal
-                            comments={post.comments}
+                            commentsState={commentsState}
+                            setCommentsState={setCommentsState}
                             menuDisplay={menuDisplay}
                             setMenuDisplay={setMenuDisplay}
                             postId={post.postId}
+                            deleteCommentById={deleteCommentById}
+                            commentsCount={commentsCount}
+                            setCommentsCount={setCommentsCount}
                         />
                     )}
-                </section>
+                </div>
             )}
         </main>
     );
