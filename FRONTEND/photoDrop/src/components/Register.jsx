@@ -5,6 +5,16 @@ import "../styles/Register.css";
 import { Input } from "./Input";
 import { sendRegister } from "../functions/api/send-register";
 import { Link } from "react-router-dom";
+import countryData from "../example-data/countries.json";
+import { Select } from "./Select";
+
+const countryNames = countryData
+    .map((c) => ({
+        value: c.name.nativeName.spa?.common ?? c.name.common,
+    }))
+    .sort((a, b) => {
+        return a.value.localeCompare(b.value); /// (-1, +1)
+    });
 
 export function Register() {
     const navigate = useNavigate();
@@ -83,10 +93,11 @@ export function Register() {
                                     setPayload({ ...payload, birthDate: value })
                                 }
                             />
-                            <Input
-                                name="text"
-                                type="text"
-                                placeholder="País"
+                            <Select
+                                options={[
+                                    { label: "Escoja su país", value: "", disabled: true },
+                                    ...countryNames
+                                ]}
                                 onChange={(value) =>
                                     setPayload({ ...payload, country: value })
                                 }
