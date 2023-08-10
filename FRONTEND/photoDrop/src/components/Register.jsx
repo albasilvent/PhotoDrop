@@ -95,7 +95,7 @@ export function Register() {
                             />
                             <Select
                                 options={[
-                                    { label: "Escoja su país", value: "", disabled: true },
+                                    { label: "País", value: "", disabled: true },
                                     ...countryNames
                                 ]}
                                 onChange={(value) =>

@@ -43,6 +43,8 @@ export function ValidateEmail() {
                                 type="text"
                                 placeholder="Escribe aquí tu código..."
                                 required
+                                min={"6"}
+                                max={"6"}
                                 onChange={(value) =>
                                     setPayload({ ...payload, code: value })
                                 }
