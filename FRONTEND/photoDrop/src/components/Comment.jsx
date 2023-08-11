@@ -1,5 +1,5 @@
-import "../styles/Comment.css";
 /* eslint-disable react/prop-types */
+import "../styles/Comment.css";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { CommentMenu } from "./CommentMenu";
@@ -8,12 +8,13 @@ import { EditCommentModal } from "./EditCommentModal";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { DeleteCommentModal } from "./DeleteCommentModal";
+import { DeleteCommentModal } from "./DeleteCommentModal";
 
-export function Comment({ comment, postId, deleteCommentById }) {
+export function Comment({ comment, postId, deleteCommentById, commentId }) {
     const [editModalDisplay, setEditModalDisplay] = useState(false);
     const [deleteModalDisplay, setDeleteModalDisplay] = useState(false);
     const [commentMsg, setCommentMsg] = useState(comment.comment);
-    
+
 
     const user = useCurrentUser();
 
@@ -69,6 +70,7 @@ export function Comment({ comment, postId, deleteCommentById }) {
                         commentId={comment.id}
                         deleteCommentById={deleteCommentById}
                     />
+                    <DeleteCommentModal deleteDisplay={deleteDisplay} setDeleteDisplay={setDeleteDisplay} commentId={commentId} />
                 </div>
             </div>
             <p>{commentMsg}</p>
