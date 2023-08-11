@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import "../styles/Comment.css";
 import dayjs from "dayjs";
@@ -7,7 +8,6 @@ import { useCurrentUser } from "../functions/utils/use-current-user";
 import { EditCommentModal } from "./EditCommentModal";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { DeleteCommentModal } from "./DeleteCommentModal";
 import { DeleteCommentModal } from "./DeleteCommentModal";
 
 export function Comment({ comment, postId, deleteCommentById, commentId }) {

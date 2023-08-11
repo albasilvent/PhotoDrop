@@ -32,8 +32,4 @@ function App() {
     );
 }
 
-<<<<<<< HEAD
 export default App;
-=======
-export default App;
->>>>>>> 9270ba9676377e91e5c7f3cab064589aa8edba9f
