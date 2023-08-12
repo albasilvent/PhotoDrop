@@ -31,31 +31,32 @@ export function PostCard({ post, deletePostById }) {
 
     const user = useCurrentUser();
     const [likeCount, setLikeCount] = useState(like_count);
-    const [commentsState, setCommentsState]= useState(comments);
-    const [commentsCount, setCommentsCount]= useState(comment_count);
-    const [isLiked, setIsLiked] = useState(false);
-
-    function deleteCommentById(commentId){
-        const filteredComments= commentsState.filter((comment)=> comment.id !== commentId);
+    const [commentsState, setCommentsState] = useState(comments);
+    const [commentsCount, setCommentsCount] = useState(comment_count);
+    
+    function deleteCommentById(commentId) {
+        const filteredComments = commentsState.filter(
+            (comment) => comment.id !== commentId
+        );
         setCommentsState(filteredComments);
-        setCommentsCount(commentsCount - 1)
+        setCommentsCount(commentsCount - 1);
     }
 
     dayjs.extend(relativeTime);
     const date = dayjs(createdAt).fromNow();
 
     const [menuDisplay, setMenuDisplay] = useState(false);
-    const navigate= useNavigate();
+    const navigate = useNavigate();
 
     function onClick() {
-        if (!user){
+        if (!user) {
             navigate("/login");
         }
         setMenuDisplay(!menuDisplay);
     }
 
     const blankProfile = "/blankProfilePicture.jpg";
-    const linkProfile= `/users/${userId}`
+    const linkProfile = `/users/${userId}`;
 
     return (
         <section>
@@ -81,7 +82,7 @@ export function PostCard({ post, deletePostById }) {
                     </div>
                 </Link>
                 {user?.id == userId && (
-                    <PostMenu postId={postId} deletePostById={deletePostById}/>
+                    <PostMenu postId={postId} deletePostById={deletePostById} />
                 )}
             </div>
             <h2 className="postTitle">{postTitle}</h2>
@@ -93,11 +94,10 @@ export function PostCard({ post, deletePostById }) {
             <div className="postSocials">
                 <div className="likes">
                     <LikeButton
+                        post={post}
                         postId={postId}
                         likeCount={likeCount}
                         setLikeCount={setLikeCount}
-                        isLiked={isLiked}
-                        setIsLiked={setIsLiked}
                     />
                     <p className="count">{likeCount}</p>
                 </div>
@@ -128,7 +128,7 @@ export function PostCard({ post, deletePostById }) {
                     menuDisplay={menuDisplay}
                     setMenuDisplay={setMenuDisplay}
                     postId={postId}
-                    deleteCommentById={deleteCommentById} 
+                    deleteCommentById={deleteCommentById}
                     commentsCount={commentsCount}
                     setCommentsCount={setCommentsCount}
                 />

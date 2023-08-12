@@ -42,18 +42,17 @@ router.get(
     "/posts/:id",
     handleAsyncError(async (req, res) => {
         // Obtener el post con id req.params.id
-        const post = await viewPost(req.params.id);
+        const post = await viewPost(req.params.id, req.currentUser?.id);
         sendResponse(res, post);
     })
 );
 
 //Obtener todos los post
 router.get(
-    //PROBAR CON POSTS SUBIDOS
     "/posts",
     handleAsyncError(async (req, res) => {
         //Obtener todos los posts
-        const posts = await listPosts();
+        const posts = await listPosts(req.currentUser?.id);
         sendResponse(res, posts);
     })
 );

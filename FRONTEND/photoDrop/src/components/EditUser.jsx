@@ -68,7 +68,6 @@ export function EditUser() {
         const file = event.target.files[0];
         if (file) {
             const newImage = URL.createObjectURL(file);
-            console.log(newImage.slice(5));
             setProfilePictureValue(newImage);
             setPayload({ ...payload, profilePicture: newImage });
         }
@@ -119,17 +118,16 @@ export function EditUser() {
                         >
                             edit
                         </label>
-
-                        <input
-                            type="file"
-                            id="fileInput"
-                            style={{ display: "none" }}
-                            onChange={(event) => handleFileChange(event)}
-                            accept="image/*"
-                        />
                     </div>
                     <FormContext.Provider value={formState}>
                         <form onSubmit={onSubmit} className="edit-form">
+                            <input
+                                type="file"
+                                id="fileInput"
+                                style={{ display: "none" }}
+                                onChange={(event) => handleFileChange(event)}
+                                accept="image/*"
+                            />
                             <input
                                 className="input"
                                 name="name"

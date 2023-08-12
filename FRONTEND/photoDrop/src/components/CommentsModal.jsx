@@ -6,7 +6,6 @@ import "../styles/CommentsModal.css";
 import { sendAddComment } from "../functions/api/send-add-comment.js";
 import { FormContext } from "../contexts/form-context.jsx";
 /* eslint-disable react/prop-types */
-// eslint-disable-next-line react/prop-types
 export function CommentsModal({
     commentsState,
     setCommentsState,
@@ -15,7 +14,7 @@ export function CommentsModal({
     postId,
     deleteCommentById,
     commentsCount,
-    setCommentsCount
+    setCommentsCount,
 }) {
     const currentUser = useCurrentUser();
 
@@ -26,13 +25,12 @@ export function CommentsModal({
     }
 
     function addComment(newComment) {
-        setCommentsState([...commentsState, newComment])
-        setCommentsCount(commentsCount + 1)
+        setCommentsState([newComment, ...commentsState]);
+        setCommentsCount(commentsCount + 1);
     }
 
     const [formState, setFormState] = useState({ isSubmitting: false });
     const [payload, setPayload] = useState({});
-    
 
     async function onSubmit(event) {
         event.preventDefault();
