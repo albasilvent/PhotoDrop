@@ -1,0 +1,39 @@
+.editPostContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-aroundls;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    margin: 2rem 1.5rem;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+        0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.editPostContainer form {
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem 0;
+    gap:1rem;
+}
+
+.editPostTitle{
+    width: 100%;
+}
+
+.editPostTitle input{
+    width: 100%;  
+}
+
+.editPhotos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:0.5rem;
+}

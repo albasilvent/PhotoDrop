@@ -36,7 +36,7 @@ async function getCommentsByPostId(postId) {
       FROM post_comments AS cp
       INNER JOIN users AS u ON cp.userId = u.id
       WHERE cp.postId = ?
-      ORDER BY cp.createdAt ASC;
+      ORDER BY cp.createdAt DESC;
     `;
   
     const [rows] = await db.execute(statement, [postId]);

@@ -2,9 +2,9 @@
 import { useState } from "react";
 import "../styles/Menu.css";
 import { DeletePostModal } from "./DeletePostModal";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-export function PostMenu({postId, deletePostById}) {
+export function PostMenu({ postId, deletePostById }) {
     const [menuDisplay, setMenuDisplay] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
@@ -19,8 +19,8 @@ export function PostMenu({postId, deletePostById}) {
     function onDeleteClick() {
         setMenuDisplay(!menuDisplay);
         setDeleteDisplay(!deleteDisplay);
-        if (location == "post/:id"){
-            navigate("/users/:id")
+        if (location == "post/:id") {
+            navigate("/users/:id");
         }
     }
 
@@ -33,10 +33,12 @@ export function PostMenu({postId, deletePostById}) {
                 <article
                     className={`post-modal ${menuDisplay ? "" : "hidden"}`}
                 >
-                    <div className="post-modal-div editar" onClick={onClick}>
-                        <p className="material-symbols-rounded">edit</p>
-                        <p>Editar</p>
-                    </div>
+                    <Link to= {`/edit-post/${postId}`} style={{ textDecoration: "none", color: "gray"}}>
+                        <div className="post-modal-div editar">
+                            <p className="material-symbols-rounded">edit</p>
+                            <p>Editar</p>
+                        </div>
+                    </Link>
                     <div
                         className="post-modal-div borrar"
                         onClick={onDeleteClick}
@@ -46,7 +48,12 @@ export function PostMenu({postId, deletePostById}) {
                     </div>
                 </article>
             </div>
-            <DeletePostModal deleteDisplay={deleteDisplay} setDeleteDisplay={setDeleteDisplay} postId={postId} deletePostById={deletePostById}/>
+            <DeletePostModal
+                deleteDisplay={deleteDisplay}
+                setDeleteDisplay={setDeleteDisplay}
+                postId={postId}
+                deletePostById={deletePostById}
+            />
         </>
     );
 }

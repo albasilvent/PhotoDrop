@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { LikeButton } from "./LikeButton";
 import { useCurrentUser } from "../functions/utils/use-current-user";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import { getPostDetails } from "../functions/api/get-post-details";
 
 export function PostDetails() {
     const { id } = useParams();
@@ -34,18 +35,17 @@ export function PostDetails() {
             (comment) => comment.id !== commentId
         );
         setCommentsState(filteredComments);
+        setCommentsCount(commentsCount - 1);
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/posts/${id}`)
-            .then((res) => res.json())
-            .then((result) => {
-                setPost(result.data);
-                setLikeCount(result.data.likes);
-                setCommentsState(result.data.comments);
-                setCommentsCount(result.data.comment_count);
-            });
-    }, [user, id]);
+        getPostDetails(id).then((post) => {
+            setPost(post);
+            setLikeCount(post.likes);
+            setCommentsState(post.comments);
+            setCommentsCount(post.comment_count);
+        });
+    }, [id]);
 
     function onClick() {
         if (!user) {
@@ -55,11 +55,14 @@ export function PostDetails() {
     }
 
     return (
-        <main className="Page">
+        <div className={"Page" + "overflowHidden"}>
             {post && (
                 <div className="postDetailsContainer">
                     <div className="pd-postUser">
-                        <Link to={`/users/${post?.userId}`}>
+                        <Link
+                            to={`/users/${post?.userId}`}
+                            style={{ textDecoration: "none" }}
+                        >
                             <div className="pd-first">
                                 {post.userProfilePicture ? (
                                     <img
@@ -93,6 +96,7 @@ export function PostDetails() {
                     <div className="pd-postSocials">
                         <div className="pd-likes">
                             <LikeButton
+                                post={post}
                                 postId={id}
                                 likeCount={likeCount}
                                 setLikeCount={setLikeCount}
@@ -142,6 +146,6 @@ export function PostDetails() {
                     )}
                 </div>
             )}
-        </main>
+        </div>
     );
 }

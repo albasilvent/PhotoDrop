@@ -25,7 +25,7 @@ export function Comment({ comment, postId, deleteCommentById }) {
     return (
         <aside className="comment">
             <div className="commentUser">
-                <Link to={`/users/${comment.userId}`}>
+                <Link to={`/users/${comment.userId}`}  style={{ textDecoration: "none" , color: "grey"}}>
                     <div className="div1">
                         {comment.profilePicture && (
                             <img
