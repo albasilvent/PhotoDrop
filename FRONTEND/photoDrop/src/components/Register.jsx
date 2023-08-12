@@ -1,10 +1,10 @@
 import { FormContext } from "../contexts/form-context";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "../styles/Register.css";
 import { Input } from "./Input";
 import { sendRegister } from "../functions/api/send-register";
 import { Link } from "react-router-dom";
+import "../styles/Register.css";
 
 export function Register() {
     const navigate = useNavigate();
