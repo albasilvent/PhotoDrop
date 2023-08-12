@@ -10,6 +10,7 @@ import { PostDetailsPage } from "./components/appPages/PostDetailsPage";
 import { EditUserPage } from "./components/appPages/EditUserPage";
 import { EditPostPage } from "./components/appPages/EditPostPage";
 import { NotFoundPage } from "./components/appPages/NotFoundPage";
+import { AddPostPage } from "./components/appPages/AddPostPage";
 import "./App.css";
 
 function App() {
@@ -29,7 +30,9 @@ function App() {
                     <Route path="/posts/:id" element={<PostDetailsPage />} />
                     <Route path="/edit-user" element={<EditUserPage />} />
                     <Route path="/edit-post/:id" element={<EditPostPage />} />
+                    <Route path="/add-post" element={<AddPostPage />} />
                     <Route path="*" element={<NotFoundPage />} />
+                    
                 </Routes>
             </AuthProvider>
         </>

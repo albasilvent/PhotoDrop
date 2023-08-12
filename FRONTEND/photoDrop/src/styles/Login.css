@@ -36,7 +36,6 @@
     text-align: center;
     background-color: var(--background-color);
     color: rgb(192, 77, 77);
-
 }
 
 .login {
@@ -77,7 +76,6 @@
     border-radius: 10px;
     padding: 0.3rem;
 }
-
 /* MEDIAS QUERY */
 
 @media (min-width: 390px) {
@@ -131,3 +129,5 @@
         grid-column: 1/4;
     }
 }
+
+

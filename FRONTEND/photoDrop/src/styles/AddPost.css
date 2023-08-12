@@ -1,0 +1,65 @@
+.container-addpost {
+    background-color: var(--background-color);
+    grid-row: 2/4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+.cajetin-addpost {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 0;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+        0 8px 10px -6px rgb(0 0 0 / 0.1);
+    position: relative;
+    margin: 1rem 0;
+}
+
+.titulo-addpost {
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.form-addpost {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    gap: 0.5rem;
+}
+
+.add-post-photo {
+    position: relative;
+    z-index: 10;
+}
+
+.imagenes-cargadas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    height: 36vh;
+    width: 56vw;
+}
+
+.add-post-img {
+    max-height: 8vh;
+}
+
+label img {
+    max-height: 30px;
+}
