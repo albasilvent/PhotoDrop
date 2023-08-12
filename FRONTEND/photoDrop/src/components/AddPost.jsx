@@ -1,21 +1,48 @@
 import "../styles/addpost.css";
+import { useState } from "react";
 
 export function AddPost() {
-    const handleFileChange = (evt) => {
-        const selectedFile = evt.target.files[0];
-        const input = event.target;
-        const files = input.files;
+    const addImg = "../public/addimg.png";
+    const [payload, setPayload] = useState({});
+    const [photo1, setPhoto1] = useState("");
+    const [photo2, setPhoto2] = useState("");
+    const [photo3, setPhoto3] = useState("");
 
-        if (files.length > 3) {
-            alert("Solo puedes cargar un máximo de 3 fotos.");
-            input.value = ""; // Limpiar la selección de archivos si excede el límite.
-        } else {
-            // Aquí puedes procesar los archivos seleccionados, si es necesario.
-            // Por ejemplo, puedes mostrar una vista previa de las imágenes, etc.
+    function onTitleChange(event) {
+        const value = event.target.value;
+        setPayload({ ...payload, title: value });
+    }
+
+    function onDescriptionChange(event) {
+        const value = event.target.value;
+        setPayload({ ...payload, description: value });
+    }
+
+    function handlePhotosChange(event) {
+        if (!photo1) {
+            const file = event.target.files[0];
+            if (file) {
+                const newPhoto1 = URL.createObjectURL(file);
+                setPhoto1(newPhoto1);
+                event.target.value = null;
+            }
         }
-
-        console.log("Imagen seleccionada:", selectedFile);
-    };
+        if (photo1 && !photo2) {
+            const file = event.target.files[0];
+            if (file) {
+                const newPhoto2 = URL.createObjectURL(file);
+                setPhoto2(newPhoto2);
+                event.target.value = null;
+            }
+        }
+        if (photo1 && photo2 && !photo3) {
+            const file = event.target.files[0];
+            if (file) {
+                const newPhoto3 = URL.createObjectURL(file);
+                setPhoto3(newPhoto3);
+            }
+        }
+    }
 
     return (
         <main className="Page">
@@ -24,33 +51,66 @@ export function AddPost() {
                     <h2 className="titulo-addpost">Añade una publicación</h2>
                     <form className="form-addpost">
                         <div className="div-titulo-area">
-                            <label htmlFor="">Título:</label>
                             <textarea
                                 className="textarea"
                                 name=""
-                                id=""
                                 required
+                                placeholder="Título"
+                                onChange={onTitleChange}
                             ></textarea>
                         </div>
                         <div className="div-browse">
-                            <label htmlFor="imageInput">Fotos:</label>
                             <input
                                 type="file"
-                                onChange={handleFileChange}
+                                id="añadir"
+                                style={{ display: "none" }}
                                 accept="image/*"
                                 multiple
                                 required
+                                onChange={(event) => handlePhotosChange(event)}
                             />
+                            <div className="imagenes-cargadas">
+                                {photo1 && (
+                                    <img
+                                        src={photo1}
+                                        alt="Imagen 1"
+                                        className="add-post-img"
+                                    />
+                                )}
+                                {photo2 && (
+                                    <img
+                                        src={photo2}
+                                        alt="Imagen 2"
+                                        className="add-post-img"
+                                    />
+                                )}
+                                {photo3 && (
+                                    <img
+                                        src={photo3}
+                                        alt="Imagen 3"
+                                        className="add-post-img"
+                                    />
+                                )}
+                                {!photo3 && (
+                                    <label htmlFor="añadir">
+                                        <img src={addImg} alt="Añadir imagen" />
+                                    </label>
+                                )}
+                            </div>
                         </div>
+
                         <div className="div-descripcion-area">
-                            <label htmlFor="">Descripción:</label>
                             <textarea
                                 className="textarea"
-                                name=""
-                                id=""
+                                placeholder="Descripción"
+                                rows="8"
+                                required
+                                onChange={onDescriptionChange}
                             ></textarea>
                         </div>
-                        <button className="publicar">Publicar</button>
+                        <button className="boton" type="submit">
+                            Publicar
+                        </button>
                     </form>
                 </div>
             </div>
