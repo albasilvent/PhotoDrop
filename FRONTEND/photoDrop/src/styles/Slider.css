@@ -80,3 +80,25 @@ a.slide__next,
     width: 100%;
     height: auto;
 }
+
+.arrows{
+    position: relative;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:6rem;
+    padding: 0.5rem;;
+}
+
+/* .arrowBack{
+    position: absolute;
+    bottom:250px;
+    left:1rem;
+}
+
+.arrowForward{
+    position:relative;
+    bottom:250px;
+    left: 18rem;
+    
+} */

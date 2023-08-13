@@ -3,13 +3,13 @@ import "../styles/NotFound.css";
 
 export function NotFound() {
     return (
-        <article>
+        <article className="notFound">
             <div className="nf-container">
                 <p>
                     Es posible que el enlace que has seguido sea incorrecto o
                     que se haya eliminado la página.
                 </p>
-                <Link to="/">
+                <Link to="/" style={{color: "gray", textDecoration:"none", fontStyle: "italic"}}>
                     <p>Volver a PhotoDrop</p>
                 </Link>
             </div>

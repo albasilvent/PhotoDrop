@@ -1,0 +1,15 @@
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2); /* Aumenta el tamaño durante el latido */
+    }
+}
+
+.material-symbols-rounded.liked {
+    transition: color 0.3s ease, transform 0.3s ease;
+    color: red; /* Cambia el color cuando está liked */
+    animation: pulse 0.3s ease 2; /* Repite dos veces */
+}

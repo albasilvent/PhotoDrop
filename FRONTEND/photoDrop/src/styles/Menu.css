@@ -1,3 +1,19 @@
+@keyframes pulse2 {
+    0% {
+        transform: scale(1);
+        opacity: 50%;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 80%;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 100%;
+    }
+}
+
 .menu {
     position: relative;
 }
@@ -20,6 +36,7 @@
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
         0 8px 10px -6px rgb(0 0 0 / 0.1);
     font-style: italic;
+    animation: pulse2 0.3s;
 }
 
 .post-modal-div {

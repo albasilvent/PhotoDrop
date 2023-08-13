@@ -48,7 +48,7 @@ export function CommentsModal({
     }
 
     return (
-        <div className={`modal-comentarios ${menuDisplay ? "" : "hidden"}`}>
+        <div className={`modal-comentarios ${menuDisplay ? "visible" : "hidden"}`}>
             <FormContext.Provider value={formState}>
                 <form className="addComment" onSubmit={onSubmit}>
                     {currentUser?.profilePicture && (

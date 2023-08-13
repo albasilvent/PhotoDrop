@@ -87,6 +87,7 @@ export function PostCard({ post, deletePostById }) {
             </div>
             <h2 className="postTitle">{postTitle}</h2>
             <Slider
+                id={postId}
                 photo1={postPhoto1}
                 photo2={postPhoto2}
                 photo3={postPhoto3}
