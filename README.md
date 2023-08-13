@@ -5,11 +5,11 @@ Bienvenido a ¡PhotoDrop!
 ## Tabla de Contenidos
 
 -   [Características](#características)
--   [Capturas de Pantalla](#capturas-de-pantalla)
--   [Tecnologías Utilizadas](#tecnologías-utilizadas)
 -   [Instalación](#instalación)
 -   [Uso](#uso)
+-   [Tecnologías Utilizadas](#tecnologías-utilizadas)
 -   [Equipo](#equipo)
+-   [Capturas de Pantalla](#capturas-de-pantalla)
 
 ## Características
 
@@ -27,22 +27,6 @@ Bienvenido a ¡PhotoDrop!
 -   Como extras, hemos añadido lo siguiente:
     -   Un sistema de validación de emails
     -   Editar y borrar posts, comentarios y likes
-
-## Capturas de Pantalla
-
-![HomePage](/FRONTEND/photoDrop/public/readme1.jpg)
-![SearchPage](/FRONTEND/photoDrop/public/readme2.jpg)
-![ProfilePage](/FRONTEND/photoDrop/public/readme3.jpg)
-
-## Tecnologías Utilizadas
-
--   HTML
--   CSS
--   JavaScript
--   MySQL
--   Node.js
--   React
--   Git
 
 ## Instalación
 
@@ -68,9 +52,25 @@ La parte del backend ya estaría funcionando correctamente, ahora abrimos otra t
 
 -   Para cerrar sesión, el usuario deberá dirigirse a su propio perfil. Una vez ahí, hacer click en el menú desplegable y cerrar sesión.
 
+## Tecnologías Utilizadas
+
+-   HTML
+-   CSS
+-   JavaScript
+-   MySQL
+-   Node.js
+-   React
+-   Git
+
 ## Equipo
 
 -   Alba Silvent
 -   Andres Caruncho
 -   Carlos Gascón
 -   Joshué Pérez
+
+## Capturas de Pantalla
+
+![HomePage](/FRONTEND/photoDrop/public/readme1.jpg)
+![SearchPage](/FRONTEND/photoDrop/public/readme2.jpg)
+![ProfilePage](/FRONTEND/photoDrop/public/readme3.jpg)
