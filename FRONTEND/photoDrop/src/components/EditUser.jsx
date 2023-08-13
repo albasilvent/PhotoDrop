@@ -12,7 +12,7 @@ const countryNames = countryData
         value: c.name.nativeName.spa?.common ?? c.name.common,
     }))
     .sort((a, b) => {
-        return a.value.localeCompare(b.value); /// (-1, +1)
+        return a.value.localeCompare(b.value);
     });
 
 export function EditUser() {
@@ -44,7 +44,6 @@ export function EditUser() {
     const [surname2Value, setSurname2Value] = useState("");
     const [countryValue, setCountryValue] = useState("");
     const [profilePictureValue, setProfilePictureValue] = useState("");
-
     const [payload, setPayload] = useState({
         name: nameValue,
         surname1: surname1Value,
@@ -82,13 +81,14 @@ export function EditUser() {
         }
     }
 
+    
     async function onSubmit(evt) {
         evt.preventDefault();
-
+        
         setFormState({
             isSubmitting: true,
         });
-
+        
         try {
             const data = new FormData();
             data.append("name", payload.name);
@@ -168,7 +168,7 @@ export function EditUser() {
                                 onChange={onSurname2Change}
                             ></input>
                             <select
-                                className="formSelect-editUser"
+                                className="input"
                                 onChange={(event) => {
                                     setPayload({
                                         ...payload,

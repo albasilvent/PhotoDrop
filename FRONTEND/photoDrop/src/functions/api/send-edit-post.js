@@ -1,19 +1,25 @@
 import { getToken } from "../utils/get-token";
 
-export async function sendEditPost(data) {
+export async function sendEditPost(data, postId) {
+    for (var key of data.entries()) {
+        console.log(key[0] + ", " + key[1]);
+    }
 
     const requestInit = {
-        method: "post",
+        method: "put",
         headers: {},
-        body: data,
     };
 
     const token = getToken();
     if (token) {
         requestInit.headers["authorization"] = token;
     }
+    requestInit.body = data;
 
-    const response = await fetch(`http://localhost:5000/posts`, requestInit);
+    const response = await fetch(
+        `http://localhost:5000/posts/${postId}`,
+        requestInit
+    );
 
     const result = await response.json();
 

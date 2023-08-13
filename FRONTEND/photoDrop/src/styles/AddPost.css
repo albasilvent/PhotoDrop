@@ -83,6 +83,13 @@ label img {
 
 }
 
+
+.iconos-addPost{
+    display: flex;
+    align-items: center;
+    gap:1rem;
+}
+
 @media (min-width: 600px) {
     .titulo-addpost {
         font-size: 2rem;

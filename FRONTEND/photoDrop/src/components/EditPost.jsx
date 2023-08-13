@@ -14,28 +14,47 @@ export function EditPost() {
     const { id } = useParams();
     const [titleValue, setTitleValue] = useState("");
     const [descriptionValue, setDescriptionValue] = useState("");
-    const [photos, setPhotos] = useState([]);
+    const [photo1, setPhoto1] = useState(null);
+    const [photo2, setPhoto2] = useState(null);
+    const [photo3, setPhoto3] = useState(null);
     const [payload, setPayload] = useState({});
     const [formState, setFormState] = useState({ isSubmitting: false });
     const [errorMsg, setErrorMsg] = useState("");
+
+    const arrayPhotos = [photo1, photo2, photo3];
 
     useEffect(() => {
         getPostDetails(id).then((post) => {
             setTitleValue(post.postTitle);
             setDescriptionValue(post.postDescription);
-            setPhotos([
-                ...photos,
-                post.postPhoto1,
-                post.postPhoto2,
-                post.postPhoto3,
-            ]);
+            setPhoto1(post.postPhoto1);
+            if (post.postPhoto2) {
+                setPhoto2(post.postPhoto2);
+            }
+            if (post.postPhoto3) {
+                setPhoto3(post.postPhoto3);
+            }
+            setPayload({
+                title: post.postTitle,
+                description: post.postDescription,
+                photo1: post.postPhoto1,
+                photo2: post.postPhoto2,
+                photo3: post.postPhoto3,
+            });
         });
     }, [id]);
 
     function onDeleteClick() {
-        const newArray = [...photos];
-        newArray.pop();
-        setPhotos(newArray);
+        if (photo3) {
+            setPhoto3("");
+            setPayload({ ...payload, photo3: null });
+        } else if (photo2) {
+            setPhoto2("");
+            setPayload({ ...payload, photo2: null });
+        } else {
+            setPhoto1("");
+            setPayload({ ...payload, photo1: null });
+        }
     }
 
     function onTitleChange(event) {
@@ -51,32 +70,26 @@ export function EditPost() {
     }
 
     function handlePhotosChange(event) {
-        if (photos.length == 0) {
+        if (!photo1) {
             const file = event.target.files[0];
-            if (file) {
-                const newPhoto = URL.createObjectURL(file);
-                setPhotos([...photos, newPhoto]);
-                setPayload({ ...payload, photo1: file });
-                event.target.value = null;
-            }
+            const newPhoto = URL.createObjectURL(file);
+            setPhoto1(newPhoto);
+            setPayload({ ...payload, photo1: newPhoto });
+            event.target.value = null;
         }
-        if (photos.length == 1) {
+        if (photo1 && !photo2) {
             const file = event.target.files[0];
-            if (file) {
-                const newPhoto = URL.createObjectURL(file);
-                setPhotos([...photos, newPhoto]);
-                setPayload({ ...payload, photo2: file });
-                event.target.value = null;
-            }
+            const newPhoto = URL.createObjectURL(file);
+            setPhoto2(newPhoto);
+            setPayload({ ...payload, photo2: newPhoto });
+            event.target.value = null;
         }
-        if (photos.length == 2) {
+        if (photo1 && photo2 && !photo3) {
             const file = event.target.files[0];
-            if (file) {
-                const newPhoto = URL.createObjectURL(file);
-                setPhotos([...photos, newPhoto]);
-                setPayload({ ...payload, photo3: file });
-                event.target.value = null;
-            }
+            const newPhoto = URL.createObjectURL(file);
+            setPhoto3(newPhoto);
+            setPayload({ ...payload, photo3: newPhoto });
+            event.target.value = null;
         }
     }
 
@@ -92,19 +105,20 @@ export function EditPost() {
             data.append("title", payload.title);
             data.append("description", payload.description);
             data.append("photo1", payload.photo1);
-            if (photos[1]) {
+            if (photo2) {
                 data.append("photo2", payload.photo2);
             }
-            if (photos[2]) {
+            if (photo3) {
                 data.append("photo3", payload.photo3);
             }
-            if (photos.length > 0) {
-                await sendEditPost(data);
+            if (photo1) {
+                await sendEditPost(data, id);
                 navigate("/");
             } else {
                 setErrorMsg("El post debe tener 1 foto");
             }
         } catch (error) {
+            console.log(error);
             setFormState({
                 isSubmitting: false,
             });
@@ -116,7 +130,9 @@ export function EditPost() {
             <div className="editPostContainer">
                 <div className="encabezado">
                     <Link to={`/posts/${id}`}>
-                        <p className="material-symbols-rounded">close</p>
+                        <p className="material-symbols-rounded editPostClose">
+                            close
+                        </p>
                     </Link>
                     <h2>Edita el post</h2>
                 </div>
@@ -140,24 +156,23 @@ export function EditPost() {
                         />
 
                         <div className="edit-imagenes-cargadas">
-                            {photos.length > 0 &&
-                                photos.map((photo) => {
+                            {photo1 &&
+                                arrayPhotos.map((photo) => {
                                     return (
                                         <img
                                             key={Math.random()}
                                             src={photo}
-                                            alt="Imagen"
                                             className="edit-post-img"
-                                        />
+                                        ></img>
                                     );
                                 })}
 
-                            {!photos[2] && (
+                            {!photo3 && (
                                 <label htmlFor="añadir">
                                     <img src={addImg} alt="Añadir imagen" />
                                 </label>
                             )}
-                            {photos.length > 0 && (
+                            {photo1 && (
                                 <p
                                     className="material-symbols-rounded addpostBorrar"
                                     onClick={onDeleteClick}
@@ -170,7 +185,7 @@ export function EditPost() {
                             value={descriptionValue}
                             onChange={onDescriptionChange}
                             name="description"
-                            className="addpost-textarea"
+                            className="editpost-textarea"
                             placeholder="Descripción"
                             rows="6"
                             required

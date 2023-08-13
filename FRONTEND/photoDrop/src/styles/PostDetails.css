@@ -97,48 +97,48 @@ div.PageoverflowHidden{
 
 @media (min-width: 500px){
     .postDetailsContainer{
-        width: 60%;
+        max-width: 60%;
     }
 }
 
 @media (min-width: 900px){
     .postDetailsContainer{
-        width: 50%;
+        max-width: 50%;
     }
 }
 
 @media (min-height: 900px){ 
     .postDetailsContainer {
-        height: 100%;
-        width: 90%;
+       max-width: 30%;
     }
     
     .pd-postUser {
         height: auto;
+        padding: 1rem;
     }   
     .pd-userName {
         font-size: 25px;
     }
     
     .pd-postTitle {
-        font-size: 30px;    
+        font-size: 25px;    
     }
     
     .pd-likes,
     .pd-comments {
-        font-size: 25px;
+        font-size: 20px;
     }
     
     .pd-postDescription {
-        font-size: 20px;;
+        font-size: 15px;;
     }
     
     .pd-postComments {
-        font-size: 20px;
+        font-size: 15px;
     }
     
     .pd-postDate {
-        font-size: 20px;
+        font-size: 15xºpx;
     }
 }
 

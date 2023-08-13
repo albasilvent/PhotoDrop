@@ -14,11 +14,11 @@ async function saveUser(user) {
         user.id,
         user.name,
         user.surname1,
-        user.surname2 || null,
+        user.surname2 ?? null,
         user.email,
         user.password,
         user.birthDate,
-        user.country || null,
+        user.country ?? null,
         user.acceptedTOS,
         user.emailValidated,
     ]);

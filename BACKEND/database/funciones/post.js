@@ -23,7 +23,7 @@ async function savePost(post) {
 //getPostById
 //Funcion que devuelve los posts segun la id
 async function getPostById(postId) {
-     const statement = `
+    const statement = `
     SELECT
       p.id AS postId,
       p.title AS postTitle,
@@ -102,16 +102,18 @@ async function getAllPosts() {
 async function updatePost(post) {
     const statement = `
     UPDATE posts
-    SET title = ?, description = ?, photo2 = ?, photo3 = ?
+    SET title = ?, description = ?, photo1 = ?, photo2 = ?, photo3 = ?
     WHERE id = ?
     `;
+
     await db.execute(statement, [
         post.title,
         post.description,
-        post.photo2,
-        post.photo3,
+        post.photo1,
+        post.photo2 ?? null,
+        post.photo3 ?? null,
         post.id,
-    ]); // Para las fotos 2 y 3, pasar valor nulo para borrarlas
+    ]);
 }
 
 //deletePost

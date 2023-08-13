@@ -59,7 +59,7 @@ img {
 
 @media (min-height: 900px) {
     img{
-        max-height: 700px;
+        max-height: 500px;
     }
     .profilePicture {
         width: 50px;

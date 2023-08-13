@@ -9,7 +9,6 @@ const { processUploadedPostPhoto } = require("../services/images");
 
 //Editar los datos de usuario
 async function editUser(userId, userPayload, files) {
-    
     // Comprobamos si existe un usuario con el id del token.
     const user = await getUserById(userId);
 
@@ -50,12 +49,15 @@ async function editPost(postId, userId, postPayload) {
     }
 
     const updatedPost = {
-        id: postId,
         title: postPayload.title || post.title,
         description: postPayload.description || post.description,
-        photo2: postPayload.photo2 || post.photo2,
-        photo3: postPayload.photo3 || post.photo3,
+        photo1: postPayload.photo1,
+        photo2: postPayload.photo2,
+        photo3: postPayload.photo3,
+        id: postId,
     };
+
+    console.log(updatedPost);
 
     await updatePost(updatedPost);
 }

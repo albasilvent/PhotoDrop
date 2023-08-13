@@ -25,7 +25,6 @@ export function Register() {
         evt.preventDefault();
         setFormState({ isSubmitting: true });
         try {
-            console.log(payload);
             await sendRegister(payload);
             navigate(`/validate-email?email=${payload.email}`);
         } catch (err) {
@@ -95,7 +94,8 @@ export function Register() {
                             />
 
                             <select
-                                className="formSelect"
+                                className="input"
+                                required
                                 onChange={(event) => {
                                     if (event.target.value !== "Pais") {
                                         setPayload({

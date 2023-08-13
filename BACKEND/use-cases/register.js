@@ -15,6 +15,8 @@ const { saveValidationCode } = require("../database/funciones/email");
 //Funcion para registrar un usuario
 async function registerUser(userData) {
 
+    console.log(userData);
+
     if (!userData.acceptedTOS) {
         didNotAcceptTOS();
     }

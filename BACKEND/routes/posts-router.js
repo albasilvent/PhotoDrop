@@ -17,10 +17,6 @@ const router = Router();
 //Crear un nuevo post
 router.post(
     "/posts",
-    (req,res,next)=>{
-        console.log(req.headers);
-        next();
-    },
     authGuard,
     fileUpload(),
     validateBody(postPayload),
@@ -65,8 +61,8 @@ router.get(
 router.put(
     "/posts/:id",
     authGuard,
-    fileUpload(),
     validateBody(editPostPayload),
+    fileUpload(),
     handleAsyncError(async (req, res) => {
         // Editar el post con id req.params.id
         await editPost(req.params.id, req.currentUser.id, req.body);

@@ -127,19 +127,24 @@ export function AddPost() {
                                         );
                                     })}
 
-                                {!photos[2] && (
-                                    <label htmlFor="añadir">
-                                        <img src={addImg} alt="Añadir imagen" />
-                                    </label>
-                                )}
-                                {photos.length > 0 && (
-                                    <p
-                                        onClick={onDeleteClick}
-                                        className="material-symbols-rounded addpostBorrar"
-                                    >
-                                        delete
-                                    </p>
-                                )}
+                                <div className="iconos-addPost">
+                                    {!photos[2] && (
+                                        <label htmlFor="añadir">
+                                            <img
+                                                src={addImg}
+                                                alt="Añadir imagen"
+                                            />
+                                        </label>
+                                    )}
+                                    {photos.length > 0 && (
+                                        <p
+                                            onClick={onDeleteClick}
+                                            className="material-symbols-rounded addpostBorrar"
+                                        >
+                                            delete
+                                        </p>
+                                    )}
+                                </div>
                             </div>
                             <textarea
                                 name="description"
