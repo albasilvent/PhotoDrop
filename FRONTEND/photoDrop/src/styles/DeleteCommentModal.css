@@ -1,3 +1,16 @@
+@keyframes pulse3 {
+    0% {
+        opacity: 50%;
+    }
+    50% {
+        opacity: 80%;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
 .deleteCommentModal {
     background-color: var(--background-color);
     padding: 1rem;
@@ -13,6 +26,7 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+    animation: pulse3 0.3s;
 }
 
 .deleteCommentModal > p {

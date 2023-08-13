@@ -89,6 +89,7 @@ export function PostDetails() {
                     </div>
                     <h2 className="pd-postTitle">{post.postTitle}</h2>
                     <Slider
+                        id={post.postId}
                         photo1={post.postPhoto1}
                         photo2={post.postPhoto2}
                         photo3={post.postPhoto3}

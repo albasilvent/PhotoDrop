@@ -1,3 +1,16 @@
+@keyframes pulse3 {
+    0% {
+        opacity: 50%;
+    }
+    50% {
+        opacity: 80%;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
 .editPostContainer {
     width: 85%;
     height: 85%;
@@ -54,6 +67,7 @@
 .edit-post-img {
     max-height: 8vh;
     max-width: 50%;
+    animation: pulse3 0.3s;
 }
 
 .editpost-textarea {

@@ -1,62 +1,76 @@
+/* eslint-disable react/prop-types */
 import "../styles/Slider.css";
+import { useState, useRef } from "react";
 
-// eslint-disable-next-line react/prop-types
-export function Slider({ photo1, photo2, photo3 }) {
+export function Slider({ id, photo1, photo2, photo3 }) {
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const sliderRef = useRef(null);
+
+    const scrollSlider = (direction) => {
+        const slider = sliderRef.current;
+        const slideWidth = slider.clientWidth;
+        let newPosition =
+            direction === "forward"
+                ? scrollPosition + slideWidth
+                : scrollPosition - slideWidth;
+
+        newPosition = Math.max(
+            0,
+            Math.min(newPosition, slider.scrollWidth - slider.clientWidth)
+        );
+
+        slider.scroll({ left: newPosition, behavior: "smooth" });
+        setScrollPosition(newPosition);
+    };
+
     return (
         <div className="slider-container">
-            <div className="slider">
-                <div className="slides">
+            <div className="slider" >
+                <div ref={sliderRef} className="slides">
                     {photo1 && (
-                        <div id="slides__1" className="slide">
+                        <div id={`slides__${id}__1`} className="slide">
                             <img className="postImg" src={photo1}></img>
-                            <a
-                                className="slide__prev"
-                                href="#slides__3"
-                                title="Next"
-                            ></a>
-                            <a
-                                className="slide__next"
-                                href="#slides__2"
-                                title="Next"
-                            ></a>
                         </div>
                     )}
                     {photo2 && (
-                        <div id="slides__2" className="slide">
+                        <div id={`slides__${id}__2`} className="slide">
                             <img className="postImg" src={photo2}></img>
-                            <a
-                                className="slide__prev"
-                                href="#slides__1"
-                                title="Prev"
-                            ></a>
-                            <a
-                                className="slide__next"
-                                href="#slides__3"
-                                title="Next"
-                            ></a>
                         </div>
                     )}
                     {photo3 && (
-                        <div id="slides__3" className="slide">
+                        <div id={`slides__${id}__3`} className="slide">
                             <img className="postImg" src={photo3}></img>
-                            <a
-                                className="slide__prev"
-                                href="#slides__2"
-                                title="Prev"
-                            ></a>
-                            <a
-                                className="slide__next"
-                                href="#slides__4"
-                                title="Next"
-                            ></a>
                         </div>
                     )}
                 </div>
-                <div className="slider__nav">
-                    <a className="slider__navlink" href="#slides__1"></a>
-                    <a className="slider__navlink" href="#slides__2"></a>
-                    <a className="slider__navlink" href="#slides__3"></a>
-                </div>
+                {photo2 && (
+                    <div className="arrows" >
+                        <a
+                            className={`material-symbols-rounded arrowBack ${
+                                scrollPosition === 0 ? "disabled" : ""
+                            }`}
+                            href="#"
+                            onClick={() => scrollSlider("backward")}
+                            style={{textDecoration: "none"}}
+                        >
+                            arrow_back
+                        </a>
+                        <a
+                            className={`material-symbols-rounded arrowForward ${
+                                scrollPosition >=
+                                sliderRef.current?.scrollWidth -
+                                    sliderRef.current?.clientWidth
+                                    ? "disabled"
+                                    : ""
+                            }`}
+                            href="#"
+                            onClick={() => scrollSlider("forward")}
+                            style={{textDecoration: "none"}}
+                        >
+                            arrow_forward
+                        </a>
+                    </div>
+                )}
             </div>
         </div>
     );

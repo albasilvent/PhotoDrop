@@ -89,9 +89,6 @@ section {
     color: grey;
 }
 
-.material-symbols-rounded.liked {
-    color: red;
-}
 
 @media (min-width: 500px) {
     section {

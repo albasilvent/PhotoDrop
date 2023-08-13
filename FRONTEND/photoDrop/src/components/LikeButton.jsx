@@ -4,6 +4,7 @@ import { sendLike } from "../functions/api/send-like";
 import { useCurrentUser } from "../functions/utils/use-current-user";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import "../styles/LikeButton.css"
 
 export function LikeButton({ post, postId, likeCount, setLikeCount }) {
     const currentUser = useCurrentUser();
