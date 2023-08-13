@@ -5,6 +5,15 @@ import "../styles/EditUser.css";
 import { useNavigate } from "react-router-dom";
 import { sendEditUser } from "../functions/api/send-edit-user";
 import { useCurrentUser } from "../functions/utils/use-current-user";
+import countryData from "../functions/utils/country-data.json";
+
+const countryNames = countryData
+    .map((c) => ({
+        value: c.name.nativeName.spa?.common ?? c.name.common,
+    }))
+    .sort((a, b) => {
+        return a.value.localeCompare(b.value); /// (-1, +1)
+    });
 
 export function EditUser() {
     const currentUser = useCurrentUser();
@@ -36,7 +45,13 @@ export function EditUser() {
     const [countryValue, setCountryValue] = useState("");
     const [profilePictureValue, setProfilePictureValue] = useState("");
 
-    const [payload, setPayload] = useState({});
+    const [payload, setPayload] = useState({
+        name: nameValue,
+        surname1: surname1Value,
+        surname2: surname2Value,
+        country: countryValue,
+        profilePicture: profilePictureValue,
+    });
 
     const [formState, setFormState] = useState({ isSubmitting: false });
 
@@ -58,18 +73,12 @@ export function EditUser() {
         setPayload({ ...payload, surname2: value });
     }
 
-    function onCountryChange(evt) {
-        const value = evt.target.value;
-        setCountryValue(value);
-        setPayload({ ...payload, country: value });
-    }
-
     function handleFileChange(event) {
         const file = event.target.files[0];
         if (file) {
             const newImage = URL.createObjectURL(file);
             setProfilePictureValue(newImage);
-            setPayload({ ...payload, profilePicture: newImage });
+            setPayload({ ...payload, profilePicture: file });
         }
     }
 
@@ -81,8 +90,12 @@ export function EditUser() {
         });
 
         try {
-            const data = new FormData(evt.target);
-            data.append("profilePicture", profilePictureValue);
+            const data = new FormData();
+            data.append("name", payload.name);
+            data.append("surname1", payload.surname1);
+            data.append("surname2", payload.surname2);
+            data.append("country", payload.country);
+            data.append("profilePicture", payload.profilePicture);
             await sendEditUser(data);
             navigate(`/users/${userId}`);
         } catch (error) {
@@ -154,14 +167,26 @@ export function EditUser() {
                                 placeholder="Segundo apellido"
                                 onChange={onSurname2Change}
                             ></input>
-                            <input
-                                className="input"
-                                name="country"
-                                type="text"
-                                value={countryValue ?? ""}
-                                placeholder="País"
-                                onChange={onCountryChange}
-                            ></input>
+                            <select
+                                className="formSelect-editUser"
+                                onChange={(event) => {
+                                    setPayload({
+                                        ...payload,
+                                        country: event.target.value,
+                                    });
+                                }}
+                            >
+                                <option selected="selected" disabled>
+                                    {countryValue}
+                                </option>
+                                {countryNames.map((option, i) => {
+                                    return (
+                                        <option key={i} value={option.value}>
+                                            {option.label ?? option.value}
+                                        </option>
+                                    );
+                                })}
+                            </select>
                             <button className="boton" type="submit">
                                 Enviar
                             </button>

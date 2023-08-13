@@ -17,7 +17,7 @@ main a {
 
 .cajetin-register {
     width: 80%;
-    height: 85%;
+    height: 75%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,6 +61,27 @@ main a {
 
 .log {
     text-align: center;
+}
+
+.formSelect {
+    width: 95%;
+    border: 2px solid var(black);
+    border-radius: 10px;
+    font-size: 1rem;
+    padding: 0.3rem;
+}
+
+.errormsg-Register {
+    position: absolute;
+    bottom: -3.4rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+        0 8px 10px -6px rgb(0 0 0 / 0.1);
+    padding: 10px;
+    text-align: center;
+    background-color: var(--background-color);
+    color: rgb(192, 77, 77);
 }
 
 /* MEDIAS QUERY */

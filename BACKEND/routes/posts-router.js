@@ -17,6 +17,10 @@ const router = Router();
 //Crear un nuevo post
 router.post(
     "/posts",
+    (req,res,next)=>{
+        console.log(req.headers);
+        next();
+    },
     authGuard,
     fileUpload(),
     validateBody(postPayload),

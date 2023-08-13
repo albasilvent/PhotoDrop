@@ -30,7 +30,7 @@ body {
 
 img {
     display: block;
-    max-height: 350px;
+    max-height: 500px;
     object-fit: cover;
 }
 
@@ -46,6 +46,10 @@ img {
     overflow: hidden;
 }
 
+.input{
+    padding: 0.3rem;
+}
+
 @media (min-width: 900px) {
     #root {
         grid-template-columns: 10vh calc(100vw - 10vh);
@@ -55,7 +59,7 @@ img {
 
 @media (min-height: 900px) {
     img{
-        max-height: 500px;
+        max-height: 700px;
     }
     .profilePicture {
         width: 50px;

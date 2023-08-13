@@ -36,7 +36,7 @@ export function PostMenu({ postId, deletePostById }) {
                     <Link to= {`/edit-post/${postId}`} style={{ textDecoration: "none", color: "gray"}}>
                         <div className="post-modal-div editar">
                             <p className="material-symbols-rounded">edit</p>
-                            <p>Editar</p>
+                            <p style= {{fontSize: "16px"}}>Editar</p>
                         </div>
                     </Link>
                     <div

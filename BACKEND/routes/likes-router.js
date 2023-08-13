@@ -12,7 +12,6 @@ router.post(
     handleAsyncError(async (req, res) => {
         //Hacer toggle del like en el post con id req.params.id
         await toggleLike(req.params.id, req.currentUser.id);
-        console.log(res);
         sendResponse(res);
     })
 );

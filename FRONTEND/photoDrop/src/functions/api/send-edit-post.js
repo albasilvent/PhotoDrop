@@ -1,23 +1,23 @@
 import { getToken } from "../utils/get-token";
 
-export async function sendEditUser(data) {
+export async function sendEditPost(data) {
+
     const requestInit = {
-        method: "put",
+        method: "post",
         headers: {},
+        body: data,
     };
 
     const token = getToken();
     if (token) {
         requestInit.headers["authorization"] = token;
     }
-    requestInit.body = data;
 
-    const response = await fetch("http://localhost:5000/users", requestInit);
+    const response = await fetch(`http://localhost:5000/posts`, requestInit);
 
     const result = await response.json();
 
     if (!result.success) {
         console.log(result.error);
     }
-
 }

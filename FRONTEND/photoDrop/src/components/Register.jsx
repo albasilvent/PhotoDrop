@@ -4,11 +4,20 @@ import { useState } from "react";
 import { Input } from "./Input";
 import { sendRegister } from "../functions/api/send-register";
 import { Link } from "react-router-dom";
+import countryData from "../functions/utils/country-data.json";
 import "../styles/Register.css";
 
 export function Register() {
+    const countryNames = countryData
+        .map((c) => ({
+            value: c.name.nativeName.spa?.common ?? c.name.common,
+        }))
+        .sort((a, b) => {
+            return a.value.localeCompare(b.value); /// (-1, +1)
+        });
+
     const navigate = useNavigate();
-    const [payload, setPayload] = useState({});
+    const [payload, setPayload] = useState({name: "", surname1: "", surname2: "", email: "", password: "", birthDate: "", country: "" , acceptedTOS: false });
     const [formState, setFormState] = useState({ isSubmitting: false });
     const [errorMsg, setErrorMsg] = useState("");
 
@@ -16,6 +25,7 @@ export function Register() {
         evt.preventDefault();
         setFormState({ isSubmitting: true });
         try {
+            console.log(payload);
             await sendRegister(payload);
             navigate(`/validate-email?email=${payload.email}`);
         } catch (err) {
@@ -83,14 +93,34 @@ export function Register() {
                                     setPayload({ ...payload, birthDate: value })
                                 }
                             />
-                            <Input
-                                name="text"
-                                type="text"
-                                placeholder="País"
-                                onChange={(value) =>
-                                    setPayload({ ...payload, country: value })
-                                }
-                            />
+
+                            <select
+                                className="formSelect"
+                                onChange={(event) => {
+                                    if (event.target.value !== "Pais") {
+                                        setPayload({
+                                            ...payload,
+                                            country: event.target.value,
+                                        });
+                                    } else {
+                                        setPayload({
+                                            ...payload,
+                                            country: null,
+                                        });
+                                    }
+                                }}
+                            >
+                                <option selected="selected" disabled>
+                                    País
+                                </option>
+                                {countryNames.map((option, i) => {
+                                    return (
+                                        <option key={i} value={option.value}>
+                                            {option.label ?? option.value}
+                                        </option>
+                                    );
+                                })}
+                            </select>
 
                             <div className="div-checkbox">
                                 <Input
@@ -119,7 +149,9 @@ export function Register() {
                             <p href="#">Inicia sesión</p>
                         </Link>
                     </div>
-                    {errorMsg && <p className="errormsg">{errorMsg}</p>}
+                    {errorMsg && (
+                        <p className="errormsg-Register">{errorMsg}</p>
+                    )}
                 </div>
             </div>
         </main>

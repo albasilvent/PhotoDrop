@@ -1,22 +1,23 @@
 import { getToken } from "../utils/get-token";
 
-export async function sendPost(data) {
+export async function sendAddPost(data) {
+
     const requestInit = {
         method: "post",
         headers: {},
+        body: data,
     };
 
     const token = getToken();
     if (token) {
         requestInit.headers["authorization"] = token;
     }
-    requestInit.body = data;
 
     const response = await fetch(`http://localhost:5000/posts`, requestInit);
 
     const result = await response.json();
 
     if (!result.success) {
-        throw result.error;
+        console.log(result.error);
     }
 }

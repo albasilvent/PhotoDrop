@@ -1,12 +1,23 @@
-import "../styles/addpost.css";
 import { useState } from "react";
+import "../styles/addpost.css";
+import { FormContext } from "../contexts/form-context";
+import { sendAddPost } from "../functions/api/send-add-post";
+import { useNavigate } from "react-router-dom";
 
 export function AddPost() {
-    const addImg = "../public/addimg.png";
+    const addImg = "/addimg.png";
+    const navigate = useNavigate();
+
     const [payload, setPayload] = useState({});
-    const [photo1, setPhoto1] = useState("");
-    const [photo2, setPhoto2] = useState("");
-    const [photo3, setPhoto3] = useState("");
+    const [photos, setPhotos] = useState([]);
+    const [formState, setFormState] = useState({ isSubmitting: false });
+    const [errorMsg, setErrorMsg] = useState("");
+
+    function onDeleteClick() {
+        const newArray = [...photos];
+        newArray.pop();
+        setPhotos(newArray);
+    }
 
     function onTitleChange(event) {
         const value = event.target.value;
@@ -19,28 +30,64 @@ export function AddPost() {
     }
 
     function handlePhotosChange(event) {
-        if (!photo1) {
+        if (photos.length == 0) {
             const file = event.target.files[0];
             if (file) {
-                const newPhoto1 = URL.createObjectURL(file);
-                setPhoto1(newPhoto1);
+                const newPhoto = URL.createObjectURL(file);
+                setPhotos([...photos, newPhoto]);
+                setPayload({ ...payload, photo1: file });
                 event.target.value = null;
             }
         }
-        if (photo1 && !photo2) {
+        if (photos.length == 1) {
             const file = event.target.files[0];
             if (file) {
-                const newPhoto2 = URL.createObjectURL(file);
-                setPhoto2(newPhoto2);
+                const newPhoto = URL.createObjectURL(file);
+                setPhotos([...photos, newPhoto]);
+                setPayload({ ...payload, photo2: file });
                 event.target.value = null;
             }
         }
-        if (photo1 && photo2 && !photo3) {
+        if (photos.length == 2) {
             const file = event.target.files[0];
             if (file) {
-                const newPhoto3 = URL.createObjectURL(file);
-                setPhoto3(newPhoto3);
+                const newPhoto = URL.createObjectURL(file);
+                setPhotos([...photos, newPhoto]);
+                setPayload({ ...payload, photo3: file });
+                event.target.value = null;
             }
+        }
+    }
+
+    async function onSubmit(evt) {
+        evt.preventDefault();
+
+        setFormState({
+            isSubmitting: true,
+        });
+
+        try {
+            const data = new FormData();
+            data.append("title", payload.title);
+            data.append("description", payload.description);
+            data.append("photo1", payload.photo1);
+            if (photos[1]) {
+                data.append("photo2", payload.photo2);
+            }
+            if (photos[2]) {
+                data.append("photo3", payload.photo3);
+            }
+
+            if (photos.length > 0) {
+                await sendAddPost(data);
+                navigate("/");
+            } else {
+                setErrorMsg("El post debe tener 1 foto");
+            }
+        } catch (error) {
+            setFormState({
+                isSubmitting: false,
+            });
         }
     }
 
@@ -49,69 +96,66 @@ export function AddPost() {
             <div className="container-addpost">
                 <div className="cajetin-addpost">
                     <h2 className="titulo-addpost">Añade una publicación</h2>
-                    <form className="form-addpost">
-                        <div className="div-titulo-area">
+                    <FormContext.Provider value={formState}>
+                        <form className="form-addpost" onSubmit={onSubmit}>
                             <textarea
-                                className="textarea"
-                                name=""
+                                name="title"
+                                className="addpost-textarea"
                                 required
                                 placeholder="Título"
                                 onChange={onTitleChange}
                             ></textarea>
-                        </div>
-                        <div className="div-browse">
                             <input
+                                name="fotos"
                                 type="file"
                                 id="añadir"
                                 style={{ display: "none" }}
                                 accept="image/*"
-                                multiple
-                                required
                                 onChange={(event) => handlePhotosChange(event)}
                             />
+
                             <div className="imagenes-cargadas">
-                                {photo1 && (
-                                    <img
-                                        src={photo1}
-                                        alt="Imagen 1"
-                                        className="add-post-img"
-                                    />
-                                )}
-                                {photo2 && (
-                                    <img
-                                        src={photo2}
-                                        alt="Imagen 2"
-                                        className="add-post-img"
-                                    />
-                                )}
-                                {photo3 && (
-                                    <img
-                                        src={photo3}
-                                        alt="Imagen 3"
-                                        className="add-post-img"
-                                    />
-                                )}
-                                {!photo3 && (
+                                {photos &&
+                                    photos.map((photo) => {
+                                        return (
+                                            <img
+                                                key={Math.random()}
+                                                src={photo}
+                                                alt="Imagen"
+                                                className="add-post-img"
+                                            />
+                                        );
+                                    })}
+
+                                {!photos[2] && (
                                     <label htmlFor="añadir">
                                         <img src={addImg} alt="Añadir imagen" />
                                     </label>
                                 )}
+                                {photos.length > 0 && (
+                                    <p
+                                        onClick={onDeleteClick}
+                                        className="material-symbols-rounded addpostBorrar"
+                                    >
+                                        delete
+                                    </p>
+                                )}
                             </div>
-                        </div>
-
-                        <div className="div-descripcion-area">
                             <textarea
-                                className="textarea"
+                                name="description"
+                                className="addpost-textarea"
                                 placeholder="Descripción"
-                                rows="8"
+                                rows="6"
                                 required
                                 onChange={onDescriptionChange}
                             ></textarea>
-                        </div>
-                        <button className="boton" type="submit">
-                            Publicar
-                        </button>
-                    </form>
+
+                            <button className="boton" type="submit">
+                                Publicar
+                            </button>
+                        </form>
+                    </FormContext.Provider>
+                    {errorMsg && <p className="errormsg-addpost">{errorMsg}</p>}
                 </div>
             </div>
         </main>

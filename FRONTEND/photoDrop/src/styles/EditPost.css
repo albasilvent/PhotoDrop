@@ -1,39 +1,72 @@
 .editPostContainer {
-    position: relative;
+    width: 85%;
+    height: 85%;
     display: flex;
     flex-direction: column;
-    justify-content: space-aroundls;
-    background-color: var(--background-color);
+    justify-content: center;
+    align-items: center;
     border: 1px solid var(--border-color);
-    margin: 2rem 1.5rem;
-    height: 100%;
+    border-radius: 10px;
+    gap: 1rem;
+    position: relative;
+    bottom: 1rem;
+}
+
+.encabezado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.encabezado .material-symbols-rounded {
+    position: absolute;
+    top: 0;
+    left: -3rem;
+}
+
+.form-editpost {
+    width: 100%;
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+}
+
+.encabezado h2 {
+    font-size: 27px;
+}
+
+.edit-imagenes-cargadas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    height: 36vh;
+    width: 56vw;
+}
+
+.edit-post-img {
+    max-height: 8vh;
+    max-width: 50%;
+}
+
+.editpost-textarea {
+    width: 80%;
+}
+
+.errormsg-editpost {
+    position: absolute;
+    bottom: -3rem;
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
         0 8px 10px -6px rgb(0 0 0 / 0.1);
-}
-
-.editPostContainer form {
-    display:flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0.5rem 0;
-    gap:1rem;
-}
-
-.editPostTitle{
-    width: 100%;
-}
-
-.editPostTitle input{
-    width: 100%;  
-}
-
-.editPhotos{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap:0.5rem;
+    padding: 10px;
+    text-align: center;
+    background-color: var(--background-color);
+    color: rgb(192, 77, 77);
 }

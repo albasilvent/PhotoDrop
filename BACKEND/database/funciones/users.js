@@ -6,7 +6,7 @@ const db = getConnection();
 //Funcion que guarda un usuario
 async function saveUser(user) {
     const statement = `
-    INSERT INTO users(id,name,surname1,surname2,email,password,birthDate,country,acceptedTOS,emailValidated,)
+    INSERT INTO users(id,name,surname1,surname2,email,password,birthDate,country,acceptedTOS,emailValidated)
     VALUES(?,?,?,?,?,?,?,?,?,?)
     `;
 
