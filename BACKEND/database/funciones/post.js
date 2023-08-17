@@ -164,10 +164,17 @@ async function searchByTerm(searchTerm) {
       p.description LIKE ?
     OR
       u.name LIKE ? 
+    OR
+      u.surname1 LIKE ? 
     ORDER BY p.createdAt DESC;
   `;
 
-    const [rows] = await db.execute(statement, [likeTerm, likeTerm, likeTerm]);
+    const [rows] = await db.execute(statement, [
+        likeTerm,
+        likeTerm,
+        likeTerm,
+        likeTerm,
+    ]);
     return rows;
 }
 

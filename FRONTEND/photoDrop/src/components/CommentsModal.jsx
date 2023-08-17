@@ -5,6 +5,7 @@ import { useState } from "react";
 import "../styles/CommentsModal.css";
 import { sendAddComment } from "../functions/api/send-add-comment.js";
 import { FormContext } from "../contexts/form-context.jsx";
+import { useEffect } from "react";
 /* eslint-disable react/prop-types */
 export function CommentsModal({
     commentsState,
@@ -17,6 +18,19 @@ export function CommentsModal({
     setCommentsCount,
 }) {
     const currentUser = useCurrentUser();
+    const [profilePicture, setProfilePicture] = useState("");
+
+    useEffect(() => {
+        if (currentUser) {
+            {
+                fetch(`http://localhost:5000/users/${currentUser.id}`)
+                    .then((res) => res.json())
+                    .then((result) => {
+                        setProfilePicture(result.data.profilePicture);
+                    });
+            }
+        }
+    }, [currentUser]);
 
     const blankProfilePicture = "/blankProfilePicture.jpg";
 
@@ -48,13 +62,17 @@ export function CommentsModal({
     }
 
     return (
-        <div className={`modal-comentarios ${menuDisplay ? "visible" : "hidden"}`}>
+        <div
+            className={`modal-comentarios ${
+                menuDisplay ? "visible" : "hidden"
+            }`}
+        >
             <FormContext.Provider value={formState}>
                 <form className="addComment" onSubmit={onSubmit}>
                     {currentUser?.profilePicture && (
                         <img
                             className="profilePicture"
-                            src={currentUser?.profilePicture}
+                            src={profilePicture}
                         ></img>
                     )}
                     {!currentUser?.profilePicture && (

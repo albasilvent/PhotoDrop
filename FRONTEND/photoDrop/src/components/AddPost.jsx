@@ -110,7 +110,7 @@ export function AddPost() {
                                 type="file"
                                 id="añadir"
                                 style={{ display: "none" }}
-                                accept="image/*"
+                                accept="image/png, image/jpg, image/jpeg"
                                 onChange={(event) => handlePhotosChange(event)}
                             />
 

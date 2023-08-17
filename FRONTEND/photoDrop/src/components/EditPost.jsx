@@ -113,7 +113,7 @@ export function EditPost() {
             }
             if (photo1) {
                 await sendEditPost(data, id);
-                navigate("/");
+                navigate(`/posts/${id}`);
             } else {
                 setErrorMsg("El post debe tener 1 foto");
             }

@@ -37,19 +37,19 @@ export function Footer() {
 
     return (
         <footer>
-            {showLink("/") && (
-                <Link to="/">
-                    <p
-                        className={
-                            isActiveRoute("/")
-                                ? "material-symbols-rounded active"
-                                : "material-symbols-rounded"
-                        }
-                    >
-                        Home
-                    </p>
-                </Link>
-            )}
+                {showLink("/") && (
+                    <Link to="/">
+                        <p
+                            className={
+                                isActiveRoute("/")
+                                    ? "material-symbols-rounded active"
+                                    : "material-symbols-rounded"
+                            }
+                        >
+                            Home
+                        </p>
+                    </Link>
+                )}
 
             {showLink("/add-post") && (
                 <>

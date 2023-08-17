@@ -3,7 +3,7 @@ div.PageoverflowHidden{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 100vw;
 }
 
 
@@ -109,7 +109,7 @@ div.PageoverflowHidden{
 
 @media (min-height: 900px){ 
     .postDetailsContainer {
-       max-width: 30%;
+       width: 30%;
     }
     
     .pd-postUser {
@@ -117,7 +117,7 @@ div.PageoverflowHidden{
         padding: 1rem;
     }   
     .pd-userName {
-        font-size: 25px;
+        font-size: 20px;
     }
     
     .pd-postTitle {
