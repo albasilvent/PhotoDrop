@@ -50,19 +50,37 @@ export function Footer() {
                     </p>
                 </Link>
             )}
+
             {showLink("/add-post") && (
-                <Link to="/add-post">
-                    <p
-                        className={
-                            isActiveRoute("/add-post")
-                                ? "material-symbols-rounded active"
-                                : "material-symbols-rounded"
-                        }
-                    >
-                        add_box
-                    </p>
-                </Link>
+                <>
+                    {currentUser ? (
+                        <Link to="/add-post">
+                            <p
+                                className={
+                                    isActiveRoute("/add-post")
+                                        ? "material-symbols-rounded active"
+                                        : "material-symbols-rounded"
+                                }
+                            >
+                                add_box
+                            </p>
+                        </Link>
+                    ) : (
+                        <Link to="/login">
+                            <p
+                                className={
+                                    isActiveRoute("/login")
+                                        ? "material-symbols-rounded active"
+                                        : "material-symbols-rounded"
+                                }
+                            >
+                                add_box
+                            </p>
+                        </Link>
+                    )}
+                </>
             )}
+
             {showLink("/search") && (
                 <Link to="/search">
                     <p

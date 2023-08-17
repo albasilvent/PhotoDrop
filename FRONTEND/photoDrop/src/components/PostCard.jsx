@@ -33,7 +33,7 @@ export function PostCard({ post, deletePostById }) {
     const [likeCount, setLikeCount] = useState(like_count);
     const [commentsState, setCommentsState] = useState(comments);
     const [commentsCount, setCommentsCount] = useState(comment_count);
-    
+
     function deleteCommentById(commentId) {
         const filteredComments = commentsState.filter(
             (comment) => comment.id !== commentId
@@ -112,7 +112,7 @@ export function PostCard({ post, deletePostById }) {
             <p className="postDescription">{postDescription}</p>
             <div className="postComments">
                 {commentsCount == 0 && (
-                    <p onClick={onClick}>Se el primero en comentar!</p>
+                    <p onClick={onClick}>Sé el primero en comentar!</p>
                 )}
                 {commentsCount > 1 && (
                     <p onClick={onClick}>Ver {commentsCount} comentarios...</p>
