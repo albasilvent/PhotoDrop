@@ -118,7 +118,7 @@ label img {
 
 @media (min-width: 900px) {
     .titulo-addpost {
-        font-size: 3rem;
+        font-size: 2rem;
     }
     .imagenes-cargadas {
         flex-direction: row;

@@ -1,3 +1,3 @@
 export function getToken() {
-    return localStorage.getItem("USER_TOKEN");
+    return localStorage.getItem("USER_TOKEN_PHOTODROP");
 }

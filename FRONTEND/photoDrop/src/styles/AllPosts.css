@@ -19,10 +19,7 @@ main {
         grid-row: 2/3;
     }
 
-    .Page {
-        width: 70%;
-        margin-left: 15%;
-    }
+    
     
     .cargando {
         margin-top: 30%;

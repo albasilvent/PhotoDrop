@@ -81,13 +81,13 @@ a.slide__next,
     height: auto;
 }
 
-.arrows{
+.arrows {
     position: relative;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    gap:6rem;
-    padding: 0.5rem;;
+    gap: 6rem;
+    padding: 0.5rem;
 }
 
 /* .arrowBack{

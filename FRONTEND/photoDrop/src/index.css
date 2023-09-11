@@ -34,10 +34,6 @@ img {
     object-fit: cover;
 }
 
-::-webkit-scrollbar {
-    display: none;
-}
-
 .hidden {
     display: none;
 }
@@ -46,8 +42,17 @@ img {
     overflow: hidden;
 }
 
-.input{
+.input {
     padding: 0.3rem;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 15px ;
 }
 
 @media (min-width: 900px) {
@@ -58,7 +63,7 @@ img {
 }
 
 @media (min-height: 900px) {
-    img{
+    img {
         max-height: 500px;
     }
     .profilePicture {

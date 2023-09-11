@@ -1,13 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
 import "../styles/Footer.css";
 import { useCurrentUser } from "../functions/utils/use-current-user";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useParams } from "react-router-dom";
 
 export function Footer() {
     const location = useLocation();
     const currentUser = useCurrentUser();
     const blankImg = "/blankProfilePicture.jpg";
     const [profilePicture, setProfilePicture] = useState("");
+    const { id } = useParams();
 
     useEffect(() => {
         if (currentUser) {
@@ -37,19 +39,19 @@ export function Footer() {
 
     return (
         <footer>
-                {showLink("/") && (
-                    <Link to="/">
-                        <p
-                            className={
-                                isActiveRoute("/")
-                                    ? "material-symbols-rounded active"
-                                    : "material-symbols-rounded"
-                            }
-                        >
-                            Home
-                        </p>
-                    </Link>
-                )}
+            {showLink("/") && (
+                <Link to="/">
+                    <p
+                        className={
+                            isActiveRoute("/")
+                                ? "material-symbols-rounded active"
+                                : "material-symbols-rounded"
+                        }
+                    >
+                        Home
+                    </p>
+                </Link>
+            )}
 
             {showLink("/add-post") && (
                 <>
@@ -102,7 +104,11 @@ export function Footer() {
                                 <img
                                     src={profilePicture}
                                     alt="Profile"
-                                    className="profilePictureFooter"
+                                    className={
+                                        isActiveRoute(`/users/${id}`)
+                                            ? "profilePictureFooter activePicture"
+                                            : "profilePictureFooter"
+                                    }
                                 />
                             )}
 
@@ -110,7 +116,11 @@ export function Footer() {
                                 <img
                                     src={blankImg}
                                     alt="Profile"
-                                    className="profilePictureFooter"
+                                    className={
+                                        isActiveRoute(`/users/${id}`)
+                                            ? "profilePictureFooter activePicture"
+                                            : "profilePictureFooter"
+                                    }
                                 />
                             )}
                         </Link>

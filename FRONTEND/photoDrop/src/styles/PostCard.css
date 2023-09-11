@@ -135,7 +135,7 @@ section {
 
 @media (min-height: 1000px) {
     section {
-        width: 70%;
+        width: 50%;
         margin: 2rem 1rem;
     }
     .userName {

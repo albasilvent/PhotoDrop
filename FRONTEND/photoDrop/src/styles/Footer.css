@@ -24,10 +24,13 @@ footer {
     border-radius: 20px;
     margin-bottom: 3px;
     border-bottom: 1px solid var(--border-color);
-    color:black;
+    color: black;
     object-fit: cover;
 }
 
+.profilePictureFooter.activePicture {
+    border: solid 1px black;
+}
 
 @media (min-width: 900px) {
     footer {
