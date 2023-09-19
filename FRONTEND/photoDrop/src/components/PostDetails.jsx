@@ -55,7 +55,7 @@ export function PostDetails() {
     }
 
     return (
-        <div className={"Page" + "overflowHidden"}>
+        <div className={"Page"}>
             {post && (
                 <div className="postDetailsContainer">
                     <div className="pd-postUser">

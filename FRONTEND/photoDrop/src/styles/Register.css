@@ -15,8 +15,15 @@ main a {
     gap: 0.5rem;
 }
 
+.selectPais {
+    padding: 0.3rem;
+    width: 200px;
+    border-radius: 10px;
+    padding: 0.2rem;
+}
+
 .cajetin-register {
-    width: 80%;
+    width: 90%;
     height: 75%;
     display: flex;
     justify-content: center;
@@ -112,6 +119,13 @@ main a {
 
 @media (min-width: 900px) {
     .cajetin-register {
-        width: 80%;
+        width: 60%;
+    }
+
+    .selectPais {
+        width: 50%;
+        height: 35px;
+        font-size: 1rem;
+        border: 2px solid black;
     }
 }

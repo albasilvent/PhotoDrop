@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/addpost.css";
+import "../styles/Addpost.css";
 import { FormContext } from "../contexts/form-context";
 import { sendAddPost } from "../functions/api/send-add-post";
 import { useNavigate } from "react-router-dom";

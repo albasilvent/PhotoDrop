@@ -94,7 +94,7 @@ export function Register() {
                             />
 
                             <select
-                                className="input"
+                                className="selectPais"
                                 required
                                 onChange={(event) => {
                                     if (event.target.value !== "Pais") {

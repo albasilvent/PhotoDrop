@@ -24,7 +24,7 @@ export function SearchPosts({ search }) {
     }, [search]);
 
     return (
-        <main>
+        <main className= "searchPosts">
             {posts &&
                 posts.map((post) => {
                     return (

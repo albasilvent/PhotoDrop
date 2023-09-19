@@ -47,18 +47,29 @@ img {
 }
 
 ::-webkit-scrollbar {
-    width: 15px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
     background: grey;
-    border-radius: 15px ;
+    border-radius: 15px;
+}
+
+.Page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (min-width: 900px) {
     #root {
         grid-template-columns: 10vh calc(100vw - 10vh);
         grid-template-rows: 6vh calc(100vh - 6vh);
+    }
+
+    .searchPosts section {
+        width: 30%;
+        min-height: 300%;
     }
 }
 
@@ -70,5 +81,14 @@ img {
         width: 40px;
         height: 40px;
         border-radius: 40px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: grey;
+        border-radius: 15px;
     }
 }
